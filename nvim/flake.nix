@@ -26,7 +26,6 @@
 					./modules/plugins/notify.nix
 					./modules/plugins/ui.nix
 					./modules/plugins/which-key.nix
-					./modules/plugins/pandoc.nix
 
 
 			];
@@ -46,6 +45,8 @@
 					vim-dadbod
 						vim-dadbod-ui
 						vim-dadbod-completion
+						vim-pandoc
+						vim-pandoc-syntax
 				];
 		};
 	};
