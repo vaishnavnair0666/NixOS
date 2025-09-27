@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-
+import "../widgets"
 
 Item {
 	id: root
@@ -50,21 +50,18 @@ Item {
 			Item {
 				Layout.fillWidth: true
 				Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-
-				// Example: put Clock here
-				Loader {
-					source: "../widgets/Clock.qml"
-				}
+				Clock {}
+				// // Example: put Clock here
+				// Loader {
+				// 	source: "../widgets/Clock.qml"
+				// }
 			}
 
 			// center section that expands and keeps centered content properly
 			Item {
 				Layout.fillWidth: true
 				RowLayout { anchors.verticalCenter: parent.verticalCenter; id: centerLayout; anchors.horizontalCenter: parent.horizontalCenter }
-				Loader {
-					source: "../widgets/Battery.qml"
-					Layout.alignment: Qt.AlignVCenter
-				}
+				
 
 			}
 
@@ -73,6 +70,11 @@ Item {
 			Item {
 				Layout.preferredWidth: 300
 				RowLayout { anchors.verticalCenter: parent.verticalCenter; id: rightLayout }
+				Loader {
+					source: "../widgets/Battery.qml"
+					Layout.alignment: Qt.AlignVCenter
+				}
+				// Battery {}
 			}
 
 

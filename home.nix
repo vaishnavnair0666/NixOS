@@ -34,6 +34,11 @@ in
 # 			 quickshell.packages.${unstablePkgs.system}.gtk
 # 			 quickshell.packages.${unstablePkgs.system}.systemstats
 # 			 quickshell.packages.${unstablePkgs.system}.notifications
+# 			 quickshell.packages.${unstablePkgs.system}.power       
+# 			 quickshell.packages.${unstablePkgs.system}.network     
+# 			 quickshell.packages.${unstablePkgs.system}.mpris       
+# 			 quickshell.packages.${unstablePkgs.system}.pulseaudio  
+# 			 quickshell.packages.${unstablePkgs.system}.bluetooth   
 			])
 			];
 	programs.bash.enable = true;

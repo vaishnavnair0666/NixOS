@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import "modules" as Modules
+import "./modules" as Modules
 
 
 ShellRoot {

@@ -1,29 +1,21 @@
 import QtQuick
+import Quickshell
+import Quickshell.Services.Power
 
 Item {
-  id: root
-  implicitWidth: label.implicitWidth
-  implicitHeight: label.implicitHeight
+    Row {
+        spacing: 4
+        anchors.centerIn: parent
 
-  property int percent: 0
-  property bool charging: false
-
-  // Load service
-  Qt.include("../services/batteryService.js")
-
-  Connections {
-    target: this
-    function onStateChanged() {
-      root.percent = state.percent
-      root.charging = state.charging
+        Text {
+            text: battery.charging ? "⚡" : "🔋"
+        }
+        Text {
+            text: battery.chargePercent + "%"
+        }
     }
-  }
 
-  Text {
-    id: label
-    text: (root.charging ? "⚡ " : "") + root.percent + "%"
-    color: "white"
-    font.pixelSize: 14
-  }
+    Battery {
+        id: battery
+    }
 }
-
