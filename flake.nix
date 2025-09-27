@@ -8,15 +8,11 @@
 		home-manager.url = "github:nix-community/home-manager/release-25.05";
 		home-manager.inputs.nixpkgs.follows = "unstable";
 
-		quickshell = {
-			url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-			inputs.nixpkgs.follows = "unstable";
-		};
 		nvim.url = "path:./nvim";
 		nvim.inputs.nixpkgs.follows = "unstable";
 	};
 
-	outputs = { self, nixpkgs, unstable, home-manager, sops-nix, quickshell, nvim, ... }@inputs:
+	outputs = { self, nixpkgs, unstable, home-manager, sops-nix, nvim, ... }@inputs:
 		let
 		system = "x86_64-linux";
 	pkgs = import nixpkgs { inherit system; };
@@ -31,7 +27,7 @@
 # Integrate home-manager as a NixOS module
 					home-manager.nixosModules.home-manager
 					{
-						home-manager.useGlobalPkgs = true;
+						#home-manager.useGlobalPkgs = true;
 						home-manager.useUserPackages = false;
 
 						home-manager.backupFileExtension = "backup";
@@ -45,12 +41,10 @@
 
 						home-manager.extraSpecialArgs = {
 						inherit unstablePkgs;
-							inherit quickshell;
 						};
 					}
 			];
 		};
-#packages.${system}.quickshell = quickshell.packages.${system}.default;
 	};
 }
 
