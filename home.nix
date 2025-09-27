@@ -12,6 +12,11 @@ in
 			pkgs.fastfetch
 			pkgs.firefox
 			pkgs.wl-clipboard
+			(pkgs.dwl.overrideAttrs (old: {
+									 postPatch = ''
+									 cp ${./config/dwl/config.h} config.h
+									 '';
+									 }))
 			];
 	programs.bash.enable = true;
 	programs.bash= {
@@ -27,7 +32,7 @@ in
 			'';
 	};
 
-	home.file.".config/hypr".source = ./config/hypr;
+	# home.file.".config/hypr".source = ./config/hypr;
 
 #hello
 	home.stateVersion = "25.05";
