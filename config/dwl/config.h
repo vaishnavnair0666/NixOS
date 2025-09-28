@@ -19,13 +19,31 @@ static const float fullscreen_bg[]         = {0.0f, 0.0f, 0.0f, 1.0f}; /* You ca
 
 /* logging */
 static int log_level = WLR_ERROR;
+/* So for your case:
 
+"firefox" → matches the app_id (Wayland equivalent of WM_CLASS on X11).
+
+NULL → ignores the window title (so any Firefox window matches).
+
+1 << 8 → bitmask saying “tag 9” (since tags are zero-indexed:
+
+1 << 0 = tag 1
+
+1 << 1 = tag 2
+
+…
+
+1 << 8 = tag 9 ✅).
+
+0 → not floating (normal tiled window).
+
+-1 → any monitor (don’t force a specific output). */
 /* NOTE: ALWAYS keep a rule declared even if you don't use rules (e.g leave at least one example) */
 static const Rule rules[] = {
 	/* app_id             title       tags mask     isfloating   monitor */
 	/* examples: */
 	{ "Gimp",     NULL,       0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
-	{ "firefox",  NULL,       1 << 1,       0,           -1 }, /* Start on ONLY tag "9" */
+	// { "firefox",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
 };
 
 /* layout(s) */
