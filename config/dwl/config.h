@@ -140,9 +140,22 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[] = { "alacritty", NULL };
 static const char *menucmd[] = { "bemenu-run", NULL };
 static const char *browsercmd[]  = { "firefox", NULL };
+/* commands */
+static const char *upvol[]   = { "wpctl", "set-volume", "-l", "1", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
+static const char *downvol[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
+static const char *mutevol[] = { "wpctl", "set-mute", "@DEFAULT_AUDIO_SINK@", "toggle", NULL };
+static const char *brup[]    = { "brightnessctl", "-e4", "-n2", "set", "5%+", NULL };
+static const char *brdown[]  = { "brightnessctl", "-e4", "-n2", "set", "5%-", NULL };
+
 static const Key keys[] = {
 	/* Note that Shift changes certain key codes: c -> C, 2 -> at, etc. */
 	/* modifier                  key                 function        argument */
+	{ 0,            XF86XK_AudioRaiseVolume,  spawn,     {.v = upvol   } },
+	{ 0,            XF86XK_AudioLowerVolume,  spawn,     {.v = downvol } },
+	{ 0,            XF86XK_AudioMute,         spawn,     {.v = mutevol } },
+	{ 0,            XF86XK_MonBrightnessUp,   spawn,     {.v = brup    } },
+	{ 0,            XF86XK_MonBrightnessDown, spawn,     {.v = brdown  } },
+
 	{ MODKEY,                    XKB_KEY_p,          spawn,          {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return,     spawn,          {.v = termcmd} },
 	{ MODKEY,                    XKB_KEY_w,          spawn,          {.v = browsercmd} },
