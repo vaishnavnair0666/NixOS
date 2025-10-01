@@ -9,7 +9,7 @@
 					enable = true;
 					settings = {
 						nixd = {
-							#formatting = { command = [ "nixpkgs-fmt" ]; };
+							formatting = { command = null; };
 # optional: tweak to improve symbol readability
 							nix = {
 								exprSymbols = true; # try to extract more names from let/in
