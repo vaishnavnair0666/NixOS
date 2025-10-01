@@ -5,7 +5,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
@@ -15,18 +14,18 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   environment.systemPackages = with pkgs; [
-	wlroots
+    wlroots
     brightnessctl
-	unzip
+    unzip
     git
-	yazi
+    yazi
     lazygit
     vim
     tmux
     wget
     curl
     tldr
-	fd
+    fd
     nh
     nix-output-monitor
     nvd

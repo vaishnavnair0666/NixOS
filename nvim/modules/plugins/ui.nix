@@ -1,61 +1,34 @@
-{...}:
-{
-	programs.nixvim.colorscheme = "miniwinter";
-	programs.nixvim.extraConfigLua = ''
-		require("neo-tree").setup({
-				close_if_last_window = true,
-				popup_border_style = "rounded",
-				enable_git_status = true,
-				enable_diagnostics = true,
-				window = {
-				width = 30,
-				mappings = {
-				["<cr>"] = "open",
-				["o"] = "open",
-				["s"] = "open_split",
-				["v"] = "open_vsplit",
-				["t"] = "open_tabnew",
-				["q"] = "close_window",
-				},
-				},
-				filesystem = {
-				filtered_items = {
-				visible = false,
-				hide_dotfiles = true,
-				hide_gitignored = true,
-				},
-				follow_current_file = {
-					enabled = true,
-				},
-				},
-		})
-	'';
-	programs.nixvim.plugins = {
-		lualine.enable = true;
-		bufferline = {
-			enable = true;
-			settings = {
-				options = {
-					mode = "buffers"; # or "tabs"
-						diagnostics = "nvim_lsp"; # show LSP errors/warnings in bufferline
-						separator_style = "slant"; # "slant", "thick", "thin"
-						show_buffer_close_icons = true;
-					show_close_icon = false;
-					always_show_bufferline = true;
-				};
-			};
-		};
-		gitsigns.enable = true;
-		neo-tree.enable = true;
-		comment.enable = true;
-		telescope.enable = true;
-		treesitter = {
-			enable = true;
-			settings.ensureInstalled = [ "nix" "lua" "javascript" "typescript" "svelte" "json" ];
-		};	
-# UI niceties
-		indent-blankline.enable = true;
-		todo-comments.enable = true;
-		fidget.enable = true;
-	};
+{ ... }: {
+  programs.nixvim.colorscheme = "miniwinter";
+  programs.nixvim.extraConfigLua =
+    "	require(\"neo-tree\").setup({\n			close_if_last_window = true,\n			popup_border_style = \"rounded\",\n			enable_git_status = true,\n			enable_diagnostics = true,\n			window = {\n			width = 30,\n			mappings = {\n			[\"<cr>\"] = \"open\",\n			[\"o\"] = \"open\",\n			[\"s\"] = \"open_split\",\n			[\"v\"] = \"open_vsplit\",\n			[\"t\"] = \"open_tabnew\",\n			[\"q\"] = \"close_window\",\n			},\n			},\n			filesystem = {\n			filtered_items = {\n			visible = false,\n			hide_dotfiles = true,\n			hide_gitignored = true,\n			},\n			follow_current_file = {\n				enabled = true,\n			},\n			},\n	})\n";
+  programs.nixvim.plugins = {
+    lualine.enable = true;
+    bufferline = {
+      enable = true;
+      settings = {
+        options = {
+          mode = "buffers"; # or "tabs"
+          diagnostics = "nvim_lsp"; # show LSP errors/warnings in bufferline
+          separator_style = "slant"; # "slant", "thick", "thin"
+          show_buffer_close_icons = true;
+          show_close_icon = false;
+          always_show_bufferline = true;
+        };
+      };
+    };
+    gitsigns.enable = true;
+    neo-tree.enable = true;
+    comment.enable = true;
+    telescope.enable = true;
+    treesitter = {
+      enable = true;
+      settings.ensureInstalled =
+        [ "nix" "lua" "javascript" "typescript" "svelte" "json" ];
+    };
+    # UI niceties
+    indent-blankline.enable = true;
+    todo-comments.enable = true;
+    fidget.enable = true;
+  };
 }

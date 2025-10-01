@@ -1,16 +1,15 @@
-{config, pkgs, ... }:
-{
-environment.systemPackages = with pkgs; [
-# 🗄️ Databases
+{ config, pkgs, ... }: {
+  environment.systemPackages = with pkgs; [
+    # 🗄️ Databases
     postgresql
-    mongodb-tools   # CLI tools for Mongo
-    mongosh         # Mongo shell
+    mongodb-tools # CLI tools for Mongo
+    mongosh # Mongo shell
     sqlite
-    mysql-client 
+    mysql-client
 
-];
+  ];
 
- # Enable PostgreSQL service (if you want local dev DB always on)
+  # Enable PostgreSQL service (if you want local dev DB always on)
   services.postgresql = {
     enable = true;
     package = pkgs.postgresql_16;

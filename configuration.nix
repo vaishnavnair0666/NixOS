@@ -1,9 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  
-   # ssh key (stored in repo, but should be encrypted)
-  environment.etc."ssh/github".text = builtins.readFile ./modules/secrets/github.ssh.enc;
+
+  # ssh key (stored in repo, but should be encrypted)
+  environment.etc."ssh/github".text =
+    builtins.readFile ./modules/secrets/github.ssh.enc;
   environment.etc."ssh/github".mode = "0600";
 
   environment.etc."ssh/config".text = ''
@@ -22,7 +23,7 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/base.nix
-	./modules/system.nix
+    ./modules/system.nix
     ./modules/users.nix
     ./modules/desktop.nix
     ./modules/audio.nix
@@ -30,9 +31,9 @@
     ./modules/fonts.nix
     ./modules/portal.nix
     ./modules/apps.nix
-	./modules/dev.nix
-	./modules/documentEditor.nix
-	./modules/formatter.nix
+    ./modules/dev.nix
+    ./modules/documentEditor.nix
+    ./modules/formatter.nix
   ];
 }
 

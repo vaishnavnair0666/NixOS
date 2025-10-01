@@ -1,24 +1,25 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    gcc 
-	gnumake
+    gcc
+    gnumake
     direnv
-	nix-direnv
-	nodejs_22
-	pnpm
-	jq
-# 🛠️ Language Servers (for IDEs / Neovim / VSCode)
-	svelte-language-server
-	nodePackages.typescript-language-server
-	nodePackages.vscode-langservers-extracted # html/css/json eslint
-	nodePackages.eslint
-	nodePackages.prettier
-# ⚡ Extra Dev Stuff
-	httpie         # nice curl alternative
-	ngrok          # expose localhost services
-	openssl        # certs/dev crypto
+    nix-direnv
+    nodejs_22
+    pnpm
+    jq
+    # 🛠️ Language Servers (for IDEs / Neovim / VSCode)
+    nixfmt-classic
+    svelte-language-server
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted # html/css/json eslint
+    nodePackages.eslint
+    nodePackages.prettier
+    # ⚡ Extra Dev Stuff
+    httpie # nice curl alternative
+    ngrok # expose localhost services
+    openssl # certs/dev crypto
   ];
 }
 

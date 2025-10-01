@@ -3,9 +3,7 @@
 {
   programs.nixvim.plugins.luasnip.enable = true;
 
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [
-    friendly-snippets
-  ];
+  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [ friendly-snippets ];
 
   programs.nixvim.extraConfigLua = ''
     local luasnip = require("luasnip")
