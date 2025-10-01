@@ -32,6 +32,7 @@
     ./modules/apps.nix
 	./modules/dev.nix
 	./modules/documentEditor.nix
+	./modules/formatter.nix
   ];
 }
 
