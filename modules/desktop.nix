@@ -20,6 +20,7 @@
 
   environment.systemPackages = with pkgs; [
     dwl
+    dwlmsg
     # waybar
     alacritty
     bemenu # dmenu-like launcher for Wayland

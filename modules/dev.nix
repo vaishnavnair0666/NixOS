@@ -3,6 +3,7 @@
 {
   environment.systemPackages = with pkgs; [
     gcc
+    cargo
     gnumake
     direnv
     nix-direnv
