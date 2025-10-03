@@ -1,15 +1,4 @@
-{ config, pkgs, ... }:
-
-{
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
-
-  # services.displayManager.sddm = {
-  #   enable = true;
-  #   wayland.enable = true;
-  # };
+{ pkgs, ... }: {
   services.greetd = {
     enable = true;
     settings.default_session = {
@@ -19,8 +8,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    dwl
-    dwlmsg
     # waybar
     alacritty
     bemenu # dmenu-like launcher for Wayland

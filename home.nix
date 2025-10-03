@@ -6,18 +6,8 @@ in {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
 
-  home.packages = [
-    pkgs.alacritty
-    pkgs.btop
-    pkgs.fastfetch
-    pkgs.firefox
-    pkgs.wl-clipboard
-    (pkgs.dwl.overrideAttrs (old: {
-      postPatch = ''
-        cp ${./config/dwl/config.h} config.h
-      '';
-    }))
-  ];
+  home.packages =
+    [ pkgs.alacritty pkgs.btop pkgs.fastfetch pkgs.firefox pkgs.wl-clipboard ];
   programs.bash.enable = true;
   programs.bash = {
     bashrcExtra = ''

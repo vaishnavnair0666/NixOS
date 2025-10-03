@@ -8,22 +8,28 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "unstable";
 
+    dwlFlake.url = "path:./config/dwl";
+
     nvim.url = "path:./nvim";
     nvim.inputs.nixpkgs.follows = "unstable";
   };
 
-  outputs =
-    { self, nixpkgs, unstable, home-manager, sops-nix, nvim, ... }@inputs:
+  outputs = { self, nixpkgs, unstable, home-manager, sops-nix, nvim, dwlFlake
+    , ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       unstablePkgs = import unstable { inherit system; };
+
+      dwlPkgs = dwlFlake.packages.${system};
     in {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
           ./configuration.nix
           sops-nix.nixosModules.sops
+          dwlFlake.nixosModules.default
+
           ./modules/secrets.nix
           # Integrate home-manager as a NixOS module
           home-manager.nixosModules.home-manager
@@ -40,6 +46,7 @@
             home-manager.extraSpecialArgs = { inherit unstablePkgs; };
           }
         ];
+        specialArgs = { inherit pkgs; };
       };
     };
 }
