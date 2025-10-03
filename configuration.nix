@@ -25,7 +25,7 @@
     ./modules/base.nix
     ./modules/system.nix
     ./modules/users.nix
-    # ./modules/desktop.nix
+    ./modules/desktop.nix
     ./modules/audio.nix
     ./modules/bluetooth.nix
     ./modules/fonts.nix

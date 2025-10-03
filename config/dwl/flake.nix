@@ -1,12 +1,15 @@
 {
   description = "Custom dwl flake with patches";
 
-  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable"; };
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    dwlUpstream.url = "git+https://codeberg.org/dwl/dwl.git?ref=main";
+  };
 
-  outputs = { self, nixpkgs, lib, ... }:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = nixpkgs.legacyPackages.${system};
     in {
       packages.${system} = {
         # dwl with patch applied
@@ -22,12 +25,7 @@
           pname = "dwl-msg";
           version = "git";
 
-          src = pkgs.fetchgit {
-            url = "https://codeberg.org/dwl/dwl.git";
-            # no rev, will use flake.lock to pin automatically
-            sha256 = lib.fakeSha256;
-          };
-
+          src = inputs.dwlUpstream;
           nativeBuildInputs = [ pkgs.pkg-config ];
           buildInputs = [ pkgs.wlroots pkgs.xorg.libxcb ];
 
