@@ -1,15 +1,33 @@
 {
   "nodes": {
+    "dwl-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1759118182,
+        "narHash": "sha256-ihxF9Z4uT0K3omO4mbzkeICY/RyqvuD+C5JSGWIf6MI=",
+        "ref": "main",
+        "rev": "6cd26568d5b8be2252ac0def36cd194b4fb2d7c3",
+        "revCount": 1308,
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl.git"
+      },
+      "original": {
+        "ref": "main",
+        "type": "git",
+        "url": "https://codeberg.org/dwl/dwl.git"
+      }
+    },
     "dwlFlake": {
       "inputs": {
+        "dwl-src": "dwl-src",
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "path": "./config/dwl",
+        "path": "./flakes/dwl-base",
         "type": "path"
       },
       "original": {
-        "path": "./config/dwl",
+        "path": "./flakes/dwl-base",
         "type": "path"
       },
       "parent": []
