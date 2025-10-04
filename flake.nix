@@ -8,7 +8,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "unstable";
 
-    dwlFlake.url = "path:./config/dwl";
+    dwlFlake.url = "path:./flakes/dwl-base";
 
     nvim.url = "path:./nvim";
     nvim.inputs.nixpkgs.follows = "unstable";
@@ -20,16 +20,30 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
       unstablePkgs = import unstable { inherit system; };
-
-      dwlPkgs = dwlFlake.packages.${system};
+      # config.allowUnfree = true; # global system pkgs
     in {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [
           ./configuration.nix
           sops-nix.nixosModules.sops
-          dwlFlake.nixosModules.default
+          {
+            environment.systemPackages =
+              [ dwlFlake.packages.${system}.default ];
 
+            services.xserver.enable = true; # for greeter only
+            services.xserver.displayManager.gdm.enable = true;
+
+            services.xserver.displayManager.sessionPackages = [
+              (pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
+                [Desktop Entry]
+                Name=dwl
+                Exec=${dwlFlake.packages.${system}.default}/bin/dwl
+                Type=Application
+              '')
+            ];
+          }
           ./modules/secrets.nix
           # Integrate home-manager as a NixOS module
           home-manager.nixosModules.home-manager
@@ -46,8 +60,8 @@
             home-manager.extraSpecialArgs = { inherit unstablePkgs; };
           }
         ];
-        specialArgs = { inherit pkgs; };
       };
+
     };
 }
 

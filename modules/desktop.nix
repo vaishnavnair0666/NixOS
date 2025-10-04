@@ -1,11 +1,11 @@
 { pkgs, ... }: {
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "dwl";
-      user = "vaish";
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings.default_session = {
+  #     command = "dwl";
+  #     user = "vaish";
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     # waybar
