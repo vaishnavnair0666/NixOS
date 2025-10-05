@@ -9,7 +9,10 @@
 
   environment.systemPackages = with pkgs; [
     # waybar
+    wayland
+    wayland-protocols
     alacritty
+    foot
     bemenu # dmenu-like launcher for Wayland
     swaybg # set background
     mako # notifications

@@ -7,7 +7,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "unstable";
-
     dwlFlake.url = "path:./flakes/dwl-base";
 
     nvim.url = "path:./nvim";
@@ -29,20 +28,22 @@
           ./configuration.nix
           sops-nix.nixosModules.sops
           {
-            environment.systemPackages =
-              [ dwlFlake.packages.${system}.default ];
+            # environment.systemPackages =
+            # [ dwlFlake.packages.${system}.default ];
 
-            services.xserver.enable = true; # for greeter only
-            services.xserver.displayManager.gdm.enable = true;
+            services.greetd = {
+              enable = true;
+              settings = {
+                default_session = {
+                  # command = "${pkgs.dwl}/bin/dwl";
+                  command = "${dwlFlake.defaultPackage}/bin/dwl";
+                  user = "vaish"; # autologin user
+                };
+              };
+            };
 
-            services.xserver.displayManager.sessionPackages = [
-              (pkgs.writeTextDir "share/wayland-sessions/dwl.desktop" ''
-                [Desktop Entry]
-                Name=dwl
-                Exec=${dwlFlake.packages.${system}.default}/bin/dwl
-                Type=Application
-              '')
-            ];
+            # optional greeter frontend (nice TUI)
+            # programs.greetd.tuigreet.enable = true;
           }
           ./modules/secrets.nix
           # Integrate home-manager as a NixOS module
@@ -60,6 +61,11 @@
             home-manager.extraSpecialArgs = { inherit unstablePkgs; };
           }
         ];
+        # Make your dwl package available in system packages
+        # configuration = {
+        #   environment.systemPackages =
+        #     [ inputs.dwlFlake.packages.${system}.default ];
+        # };
       };
 
     };
