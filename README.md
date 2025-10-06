@@ -9,9 +9,11 @@ Download the latest NixOS minimal ISO from https://nixos.org/download.html and b
 ### 2. Partition the Disk (Replace /dev/sdX with your target disk)
 
 Open a terminal and run:
+
 ```sh
 cfdisk /dev/sdX
 ```
+
 Create these partitions:
 - EFI System Partition (512M, type EFI System)
 - Linux Swap (size as needed, type Linux swap)
@@ -49,7 +51,7 @@ mkdir /mnt/boot
 mount /dev/sdX1 /mnt/boot
 swapon /dev/sdX2
 ```
-####Optional (but recommended, this is what i did)
+Optional (but recommended, this is what i did)
 To enable Btrfs compression (using zstd, which is a good default), simply add ,compress=zstd to your mount options when mounting your Btrfs partitions during installation. For example, use:
 
 ```sh
