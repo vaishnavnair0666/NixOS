@@ -9,7 +9,7 @@
     home-manager.inputs.nixpkgs.follows = "unstable";
     dwlFlake.url = "path:./flakes/dwl-base";
 
-    nvim.url = "path:./nvim";
+    nvim.url = "path:./flakes/nvim";
     nvim.inputs.nixpkgs.follows = "unstable";
   };
 
