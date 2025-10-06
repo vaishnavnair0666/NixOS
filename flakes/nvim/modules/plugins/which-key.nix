@@ -28,30 +28,20 @@
 
       # Keymaps organized by groups
       spec = [
-        # FILE group
+        # FIND group
         {
           __unkeyed-1 = "<leader>f";
-          group = "File";
+          group = "Find";
         }
+        # GIT
         {
-          __unkeyed-1 = "<leader>ff";
-          __unkeyed-2 = "<cmd>Telescope find_files<cr>";
-          desc = "Find files";
+          __unkeyed-1 = "<leader>g";
+          group = "GIT";
         }
+
         {
-          __unkeyed-1 = "<leader>fg";
-          __unkeyed-2 = "<cmd>Telescope live_grep<cr>";
-          desc = "Live grep";
-        }
-        {
-          __unkeyed-1 = "<leader>fb";
-          __unkeyed-2 = "<cmd>Telescope buffers<cr>";
-          desc = "Buffers";
-        }
-        {
-          __unkeyed-1 = "<leader>fh";
-          __unkeyed-2 = "<cmd>Telescope help_tags<cr>";
-          desc = "Help tags";
+          __unkeyed-1 = "<leader>g";
+          group = "GIT";
         }
 
         # UI TOGGLES group
@@ -84,17 +74,6 @@
         {
           __unkeyed-1 = "<leader>c";
           group = "Code";
-        }
-        {
-          __unkeyed-1 = "<leader>cf";
-          __unkeyed-2 =
-            "<cmd>lua require('conform').format({ async = true, lsp_fallback = true })<cr>";
-          desc = "Format file";
-        }
-        {
-          __unkeyed-1 = "<leader>ci";
-          __unkeyed-2 = "gg=G``";
-          desc = "Re-indent whole file";
         }
 
         # Move between splits
@@ -170,7 +149,7 @@
           desc = "Move buffer left";
         }
 
-        # Direct access (buffers 1-9)
+        # Direct access (buffers 1-6)
         {
           __unkeyed-1 = "<leader>1";
           __unkeyed-2 = "<cmd>BufferLineGoToBuffer 1<CR>";
@@ -192,6 +171,19 @@
           __unkeyed-2 = "<cmd>BufferLineGoToBuffer 4<CR>";
           desc = "Go to buffer 4";
         }
+
+        {
+          __unkeyed-1 = "<leader>5";
+          __unkeyed-2 = "<cmd>BufferLineGoToBuffer 5<CR>";
+          desc = "Go to buffer 5";
+        }
+
+        {
+          __unkeyed-1 = "<leader>6";
+          __unkeyed-2 = "<cmd>BufferLineGoToBuffer 6<CR>";
+          desc = "Go to buffer 6";
+        }
+
         # Close
         {
           __unkeyed-1 = "<leader>bd";
