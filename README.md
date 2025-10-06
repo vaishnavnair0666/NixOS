@@ -49,7 +49,15 @@ mkdir /mnt/boot
 mount /dev/sdX1 /mnt/boot
 swapon /dev/sdX2
 ```
+####Optional (but recommended, this is what i did)
+To enable Btrfs compression (using zstd, which is a good default), simply add ,compress=zstd to your mount options when mounting your Btrfs partitions during installation. For example, use:
 
+```sh
+mount -o compress=zstd,subvol=@ /dev/sdX3 /mnt
+mount -o compress=zstd,subvol=@home /dev/sdX3 /mnt/home
+```
+
+This will turn on transparent compression for your files, helping save space with no extra steps needed.
 ### 6. Generate the Basic NixOS Configuration
 
 ```sh
