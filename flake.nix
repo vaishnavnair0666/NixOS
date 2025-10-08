@@ -23,7 +23,7 @@
     in {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = { inherit inputs unstablePkgs; };
         modules = [
           ./configuration.nix
           sops-nix.nixosModules.sops

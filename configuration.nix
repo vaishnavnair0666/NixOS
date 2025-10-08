@@ -34,6 +34,7 @@
     ./modules/dev.nix
     ./modules/documentEditor.nix
     ./modules/formatter.nix
+    ./modules/special/whichkey.nix
   ];
 }
 

@@ -32,8 +32,8 @@ static const Rule rules[] = {
 /* layouts */
 static const Layout layouts[] = {
 	{ "[]=", tile },
-	{ "[M]", monocle },
 	{ "><>", NULL },
+	{ "[M]", monocle },
 };
 
 /* monitors */
@@ -88,9 +88,9 @@ static const char *brdown[]  = { "brightnessctl", "-e4", "-n2", "set", "5%-", NU
 
 /* keys */
 static const Key keys[] = {
-	{ 0, XKB_KEY_SunAudioRaiseVolume, spawn, {.v = upvol} },
-    { 0, XKB_KEY_SunAudioLowerVolume, spawn, {.v = downvol} },
-    { 0, XKB_KEY_SunAudioMute,        spawn, {.v = mutevol} },
+	{ 0, XKB_KEY_XF86AudioRaiseVolume, spawn, {.v = upvol} },
+    { 0, XKB_KEY_XF86AudioLowerVolume, spawn, {.v = downvol} },
+    { 0, XKB_KEY_XF86AudioMute,        spawn, {.v = mutevol} },
     { 0, XKB_KEY_XF86MonBrightnessUp,  spawn, {.v = brup} },
     { 0, XKB_KEY_XF86MonBrightnessDown,spawn, {.v = brdown} },
 
