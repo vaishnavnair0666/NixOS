@@ -6,19 +6,27 @@ in {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
 
-  home.packages =
-    [ pkgs.alacritty pkgs.btop pkgs.fastfetch pkgs.firefox pkgs.wl-clipboard ];
+  home.packages = with pkgs; [
+    alacritty
+    btop
+    fastfetch
+    firefox
+    wl-clipboard
+    atuin
+  ];
   programs.bash.enable = true;
   programs.bash = {
     bashrcExtra = ''
       eval "$(direnv hook bash)"
+      eval "$(atuin init bash)"
     '';
   };
   # Example: enable zsh
   programs.zsh = {
     enable = true;
     initContent = ''
-      eval "$(direnv hook zsh)"
+          eval "$(atuin init zsh)"
+      	  eval "$(direnv hook zsh)" 	    
     '';
   };
 

@@ -26,7 +26,9 @@
           ./modules/plugins/notify.nix
           ./modules/plugins/ui.nix
           ./modules/plugins/which-key.nix
-
+          ./modules/plugins/git.nix
+          ./modules/plugins/telescope.nix
+          ./modules/plugins/toggleterm.nix
         ];
 
         programs.nixvim.enable = true;

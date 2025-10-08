@@ -17,10 +17,8 @@
         };
       };
     };
-    gitsigns.enable = true;
     neo-tree.enable = true;
     comment.enable = true;
-    telescope.enable = true;
     treesitter = {
       enable = true;
       settings.ensureInstalled =
