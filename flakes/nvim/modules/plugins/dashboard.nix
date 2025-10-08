@@ -1,18 +1,24 @@
 { ... }: {
   programs.nixvim.plugins = {
-
     mini = {
       enable = true;
-      modules.icons = { mockDevIcons = true; };
-      modules.starter = { };
-      modules.surround = {
-        mappings = {
-          add = "<leader>sa";
-          delete = "<leader>sd";
-          find = "<leader>sf";
-          replace = "<leader>sr";
+
+      # modules is an attrset (key-value set)
+      modules = {
+        icons = { }; # enable icons module
+        starter = { }; # simple start screen
+        surround = {
+          mappings = {
+            add = "<leader>sa";
+            delete = "<leader>sd";
+            find = "<leader>sf";
+            replace = "<leader>sr";
+          };
         };
-      }; # editing quotes, tags, etc.
+      };
+
+      # mockDevIcons is a top-level option
+      mockDevIcons = true;
     };
   };
 }
