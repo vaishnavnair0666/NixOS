@@ -1,24 +1,25 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   programs.lazygit.enable = true;
-  programs.nixvim.plugins = {
 
-    git-worktree = { enable = true; };
-    # Optional: gitsigns for inline git info
-    gitsigns.enable = true;
+  extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
+  programs.nixvim = {
+    plugins = {
+
+      gitsigns.enable = true;
+      # web-devicons.enable = true;
+    };
+
+    extraConfigLua = ''
+         local gw_ok, gw = pcall(require, "git-worktree")
+         if gw_ok then gw.setup() end
+         	local telescope_ok, telescope = pcall(require, "telescope")
+         		if telescope_ok then
+         			telescope.load_extension("git_worktree")
+         				end
+
+      local ext = telescope.extensions.git_worktree
+      vim.keymap.set("n", "<leader>wl", ext.git_worktrees, { desc = "List Git Worktrees" })
+      vim.keymap.set("n", "<leader>wc", ext.create_git_worktree, { desc = "Create Git Worktree" })
+    '';
   };
-  # Git Worktrees Plugin by ThePrimeagen
-  programs.nixvim.extraConfigLua = ''
-    local telescope = require('telescope')
-    telescope.load_extension('git_worktree')
-
-    vim.keymap.set('n', '<leader>wl', function()
-      telescope.extensions.git_worktree.git_worktrees()
-    end, { desc = "List Git Worktrees" })
-
-    vim.keymap.set('n', '<leader>wc', function()
-      telescope.extensions.git_worktree.create_git_worktree()
-    end, { desc = "Create Git Worktree" })
-  '';
 }
