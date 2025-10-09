@@ -33,6 +33,11 @@
           __unkeyed-1 = "<leader>f";
           group = "Find";
         }
+        {
+          __unkeyed-1 = "<leader>s";
+          group = "Search";
+        }
+
         # GIT
         {
           __unkeyed-1 = "<leader>g";
@@ -40,8 +45,33 @@
         }
 
         {
-          __unkeyed-1 = "<leader>g";
-          group = "GIT";
+          __unkeyed-1 = "<leader>t";
+          group = "Terminal";
+        }
+
+        {
+          __unkeyed-1 = "<leader>h";
+          group = "Harpoon";
+        }
+
+        {
+          __unkeyed-1 = "<leadr>x";
+          group = "Diagnostics";
+        }
+
+        {
+          __unkeyed-1 = "<leader>k";
+          group = "Keymaps";
+        }
+
+        {
+          __unkeyed-1 = "<leader>m";
+          group = "MAN";
+        }
+
+        {
+          __unkeyed-1 = "<leader>n";
+          group = "Noice";
         }
 
         # UI TOGGLES group

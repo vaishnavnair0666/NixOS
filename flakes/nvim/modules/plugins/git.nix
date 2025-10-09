@@ -2,24 +2,9 @@
   programs.lazygit.enable = true;
 
   programs.nixvim = {
-    extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
-    plugins = {
+    # Explicitly add ThePrimeagen's plugin
+    # extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
 
-      gitsigns.enable = true;
-      # web-devicons.enable = true;
-    };
-
-    extraConfigLua = ''
-         local gw_ok, gw = pcall(require, "git-worktree")
-         if gw_ok then gw.setup() end
-         	local telescope_ok, telescope = pcall(require, "telescope")
-         		if telescope_ok then
-         			telescope.load_extension("git_worktree")
-         				end
-
-      local ext = telescope.extensions.git_worktree
-      vim.keymap.set("n", "<leader>wl", ext.git_worktrees, { desc = "List Git Worktrees" })
-      vim.keymap.set("n", "<leader>wc", ext.create_git_worktree, { desc = "Create Git Worktree" })
-    '';
+    plugins = { gitsigns.enable = true; };
   };
 }

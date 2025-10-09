@@ -29,6 +29,7 @@
           ./modules/plugins/git.nix
           ./modules/plugins/telescope.nix
           ./modules/plugins/toggleterm.nix
+          ./modules/plugins/harpoon.nix
         ];
 
         programs.nixvim.enable = true;
