@@ -1,8 +1,8 @@
 { pkgs, ... }: {
   programs.lazygit.enable = true;
 
-  extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
   programs.nixvim = {
+    extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
     plugins = {
 
       gitsigns.enable = true;
