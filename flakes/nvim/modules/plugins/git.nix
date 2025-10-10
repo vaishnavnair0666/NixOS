@@ -5,6 +5,9 @@
     # Explicitly add ThePrimeagen's plugin
     # extraPlugins = with pkgs.vimPlugins; [ git-worktree-nvim ];
 
-    plugins = { gitsigns.enable = true; };
+    plugins = {
+      gitsigns.enable = true;
+      diffview.enable = true;
+    };
   };
 }

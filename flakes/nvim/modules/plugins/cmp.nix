@@ -1,38 +1,85 @@
 { pkgs, ... }:
 
 {
-  programs.nixvim.plugins.luasnip.enable = true;
+  programs.nixvim = {
+    plugins = {
+      # --- Completion Engine ---
+      cmp = {
+        enable = true;
+        settings = {
+          snippet = {
+            # Use LuaSnip for snippet expansion
+            expand =
+              "function(args) require('luasnip').lsp_expand(args.body) end";
+          };
 
-  programs.nixvim.extraPlugins = with pkgs.vimPlugins; [ friendly-snippets ];
+          # Keymaps for completion & snippets
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-e>" = "cmp.mapping.abort()";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
 
-  programs.nixvim.extraConfigLua = ''
-    local luasnip = require("luasnip")
+            "<Tab>" = ''
+              cmp.mapping(function(fallback)
+                local luasnip = require("luasnip")
+                if cmp.visible() then
+                  cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                  luasnip.expand_or_jump()
+                else
+                  fallback()
+                end
+              end, { "i", "s" })
+            '';
 
-    -- Load VSCode-style snippets from installed plugins
-    require("luasnip.loaders.from_vscode").lazy_load()
+            "<S-Tab>" = ''
+              cmp.mapping(function(fallback)
+                local luasnip = require("luasnip")
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                  luasnip.jump(-1)
+                else
+                  fallback()
+                end
+              end, { "i", "s" })
+            '';
+          };
 
-    -- Optional: load your own snippets
-    require("luasnip.loaders.from_vscode").lazy_load({
-      paths = { vim.fn.stdpath("config") .. "/LuaSnip/" }
-    })
+          # Sources for completion
+          sources = [
+            { name = "nvim_lsp"; }
+            { name = "luasnip"; }
+            { name = "buffer"; }
+            { name = "path"; }
+            { name = "nvim_lua"; }
+          ];
 
-    -- Optional: keymaps for navigating snippets
-    vim.keymap.set({"i","s"}, "<Tab>", function()
-      if luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        vim.api.nvim_feedkeys(
-          vim.api.nvim_replace_termcodes("<Tab>", true, true, true),
-          "n",
-          false
-        )
-      end
-    end, { silent = true })
+          # Add pretty icons
+          formatting = {
+            format =
+              "function(entry, vim_item) return require('lspkind').cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item) end";
+          };
+        };
+      };
 
-    vim.keymap.set({"i","s"}, "<S-Tab>", function()
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      end
-    end, { silent = true })
-  '';
+      # --- Snippet Engine ---
+      luasnip.enable = true;
+
+      # --- Icons ---
+      lspkind.enable = true;
+    };
+
+    extraPlugins = with pkgs.vimPlugins; [ friendly-snippets ];
+
+    extraConfigLua = ''
+      -- Load VSCode-style snippets (LuaSnip)
+      require("luasnip.loaders.from_vscode").lazy_load()
+
+      -- Optional: load your own custom snippets
+      -- require("luasnip.loaders.from_vscode").lazy_load({
+      --   paths = { vim.fn.stdpath("config") .. "/LuaSnip/" }
+      -- })
+    '';
+  };
 }

@@ -4,13 +4,13 @@
 
     settings = {
       direction = "float"; # other options: "horizontal", "vertical", "tab"
-      shade_terminals = true;
+      shade_terminals = false;
       start_in_insert = true;
       close_on_exit = false;
       persist_mode = true;
       float_opts = {
         border = "curved";
-        winblend = 5;
+        winblend = 0;
       };
 
     };
