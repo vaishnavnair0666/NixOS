@@ -7,11 +7,7 @@
       cmp = {
         enable = true;
         settings = {
-          snippet = {
-            # Use LuaSnip for snippet expansion
-            expand =
-              "function(args) require('luasnip').lsp_expand(args.body) end";
-          };
+          snippet = { expand = "luasnip"; };
 
           # Keymaps for completion & snippets
           mapping = {
@@ -55,11 +51,6 @@
             { name = "nvim_lua"; }
           ];
 
-          # Add pretty icons
-          formatting = {
-            format =
-              "function(entry, vim_item) return require('lspkind').cmp_format({ mode = 'symbol_text', maxwidth = 50 })(entry, vim_item) end";
-          };
         };
       };
 
