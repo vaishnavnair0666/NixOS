@@ -19,13 +19,21 @@
     nvim.inputs.nixpkgs.follows = "unstable";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, sops-nix, nvim, dwlFlake
-    , ... }@inputs:
+  outputs = { nixpkgs, unstable, home-manager, sops-nix, dwlFlake, ... }@inputs:
     let
 
       myOverlays = [
         (final: prev: {
-          # Override the elephant-providers output hash to match upstream changes
+          #   # Override elephant-providers fetcher to fix hash mismatch
+          #   elephant-providers = prev.elephant-providers.overrideAttrs (old: {
+          #     src = prev.fetchFromGitHub {
+          #       owner = "abenz1267";
+          #       repo = "elephant-providers";
+          #       rev = "master"; # Match the version you are using
+          #       sha256 = "uwcGPmie44rfq9qCOXO3WjJXiLxQxNPmKQYbG9a22/c=";
+          #     };
+          #   });
+          # })
           elephant-providers = prev.elephant-providers.overrideAttrs (old: {
             outputHash = "sha256-uwcGPmie44rfq9qCOXO3WjJXiLxQxNPmKQYbG9a22/c=";
           });

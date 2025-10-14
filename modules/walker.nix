@@ -1,10 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  environment.systemPackages = [
-    inputs.elephant.packages.${pkgs.system}.default
-    inputs.walker.packages.${pkgs.system}.default
-  ];
+  environment.systemPackages = [ pkgs.elephant pkgs.walker ];
 
   nix.settings = {
     extra-substituters =
