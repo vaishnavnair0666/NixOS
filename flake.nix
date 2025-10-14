@@ -21,43 +21,24 @@
 
   outputs = { nixpkgs, unstable, home-manager, sops-nix, dwlFlake, ... }@inputs:
     let
-
-      myOverlays = [
-        (final: prev: {
-          #   # Override elephant-providers fetcher to fix hash mismatch
-          #   elephant-providers = prev.elephant-providers.overrideAttrs (old: {
-          #     src = prev.fetchFromGitHub {
-          #       owner = "abenz1267";
-          #       repo = "elephant-providers";
-          #       rev = "master"; # Match the version you are using
-          #       sha256 = "uwcGPmie44rfq9qCOXO3WjJXiLxQxNPmKQYbG9a22/c=";
-          #     };
-          #   });
-          # })
-          elephant-providers = prev.elephant-providers.overrideAttrs (old: {
-            outputHash = "sha256-uwcGPmie44rfq9qCOXO3WjJXiLxQxNPmKQYbG9a22/c=";
-          });
-        })
-      ];
       system = "x86_64-linux";
+
       pkgs = import nixpkgs {
         inherit system;
-        overlays = myOverlays;
+        overlays = [
+          (import ./overlays/elephant-overlay.nix)
+          (final: prev: { walker = inputs.walker.packages.${system}.default; })
+        ];
       };
-      unstablePkgs = import unstable {
-        inherit system;
-        overlays = myOverlays;
-      };
+      unstablePkgs = import unstable { inherit system; };
       # config.allowUnfree = true; # global system pkgs
     in {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
-        inherit system;
+        inherit system pkgs;
         specialArgs = { inherit inputs unstablePkgs; };
         modules = [
-          {
-            _module.args = { inherit inputs; };
-          } # Expose flake inputs to modules
           ./configuration.nix
+          ./modules/walker.nix
           sops-nix.nixosModules.sops
           {
             # environment.systemPackages =

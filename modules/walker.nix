@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   environment.systemPackages = [ pkgs.elephant pkgs.walker ];
