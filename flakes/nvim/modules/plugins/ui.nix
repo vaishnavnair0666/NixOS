@@ -22,7 +22,7 @@
     treesitter = {
       enable = true;
       settings.ensureInstalled =
-        [ "nix" "lua" "javascript" "typescript" "svelte" "json" ];
+        [ "nix" "lua" "javascript" "typescript" "svelte" "json" "markdown" ];
     };
     # UI niceties
     indent-blankline.enable = true;

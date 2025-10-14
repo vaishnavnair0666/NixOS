@@ -9,6 +9,13 @@
     home-manager.inputs.nixpkgs.follows = "unstable";
     dwlFlake.url = "path:./flakes/dwl-base";
 
+    elephant.url = "github:abenz1267/elephant";
+
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
+    };
+
     nvim.url = "path:./flakes/nvim";
     nvim.inputs.nixpkgs.follows = "unstable";
   };
@@ -25,6 +32,9 @@
         inherit system;
         specialArgs = { inherit inputs unstablePkgs; };
         modules = [
+          {
+            _module.args = { inherit inputs; };
+          } # Expose flake inputs to modules
           ./configuration.nix
           sops-nix.nixosModules.sops
           {

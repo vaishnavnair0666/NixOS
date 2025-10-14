@@ -3,9 +3,9 @@
 
 /* colors */
 #define COLOR(hex)    { ((hex >> 24) & 0xFF) / 255.0f, \
-                        ((hex >> 16) & 0xFF) / 255.0f, \
-                        ((hex >> 8) & 0xFF) / 255.0f, \
-                        (hex & 0xFF) / 255.0f }
+	((hex >> 16) & 0xFF) / 255.0f, \
+	((hex >> 8) & 0xFF) / 255.0f, \
+	(hex & 0xFF) / 255.0f }
 
 /* appearance */
 static const int sloppyfocus               = 1;
@@ -68,10 +68,10 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* key defs */
 #define MODKEY WLR_MODIFIER_LOGO
 #define TAGKEYS(KEY,SKEY,TAG) \
-	{ MODKEY, KEY, view, {.ui = 1 << TAG} }, \
-	{ MODKEY|WLR_MODIFIER_CTRL, KEY, toggleview, {.ui = 1 << TAG} }, \
-	{ MODKEY|WLR_MODIFIER_SHIFT, SKEY, tag, {.ui = 1 << TAG} }, \
-	{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, SKEY, toggletag, {.ui = 1 << TAG} }
+{ MODKEY, KEY, view, {.ui = 1 << TAG} }, \
+{ MODKEY|WLR_MODIFIER_CTRL, KEY, toggleview, {.ui = 1 << TAG} }, \
+{ MODKEY|WLR_MODIFIER_SHIFT, SKEY, tag, {.ui = 1 << TAG} }, \
+{ MODKEY|WLR_MODIFIER_CTRL|WLR_MODIFIER_SHIFT, SKEY, toggletag, {.ui = 1 << TAG} }
 
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -79,6 +79,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *menucmd[]    = { "bemenu-run", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
+static const char *walkercmd[] = { "walker", NULL };
 
 static const char *upvol[]   = { "wpctl", "set-volume", "-l", "1", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
 static const char *downvol[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
@@ -89,14 +90,16 @@ static const char *brdown[]  = { "brightnessctl", "-e4", "-n2", "set", "5%-", NU
 /* keys */
 static const Key keys[] = {
 	{ 0, XKB_KEY_XF86AudioRaiseVolume, spawn, {.v = upvol} },
-    { 0, XKB_KEY_XF86AudioLowerVolume, spawn, {.v = downvol} },
-    { 0, XKB_KEY_XF86AudioMute,        spawn, {.v = mutevol} },
-    { 0, XKB_KEY_XF86MonBrightnessUp,  spawn, {.v = brup} },
-    { 0, XKB_KEY_XF86MonBrightnessDown,spawn, {.v = brdown} },
+	{ 0, XKB_KEY_XF86AudioLowerVolume, spawn, {.v = downvol} },
+	{ 0, XKB_KEY_XF86AudioMute,        spawn, {.v = mutevol} },
+	{ 0, XKB_KEY_XF86MonBrightnessUp,  spawn, {.v = brup} },
+	{ 0, XKB_KEY_XF86MonBrightnessDown,spawn, {.v = brdown} },
 
 	{ MODKEY, XKB_KEY_p,      spawn, {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return, spawn, {.v = termcmd} },
 	{ MODKEY, XKB_KEY_w,      spawn, {.v = browsercmd} },
+	{ MODKEY, XKB_KEY_space,   spawn,{.v = walkercmd } },
+
 
 	{ MODKEY, XKB_KEY_j,      focusstack, {.i = +1} },
 	{ MODKEY, XKB_KEY_k,      focusstack, {.i = -1} },
@@ -111,8 +114,8 @@ static const Key keys[] = {
 	{ MODKEY, XKB_KEY_t,      setlayout, {.v = &layouts[0]} },
 	{ MODKEY, XKB_KEY_f,      setlayout, {.v = &layouts[1]} },
 	{ MODKEY, XKB_KEY_m,      setlayout, {.v = &layouts[2]} },
-	{ MODKEY, XKB_KEY_space,  setlayout, {0} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_space, togglefloating, {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_t,  setlayout, {0} },
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_r, togglefloating, {0} },
 	{ MODKEY, XKB_KEY_e,      togglefullscreen, {0} },
 
 	{ MODKEY, XKB_KEY_0,      view, {.ui = ~0} },
