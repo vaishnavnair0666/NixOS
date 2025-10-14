@@ -10,7 +10,6 @@
     dwlFlake.url = "path:./flakes/dwl-base";
 
     elephant.url = "github:abenz1267/elephant";
-
     walker = {
       url = "github:abenz1267/walker";
       inputs.elephant.follows = "elephant";
@@ -23,9 +22,24 @@
   outputs = { self, nixpkgs, unstable, home-manager, sops-nix, nvim, dwlFlake
     , ... }@inputs:
     let
+
+      myOverlays = [
+        (final: prev: {
+          # Override the elephant-providers output hash to match upstream changes
+          elephant-providers = prev.elephant-providers.overrideAttrs (old: {
+            outputHash = "sha256-uwcGPmie44rfq9qCOXO3WjJXiLxQxNPmKQYbG9a22/c=";
+          });
+        })
+      ];
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-      unstablePkgs = import unstable { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = myOverlays;
+      };
+      unstablePkgs = import unstable {
+        inherit system;
+        overlays = myOverlays;
+      };
       # config.allowUnfree = true; # global system pkgs
     in {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {

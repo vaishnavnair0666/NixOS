@@ -1,8 +1,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 {
-  environment.systemPackages =
-    [ inputs.walker.packages.${pkgs.system}.default ];
+  environment.systemPackages = [
+    inputs.elephant.packages.${pkgs.system}.default
+    inputs.walker.packages.${pkgs.system}.default
+  ];
 
   nix.settings = {
     extra-substituters =
@@ -101,12 +103,25 @@
             		  '''
             		  '';
 
-  systemd.user.services.walker = {
-    description = "Walker Launcher Service";
-    wantedBy = [ "default.target" ];
+  systemd.user.services.elephant = {
+    description = "Elephant layer-shell service";
+    wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${inputs.walker.packages.${pkgs.system}.default}/bin/walker";
+      ExecStart =
+        "${inputs.elephant.packages.${pkgs.system}.default}/bin/elephant";
       Restart = "on-failure";
     };
   };
+
+  systemd.user.services.walker = {
+    description = "Walker Launcher Service";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${
+          inputs.walker.packages.${pkgs.system}.default
+        }/bin/walker --gapplication-service";
+      Restart = "on-failure";
+    };
+  };
+
 }
