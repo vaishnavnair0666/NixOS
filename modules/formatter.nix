@@ -2,7 +2,10 @@
   environment.systemPackages = with pkgs; [
     # Lua formatter
     stylua
-
+    #Bash
+    shfmt
+    #TOML
+    taplo
     # Nix formatter
     nixpkgs-fmt
 

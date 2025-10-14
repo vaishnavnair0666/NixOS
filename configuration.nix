@@ -1,7 +1,7 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
-  nixpkgs.config = { allowUnfree = true; };
+  # nixpkgs.config = { allowUnfree = true; };
   # ssh key (stored in repo, but should be encrypted)
   environment.etc."ssh/github".text =
     builtins.readFile ./modules/secrets/github.ssh.enc;
@@ -26,6 +26,7 @@
     ./modules/system.nix
     ./modules/users.nix
     ./modules/desktop.nix
+    ./modules/walker.nix
     ./modules/audio.nix
     ./modules/bluetooth.nix
     ./modules/fonts.nix

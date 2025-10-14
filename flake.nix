@@ -25,20 +25,18 @@
 
       pkgs = import nixpkgs {
         inherit system;
-        overlays = [
-          (import ./overlays/elephant-overlay.nix)
-          (final: prev: { walker = inputs.walker.packages.${system}.default; })
-        ];
+        config = { allowUnfree = true; };
       };
-      unstablePkgs = import unstable { inherit system; };
-      # config.allowUnfree = true; # global system pkgs
+      unstablePkgs = import unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
     in {
       nixosConfigurations."nixos" = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = { inherit inputs unstablePkgs; };
         modules = [
           ./configuration.nix
-          ./modules/walker.nix
           sops-nix.nixosModules.sops
           {
             # environment.systemPackages =
