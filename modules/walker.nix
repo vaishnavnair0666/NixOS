@@ -1,10 +1,13 @@
 { pkgs, inputs, ... }:
+let
+  # alias for readability
+  elephantPkg = inputs.elephant.packages.${pkgs.system}.default;
+  walkerPkg = inputs.walker.packages.${pkgs.system}.default;
+in {
+  # Install both packages
+  environment.systemPackages = [ elephantPkg walkerPkg ];
 
-{
-  environment.systemPackages = [
-    inputs.elephant.packages.${pkgs.system}.default
-    inputs.walker.packages.${pkgs.system}.with-providers
-  ];
+  imports = [ inputs.walker.nixosModules.walker ];
 
   nix.settings = {
     extra-substituters =
@@ -15,114 +18,86 @@
       "walker-git.cachix.org-1:vmC0ocfPWh0S/vRAQGtChuiZBTAe4wiKDeyyXM0/7pM="
     ];
   };
-
-  # Walker reads configuration from:
-  #   - $XDG_CONFIG_HOME/walker/config.toml (user)
-  #   - or /etc/walker/config.toml (system)
-  # So we use environment.etc to deploy a system-wide config file.
-  environment.etc."walker/config.toml".text = ''
-
-    		theme = "corporate"         
-    		close_when_open = true          # close walker when invoking while already opened
-    		force_keyboard_focus = false
-    		click_to_close = true
-    		selection_wrap = true
-    		disable_mouse = false
-
-
-    		[shell]
-    		anchor_top = true
-    			anchor_bottom = false
-    			anchor_left = false
-    			anchor_right = true
-
-
-    			runAsService = true         # Runs Walker as a background daemon at startup
-
-    			[placeholders.default]
-    			input = "Search"            # Placeholder text for the input box
-    				list = "Example"            # Placeholder text for the result list
-
-    				[[providers.prefixes]]
-    				provider = "websearch"      # Enables built-in web search provider
-    					prefix = "+"                # Trigger with “+ <query>”
-
-    					[[providers.prefixes]]
-    					provider = "providerlist"   # Built-in provider listing all available providers
-    						prefix = "_"                # Trigger with “_”
-
-    						[keybinds]
-    						close = ["Escape"]                     # Closes Walker
-    							next = ["Down"]                        # Move selection down
-    							previous = ["Up"]                      # Move selection up
-    							toggle_exact = ["ctrl e"]              # Toggle fuzzy vs exact search
-    							resume_last_query = ["ctrl r"]         # Reopen Walker with previous query
-    							quick_activate = ["F1", "F2", "F3", "F4"]  # Open Walker directly
-
-    							[themes.corporate]
-    							style = '''
-    								:root {
-    									--bg: #1e1e1e;
-    									--fg: #ffffff;
-    									--accent: #0a84ff;
-    									--radius: 12px;
-    								}
-    	body {
-    background: var(--bg);
-    color: var(--fg);
-    	   font-family: "Inter", sans-serif;
-    	}
-    	input {
-    		border-radius: var(--radius);
-    border: 2px solid var(--accent);
-    	}
-    	'''
-    		[providers]
-    		default = [
-    			"desktopapplications",
-    		"calc",
-    		"runner",
-    		"menus",
-    		"websearch",
-    		]
-    			empty = ["desktopapplications"]
-
-    # These control the structure of Walker’s UI.
-    			[themes.corporate.layouts]
-    			layout = '''
-    				<layout>
-    				<input />
-    				<list />
-    				</layout>
-    				'''
-
-    				item_calc = '''
-    				<item>
-    				<title />
-    				<description />
-    				</item>
-    				'''
-    				'';
-
+  # Autostart Elephant as a daemon via user service
   systemd.user.services.elephant = {
-    description = "Elephant layer-shell service";
-    wantedBy = [ "graphical-session.target" ];
+    description = "Elephant providers daemon";
+    wantedBy = [ "default.target" ];
     serviceConfig = {
-      ExecStart =
-        "${inputs.elephant.packages.${pkgs.system}.default}/bin/elephant";
+      ExecStart = "${elephantPkg}/bin/elephant daemon";
       Restart = "on-failure";
+      RestartSec = "2s";
     };
   };
 
+  # Launch Walker as a GApplication service
   systemd.user.services.walker = {
-    description = "Walker Launcher Service";
-    wantedBy = [ "graphical-session.target" ];
+    description = "Walker launcher service";
+    wantedBy = [ "default.target" ];
+    after = [ "elephant.service" ];
+    requires = [ "elephant.service" ];
     serviceConfig = {
-      ExecStart = "${
-          inputs.walker.packages.${pkgs.system}.default
-        }/bin/walker --gapplication-service";
+      ExecStart = "${walkerPkg}/bin/walker --gapplication-service";
       Restart = "on-failure";
+      RestartSec = "2s";
     };
   };
 
+  # Set configuration for programs.walker (per the module)
+  programs.walker = {
+    enable = true;
+    runAsService = true;
+
+    config = {
+      theme = "corporate";
+      force_keyboard_focus = true;
+      placeholders."default" = {
+        input = "Search";
+        list = "No Results";
+      };
+
+      # prefix definitions
+      providers.prefixes = [
+        {
+          provider = "websearch";
+          prefix = "+";
+        }
+        {
+          provider = "providerlist";
+          prefix = "_";
+        }
+        {
+          provider = "runner";
+          prefix = ">";
+        }
+        {
+          provider = "desktopapplications";
+          prefix = "";
+        } # default
+      ];
+
+      keybinds = {
+        quick_activate = [ "F1" ];
+        close = [ "Escape" ];
+        next = [ "Down" ];
+        previous = [ "Up" ];
+        resume_last_query = [ "ctrl r" ];
+      };
+    };
+
+    # You can override or add themes if needed
+    themes = {
+      corporate = {
+        style = ''
+          :root {
+            --bg: #1e1e1e;
+            --fg: #ffffff;
+            --accent: #0a84ff;
+            --radius: 8px;
+          }
+          body { background: var(--bg); color: var(--fg); font-family: "Inter", sans-serif; }
+          input { border-radius: var(--radius); border: 2px solid var(--accent); }
+        '';
+      };
+    };
+  };
 }

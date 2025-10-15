@@ -19,7 +19,7 @@
     nvim.inputs.nixpkgs.follows = "unstable";
   };
 
-  outputs = { nixpkgs, unstable, home-manager, sops-nix, dwlFlake, ... }@inputs:
+  outputs = { nixpkgs, unstable, home-manager, sops-nix, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -38,24 +38,6 @@
         modules = [
           ./configuration.nix
           sops-nix.nixosModules.sops
-          {
-            # environment.systemPackages =
-            # [ dwlFlake.packages.${system}.default ];
-
-            services.greetd = {
-              enable = true;
-              settings = {
-                default_session = {
-                  # command = "${pkgs.dwl}/bin/dwl";
-                  command = "${dwlFlake.defaultPackage}/bin/dwl";
-                  user = "vaish"; # autologin user
-                };
-              };
-            };
-
-            # optional greeter frontend (nice TUI)
-            # programs.greetd.tuigreet.enable = true;
-          }
           ./modules/secrets.nix
           # Integrate home-manager as a NixOS module
           home-manager.nixosModules.home-manager

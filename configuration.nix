@@ -22,9 +22,11 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./modules/dwl.nix
     ./modules/base.nix
     ./modules/system.nix
     ./modules/users.nix
+    ./modules/loginManager.nix
     ./modules/desktop.nix
     ./modules/walker.nix
     ./modules/audio.nix

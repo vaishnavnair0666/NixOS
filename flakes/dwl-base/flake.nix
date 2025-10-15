@@ -28,8 +28,9 @@
           pkgs.libinput
           pkgs.libxkbcommon
           pkgs.pixman
+          pkgs.xwayland
         ];
-
+        makeFlags = [ "XWAYLAND=1" ];
         # preBuild = ''
         #   		echo "Current dir"
         #   		pwd
