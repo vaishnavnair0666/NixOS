@@ -31,40 +31,21 @@
           pkgs.xwayland
         ];
         makeFlags = [ "XWAYLAND=1" ];
-        # preBuild = ''
-        #   		echo "Current dir"
-        #   		pwd
-        #   		echo "Files "
-        #   		ls -l
-        #   		cp ${./config.h} $PWD/config.h
-        #   		echo "files after copy"
-        #   		ls -l
-        #             # [ -f ${./config.h} ] && cp ${./config.h} $PWD/config.h
-        # '';
-        #
-        # buildPhase = ''
-        #   make 
-        # '';
         buildPhase = ''
-          echo "Building DWL..."
-          make
           echo "Overwriting with custom config.h"
           cp ${./config.h} config.h
-          make clean
           make
         '';
 
         installPhase = ''
-                    mkdir -p $out/bin
-                    cp dwl $out/bin/
-
-                    mkdir -p $out/share/wayland-sessions
-                    echo '[Desktop Entry]
+            install -Dm755 dwl $out/bin/dwl
+            install -Dm644 /dev/stdin $out/share/wayland-sessions/dwl.desktop <<EOF
+          [Desktop Entry]
           Name=dwl
           Comment=Dynamic Wayland Window Manager
           Exec=$out/bin/dwl
           Type=Application
-          ' > $out/share/wayland-sessions/dwl.desktop
+          EOF
         '';
       };
 

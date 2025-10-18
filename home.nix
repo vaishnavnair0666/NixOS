@@ -1,4 +1,4 @@
-{ config, pkgs, lib, unstablePkgs, ... }:
+{ pkgs, ... }:
 let
   decryptedKey =
     builtins.readFile (builtins.toPath ./modules/secrets/github.ssh.enc);
@@ -19,6 +19,8 @@ in {
     bashrcExtra = ''
       eval "$(direnv hook bash)"
       eval "$(atuin init bash)"
+      # Remove up-arrow keybinding
+      bind '"\e[A": history-search-backward' # Restores default up-arrow behavior
     '';
   };
   # Example: enable zsh
