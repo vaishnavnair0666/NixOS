@@ -22,7 +22,8 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./modules/dwl.nix
+    ./modules/seatd.nix
+    # ./modules/dwl.nix
     ./modules/base.nix
     ./modules/system.nix
     ./modules/users.nix
