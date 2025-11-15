@@ -14,15 +14,8 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
 
-      wlrootsWithXwayland = pkgs.wlroots.overrideAttrs (old: {
-        # ensure XWayland and X11 dev deps are present at build time
-        nativeBuildInputs = (old.nativeBuildInputs or [ ])
-          ++ [ pkgs.pkg-config pkgs.meson pkgs.ninja ];
-        buildInputs = (old.buildInputs or [ ])
-          ++ [ pkgs.xwayland pkgs.libx11 pkgs.libxrandr pkgs.libxkbcommon ];
-        # pass meson option to enable xwayland if wlroots uses mesonFlags
-        mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dxwayland=enabled" ];
-      });
+      wlrootsWithXwayland = pkgs.wlroots.override { enableXWayland = true; };
+
     in {
       packages.dwl = pkgs.stdenv.mkDerivation {
         pname = "dwl";
