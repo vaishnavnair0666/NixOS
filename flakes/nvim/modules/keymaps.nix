@@ -160,6 +160,23 @@
         options.desc = "Resume last Telescope picker";
       }
 
+      # Color picker
+      {
+        key = "<leader>cp";
+        action = "<cmd>CccPick<CR>";
+        options = { desc = "Color Picker"; };
+      }
+      {
+        key = "<leader>cd";
+        action = "<cmd>CccConvert<CR>";
+        options = { desc = "Convert Color Format"; };
+      }
+      {
+        key = "<leader>ch";
+        action = "<cmd>CccHighlighterToggle<CR>";
+        options = { desc = "Toggle Inline Color Preview"; };
+      }
+
       # Misc
 
       {

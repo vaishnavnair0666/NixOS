@@ -8,7 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixvim, home-manager, ... }:
+  outputs = { nixpkgs, nixvim, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
@@ -30,6 +30,7 @@
           ./modules/plugins/telescope.nix
           ./modules/plugins/toggleterm.nix
           ./modules/plugins/harpoon.nix
+          ./modules/plugins/tools.nix
         ];
 
         programs.nixvim.enable = true;
