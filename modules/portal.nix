@@ -13,6 +13,8 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    WLR_XWAYLAND = "/run/current-system/sw/bin/Xwayland";
+
     XDG_SESSION_TYPE = "wayland";
     XDG_CURRENT_DESKTOP = "dwl";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";

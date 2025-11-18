@@ -1,4 +1,10 @@
 { ... }: {
+  systemd.services.greetd = {
+    serviceConfig = {
+      Wants = [ "seatd.service" ];
+      After = [ "seatd.service" ];
+    };
+  };
   services.greetd = {
     enable = true;
     settings = {
