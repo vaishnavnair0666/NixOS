@@ -8,7 +8,7 @@ let
       owner = "ThePrimeagen";
       repo = "harpoon";
       rev = "harpoon2"; # branch name for v2
-      sha256 = "1dcpdlna2lff9dlsh6i4v16qmn5r9279wdvn0ry3xg4abqwnzc9g";
+      sha256 = "1d6fbqs1813nyarw3a4lckw746szw9sbxn9kch6lnxk5qxa8y159";
     };
     doCheck = false;
   };

@@ -53,15 +53,13 @@
 
         };
       };
-
+      friendly-snippets.enable = true;
       # --- Snippet Engine ---
       luasnip.enable = true;
 
       # --- Icons ---
       lspkind.enable = true;
     };
-
-    extraPlugins = with pkgs.vimPlugins; [ friendly-snippets ];
 
     extraConfigLua = ''
       -- Load VSCode-style snippets (LuaSnip)
