@@ -79,7 +79,7 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *menucmd[]    = { "bemenu-run", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
-static const char *walkercmd[] = { "walker", NULL };
+// static const char *walkercmd[] = { "walker", NULL };
 
 static const char *upvol[]   = { "wpctl", "set-volume", "-l", "1", "@DEFAULT_AUDIO_SINK@", "5%+", NULL };
 static const char *downvol[] = { "wpctl", "set-volume", "@DEFAULT_AUDIO_SINK@", "5%-", NULL };
@@ -98,7 +98,7 @@ static const Key keys[] = {
 	{ MODKEY, XKB_KEY_p,      spawn, {.v = menucmd} },
 	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return, spawn, {.v = termcmd} },
 	{ MODKEY, XKB_KEY_w,      spawn, {.v = browsercmd} },
-	{ MODKEY, XKB_KEY_space,   spawn,{.v = walkercmd } },
+	// { MODKEY, XKB_KEY_space,   spawn,{.v = walkercmd } },
 
 
 	{ MODKEY, XKB_KEY_j,      focusstack, {.i = +1} },

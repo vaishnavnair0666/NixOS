@@ -29,7 +29,7 @@
     ./modules/loginManager.nix
     ./modules/dwl.nix
     ./modules/desktop.nix
-    ./modules/walker.nix
+    # ./modules/walker.nix
     ./modules/audio.nix
     ./modules/bluetooth.nix
     ./modules/fonts.nix

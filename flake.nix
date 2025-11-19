@@ -9,11 +9,11 @@
     home-manager.inputs.nixpkgs.follows = "unstable";
     dwlFlake.url = "path:./flakes/dwl-base";
 
-    elephant.url = "github:abenz1267/elephant";
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
-    };
+    # elephant.url = "github:abenz1267/elephant";
+    # walker = {
+    #   url = "github:abenz1267/walker";
+    #   inputs.elephant.follows = "elephant";
+    # };
 
     nvim.url = "path:./flakes/nvim";
     nvim.inputs.nixpkgs.follows = "unstable";
