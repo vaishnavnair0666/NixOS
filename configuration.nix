@@ -22,7 +22,7 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./modules/seatd.nix
+    # ./modules/seatd.nix
     ./modules/base.nix
     ./modules/system.nix
     ./modules/users.nix
