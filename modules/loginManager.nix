@@ -1,20 +1,10 @@
-{ ... }: {
-  systemd.services.greetd = {
-    serviceConfig = {
-      Wants = [ "seatd.service" ];
-      After = [ "seatd.service" ];
-    };
-  };
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        user = "vaish";
-        command = ''
-          dbus-run-session /run/current-system/sw/bin/dwl
-        '';
-      };
+{ pkgs, ... }: {
+  services.greetd.enable = true;
+
+  services.greetd.settings = {
+    default_session = {
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd dwl";
+      user = "vaish";
     };
   };
 }
-
