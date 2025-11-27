@@ -1,8 +1,4 @@
-{ pkgs, ... }:
-let
-  decryptedKey =
-    builtins.readFile (builtins.toPath ./modules/secrets/github.ssh.enc);
-in {
+{ pkgs, ... }: {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
 
@@ -17,6 +13,9 @@ in {
   programs.bash.enable = true;
   programs.bash = {
     bashrcExtra = ''
+      export EDITOR="nvim"
+      export VISUAL="nvim"
+
       eval "$(direnv hook bash)"
       eval "$(atuin init bash)"
       # Remove up-arrow keybinding
@@ -33,7 +32,7 @@ in {
   };
 
   # home.file.".config/hypr".source = ./config/hypr;
-
+  home.file.".config/wofi".source = ./config/wofi;
   #hello
   home.stateVersion = "25.05";
 }

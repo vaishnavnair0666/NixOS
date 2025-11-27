@@ -34,6 +34,7 @@
     ./modules/bluetooth.nix
     ./modules/fonts.nix
     ./modules/portal.nix
+    ./modules/menu.nix
     ./modules/apps.nix
     ./modules/dev.nix
     ./modules/documentEditor.nix
