@@ -22,6 +22,7 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./modules/kernelBlacklist.nix
     # ./modules/seatd.nix
     ./modules/base.nix
     ./modules/system.nix
