@@ -1,0 +1,53 @@
+[general]
+mod = "Mod4"                # Super/Win key
+focus_follows_mouse = false
+floating_mod = "Mod1"       # Alt for moving floating windows
+
+[cursor]
+theme = "default"
+size = 24
+
+[input]
+tap-to-click = true
+
+[layout]
+workspace-layout = "horizontal" # horizontal | vertical | stacked
+
+[colors]
+border_active = "#4C51BF"
+border_inactive = "#2D3748"
+background = "#0F172A"
+accent = "#7C3AED"
+
+[keybindings]
+# Launch terminal
+"MOD+Return" = "spawn alacritty"
+"MOD+W" = "spawn firefox"
+
+# Launcher
+"MOD+D" = "spawn wofi --show drun"
+
+# Close focused window
+"MOD+Q" = "close"
+
+# Focus movement (vim keys)
+"MOD+H" = "focus-left"
+"MOD+L" = "focus-right"
+"MOD+J" = "focus-down"
+"MOD+K" = "focus-up"
+
+# Move focused window
+"MOD+Shift+H" = "move-left"
+"MOD+Shift+L" = "move-right"
+"MOD+Shift+J" = "move-down"
+"MOD+Shift+K" = "move-up"
+
+# Toggle floating for focused window
+"MOD+Space" = "toggle-floating"
+
+# Workspace navigation
+"MOD+1" = "workspace 1"
+"MOD+2" = "workspace 2"
+"MOD+3" = "workspace 3"
+"MOD+4" = "workspace 4"
+"MOD+5" = "workspace 5"

@@ -4,10 +4,19 @@
 
   home.packages = with pkgs; [
     alacritty
+    swaybg
+    swaylock
+    waybar
+    mako
+    wofi
     btop
     fastfetch
     firefox
     wl-clipboard
+    cliphist
+    grim
+    slurp
+    swappy
     atuin
   ];
   programs.bash.enable = true;
@@ -33,6 +42,7 @@
 
   # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
+  home.file.".config/niri".source = ./config/niri;
   #hello
   home.stateVersion = "25.11";
 }

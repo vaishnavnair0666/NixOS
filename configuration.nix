@@ -28,7 +28,7 @@
     ./modules/system.nix
     ./modules/users.nix
     ./modules/loginManager.nix
-    ./modules/dwl.nix
+    ./modules/windowManager.nix
     ./modules/desktop.nix
     # ./modules/walker.nix
     ./modules/audio.nix

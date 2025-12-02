@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # Conversion tools
-    poppler_utils # gives you `pdftotext`, `pdftohtml`, etc.
+    poppler-utils # gives you `pdftotext`, `pdftohtml`, etc.
     python3Packages.pdf2docx # pdf → docx converter
     pandoc # docx ↔ markdown ↔ pdf
     libreoffice # fallback for complex conversions
