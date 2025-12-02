@@ -78,6 +78,10 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[]    = { "alacritty", NULL };
 static const char *menucmd[]    = { "bemenu-run", NULL };
+
+static const char *woficmd[]    = { "wofi", "--show", "drun", NULL };
+static const char *wofiruncmd[] = { "wofi", "--show", "run", NULL };
+
 static const char *browsercmd[] = { "firefox", NULL };
 // static const char *walkercmd[] = { "walker", NULL };
 
@@ -95,11 +99,14 @@ static const Key keys[] = {
 	{ 0, XKB_KEY_XF86MonBrightnessUp,  spawn, {.v = brup} },
 	{ 0, XKB_KEY_XF86MonBrightnessDown,spawn, {.v = brdown} },
 
+	{ MODKEY, XKB_KEY_a,      spawn, {.v = woficmd } },                
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_a, spawn, {.v = wofiruncmd } },
 	{ MODKEY, XKB_KEY_p,      spawn, {.v = menucmd} },
-	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return, spawn, {.v = termcmd} },
 	{ MODKEY, XKB_KEY_w,      spawn, {.v = browsercmd} },
 	// { MODKEY, XKB_KEY_space,   spawn,{.v = walkercmd } },
 
+
+	{ MODKEY|WLR_MODIFIER_SHIFT, XKB_KEY_Return, spawn, {.v = termcmd} },
 
 	{ MODKEY, XKB_KEY_j,      focusstack, {.i = +1} },
 	{ MODKEY, XKB_KEY_k,      focusstack, {.i = -1} },

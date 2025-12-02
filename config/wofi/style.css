@@ -1,0 +1,71 @@
+/* Global font/color */
+* {
+	font-family: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+	font-size: 14px;
+	color: #E6EEF6;
+}
+
+/* Main window */
+#window {
+	background-color: rgba(14, 16, 18, 0.92);
+	border-radius: 10px;
+	padding: 10px;
+	border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+#input entry,
+#input {
+	background-color: rgba(255, 255, 255, 0.03);
+	border-radius: 8px;
+	padding: 8px;
+	margin-bottom: 8px;
+	color: #E6EEF6;
+	border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+#input entry {
+	color: #E6EEF6;
+}
+
+#list {
+	margin-top: 4px;
+}
+
+.item {
+	padding: 8px 10px;
+	border-radius: 6px;
+	min-height: 36px;
+}
+
+.item:hover {
+	background-color: rgba(108, 207, 246, 0.06);
+	border: 1px solid rgba(108, 207, 246, 0.08);
+}
+
+.item:selected,
+.item.selected {
+	background-color: rgba(108, 207, 246, 0.10);
+	border: 1px solid rgba(108, 207, 246, 0.12);
+}
+
+.icon {
+	width: 20px;
+	height: 20px;
+	margin-right: 8px;
+}
+
+.title {
+	font-weight: 600;
+	color: #E6EEF6;
+}
+
+.subtitle {
+	font-size: 12px;
+	color: #95A0B0;
+}
+
+scrollbar,
+scrollbar slider {
+	background-color: rgba(255, 255, 255, 0.03);
+	min-width: 8px;
+}

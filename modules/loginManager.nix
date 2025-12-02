@@ -3,7 +3,11 @@
 
   services.greetd.settings = {
     default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd dwl";
+      command = ''
+                ${pkgs.greetd.tuigreet}/bin/tuigreet --cmd dwl  
+                	  --user vaish 
+                	  --remember
+        			  --time'';
       user = "vaish";
     };
   };

@@ -1,0 +1,27 @@
+# Mode and behaviour
+mode=drun
+dmenu=false
+drun-print_desktop_file=false
+display_generic=false
+
+# Appearance & layout
+show-icons=true
+show-categories=true
+width=46%           
+height=56%         
+center=true
+layer=overlay
+
+# Input / UX
+input-placeholder=Run or search…
+case-sensitive=false
+match-mode=fuzzy    
+max-results=200
+
+# Icon handling
+icon-default=application-x-executable
+icon-scale=1.0
+
+# Scrolling and performance
+scrollbar=true
+max-item-height=40
