@@ -34,6 +34,6 @@
   # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
   #hello
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 }
 
