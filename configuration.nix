@@ -29,6 +29,7 @@
     ./modules/users.nix
     ./modules/loginManager.nix
     ./modules/windowManager.nix
+    ./modules/OpenGL.nix
     ./modules/desktop.nix
     # ./modules/walker.nix
     ./modules/audio.nix

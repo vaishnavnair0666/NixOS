@@ -3,6 +3,7 @@
     xwayland
     xdg-desktop-portal
     xdg-desktop-portal-wlr
+    xwayland-satellite
   ];
   xdg.portal = {
     enable = true;

@@ -1,24 +1,14 @@
 { pkgs, ... }: {
-  # services.greetd = {
-  #   enable = true;
-  #   settings.default_session = {
-  #     command = "dwl";
-  #     user = "vaish";
-  #   };
-  # };
-
   environment.systemPackages = with pkgs; [
-    # waybar
     wayland
     wayland-protocols
     alacritty
     foot
-    bemenu # dmenu-like launcher for Wayland
-    swaybg # set background
-    mako # notifications
+    bemenu
+    mako
     grim
     slurp
-    swappy # screenshots
+    swappy
     wl-clipboard
     cliphist
   ];

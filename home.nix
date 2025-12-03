@@ -4,6 +4,7 @@
 
   home.packages = with pkgs; [
     alacritty
+    fuzzel
     swaybg
     swaylock
     waybar
