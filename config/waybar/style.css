@@ -1,0 +1,66 @@
+* {
+	font-family: "Inter", "DejaVu Sans", sans-serif;
+	font-size: 12px;
+}
+
+#bar {
+	background: rgba(15, 23, 42, 0.85);
+	color: #e6edf3;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+	padding: 4px 8px;
+}
+
+/* module containers */
+.module {
+	padding: 2px 8px;
+	border-radius: 6px;
+}
+
+/* workspaces */
+#workspaces {
+	background: transparent;
+}
+
+#workspaces button {
+	margin: 0 4px;
+	padding: 4px 6px;
+	border-radius: 6px;
+	color: #cbd5e1;
+	background: transparent;
+}
+
+#workspaces button.active {
+	background: rgba(124, 58, 237, 0.15);
+	color: #e9d5ff;
+	border: 1px solid rgba(124, 58, 237, 0.25);
+}
+
+/* focused window title */
+#swaywindow {
+	color: #cbd5e1;
+	padding: 0 6px;
+}
+
+/* right-side modules */
+#clock,
+#cpu,
+#memory,
+#network,
+#battery,
+#pulseaudio {
+	margin-left: 6px;
+}
+
+/* tray icon sizing */
+#tray {
+	padding-right: 6px;
+}
+
+#tray>.tray-window {
+	padding: 0 4px;
+}
+
+/* hover states */
+.module:hover {
+	background: rgba(255, 255, 255, 0.03);
+}
