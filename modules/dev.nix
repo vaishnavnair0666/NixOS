@@ -2,6 +2,8 @@
 
 {
   environment.systemPackages = with pkgs; [
+    pciutils
+    rtkit
     gcc
     cargo
     gnumake
