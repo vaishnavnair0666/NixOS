@@ -5,8 +5,7 @@
 
   programs.atuin = {
     enable = true;
-    enableBashIntegration =
-      true; # or enableBashIntegration / enableFishIntegration, depending on your shell
+    enableBashIntegration = true;
     settings = {
       # Disable up-arrow keybinding
       keymap_mode = "vim-insert"; # optional, just keeps normal behavior

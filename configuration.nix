@@ -22,26 +22,29 @@
 
   imports = [
     ./hardware-configuration.nix
-    ./modules/kernelBlacklist.nix
     # ./modules/seatd.nix
-    ./modules/base.nix
-    ./modules/system.nix
-    ./modules/users.nix
-    ./modules/loginManager.nix
-    ./modules/windowManager.nix
-    ./modules/OpenGL.nix
-    ./modules/desktop.nix
     # ./modules/walker.nix
-    ./modules/audio.nix
-    ./modules/bluetooth.nix
-    ./modules/fonts.nix
-    ./modules/portal.nix
-    ./modules/menu.nix
+    ./modules/OpenGL.nix
     ./modules/apps.nix
+    ./modules/audio.nix
+    ./modules/base.nix
+    ./modules/bluetooth.nix
+    ./modules/container.nix
+    ./modules/database.nix
+    ./modules/desktop.nix
     ./modules/dev.nix
     ./modules/documentEditor.nix
+    ./modules/fonts.nix
     ./modules/formatter.nix
+    ./modules/kernelBlacklist.nix
+    ./modules/loginManager.nix
+    ./modules/menu.nix
+    ./modules/portal.nix
+    ./modules/special/terminaltools.nix
     ./modules/special/whichkey.nix
+    ./modules/system.nix
+    ./modules/users.nix
+    ./modules/windowManager.nix
   ];
 }
 

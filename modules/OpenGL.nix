@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  hardware.graphics = { enable = true; };
+  hardware.graphics.enable = true;
 
-  environment.systemPackages = with pkgs; [ mesa libglvnd ];
+  environment.systemPackages = with pkgs; [ mesa libglvnd mesa_glu ];
 }
 
