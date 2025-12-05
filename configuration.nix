@@ -43,6 +43,7 @@
     # ./modules/special/terminaltools.nix
     ./modules/special/whichkey.nix
     ./modules/system.nix
+    ./modules/systemTheme.nix
     ./modules/users.nix
     ./modules/windowManager.nix
   ];

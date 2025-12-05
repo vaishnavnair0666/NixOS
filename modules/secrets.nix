@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 {
   # Configure sops-nix to know which age key to use for decryption
