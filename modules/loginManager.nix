@@ -1,11 +1,9 @@
 { pkgs, ... }: {
   services.greetd = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri";
-        user = "vaish";
-      };
+    settings.default_session = {
+      command = "${pkgs.niri}/bin/niri";
+      user = "vaish";
     };
   };
 }

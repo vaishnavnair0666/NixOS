@@ -1,9 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    xwayland
     xdg-desktop-portal
     xdg-desktop-portal-wlr
-    xdg-desktop-portal-gtk
     xwayland-satellite
   ];
   xdg.portal = {
@@ -12,13 +10,16 @@
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
     config.common.default = [ "wlr" "gtk" ];
   };
+  services.dbus.enable = true;
 
-  # environment.sessionVariables = {
-  #   XDG_CURRENT_DESKTOP = "niri";
-  #   XDG_SESSION_TYPE = "wayland";
-  #   ELECTRON_OZONE_PLATFORM_HINT = "auto";
-  #   MOZ_ENABLE_WAYLAND = "1";
-  #   GDK_BACKEND = "wayland";
-  #   QT_QPA_PLATFORM = "wayland";
-  # };
+  services.xserver = {
+    enable = true;
+    xkb.layout = "us";
+  };
+  services.libinput.enable = true;
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    XDG_SESSION_TYPE = "wayland";
+  };
 }
