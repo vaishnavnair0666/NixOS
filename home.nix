@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   waybarWorkspace = builtins.readFile ./scripts/waybarWorkspace.sh;
   waybarWorkspaceAction = builtins.readFile ./scripts/waybarWorkspaceAction.sh;
@@ -6,7 +6,7 @@ let
 in {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
-
+  imports = [ ./modules/windowManager.nix ];
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "waybarWorkspace" "${waybarWorkspace}")
     (pkgs.writeShellScriptBin "waybarWorkspaceAction"
@@ -14,20 +14,13 @@ in {
     (pkgs.writeShellScriptBin "waybarNetwork" "${waybarNetwork}")
     alacritty
     fuzzel
-    swaybg
-    swaylock
-    waybar
     mako
     wofi
     btop
     fastfetch
     firefox
-    wl-clipboard
     pavucontrol
     cliphist
-    grim
-    slurp
-    swappy
     atuin
     nemo
   ];
@@ -54,8 +47,33 @@ in {
 
   # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
-  home.file.".config/niri".source = ./config/niri;
   home.file.".config/waybar".source = ./config/waybar;
+
+  programs.niri.enable = true;
+
+  programs.niri.animationsFragment =
+    builtins.readFile ./modules/niri/fragments/animations.kdl;
+  programs.niri.inputFragment =
+    builtins.readFile ./modules/niri/fragments/input.kdl;
+  programs.niri.keybindsFragment =
+    builtins.readFile ./modules/niri/fragments/keybinds.kdl;
+  programs.niri.layoutFragment =
+    builtins.readFile ./modules/niri/fragments/layout.kdl;
+  programs.niri.startupFragment =
+    builtins.readFile ./modules/niri/fragments/startup.kdl;
+  programs.niri.windowrulesFragment =
+    builtins.readFile ./modules/niri/fragments/windowrules.kdl;
+  programs.niri.outputFragment =
+    builtins.readFile ./modules/niri/fragments/output.kdl;
+  # if you want the module to write WAYLAND_DISPLAY into the KDL env block:
+  programs.niri.environment = lib.mkMerge {
+    XDG_CURRENT_DESKTOP = "niri";
+    XDG_SESSION_TYPE = "wayland";
+    MOZ_ENABLE_WAYLAND = "1";
+    QT_QPA_PLATFORM = "wayland";
+    WAYLAND_DISPLAY = "wayland-1";
+  };
+
   #hello
   home.stateVersion = "25.11";
 }

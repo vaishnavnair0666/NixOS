@@ -1,0 +1,8 @@
+// startup.kdl — minimal, deterministic spawn-at-startup entries
+// Keep these one-shot convenience launches (long-lived daemons should be systemd units)
+
+spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "swww-daemon"
+// spawn-at-startup "wal" "-R"
+// spawn-at-startup "vesktop"
+
