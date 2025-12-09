@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   waybarWorkspace = builtins.readFile ./scripts/waybarWorkspace.sh;
   waybarWorkspaceAction = builtins.readFile ./scripts/waybarWorkspaceAction.sh;
@@ -6,7 +6,7 @@ let
 in {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
-  imports = [ ./modules/windowManager.nix ];
+  imports = [ ./modules/niri/niri.nix ];
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "waybarWorkspace" "${waybarWorkspace}")
     (pkgs.writeShellScriptBin "waybarWorkspaceAction"
@@ -63,10 +63,12 @@ in {
     builtins.readFile ./modules/niri/fragments/startup.kdl;
   programs.niri.windowrulesFragment =
     builtins.readFile ./modules/niri/fragments/windowrules.kdl;
+  programs.niri.wallpaperPath =
+    "~/.dotfiles.git/dwl/modules/niri/wallpaper/default.jpg";
   programs.niri.outputFragment =
     builtins.readFile ./modules/niri/fragments/output.kdl;
   # if you want the module to write WAYLAND_DISPLAY into the KDL env block:
-  programs.niri.environment = lib.mkMerge {
+  programs.niri.environment = {
     XDG_CURRENT_DESKTOP = "niri";
     XDG_SESSION_TYPE = "wayland";
     MOZ_ENABLE_WAYLAND = "1";

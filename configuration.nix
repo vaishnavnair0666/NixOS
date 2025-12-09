@@ -46,7 +46,6 @@
     ./modules/users.nix
     # ./modules/windowManager.nix
 
-    ./modules/niri/services/background.nix
   ];
 }
 
