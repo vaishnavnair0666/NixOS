@@ -4,9 +4,7 @@ with lib;
 
 let defaultFragment = "";
 in {
-  ####################################################################
   # Option schema
-  ####################################################################
   options.programs.niri = {
     enable =
       mkEnableOption "Enable Niri compositor user config + runtime helpers";
@@ -84,14 +82,11 @@ in {
     };
   };
 
-  ####################################################################
-  # Implementation (safe; only reads config.* inside this block)
-  ####################################################################
-  config = let
+  # Implementation — provide attributes only when enabled
+  # (Do NOT read config.xdg.configFile or config.systemd.user.services)
+  config = lib.mkIf config.programs.niri.enable (let
     cfg = config.programs.niri;
-    enabled = cfg.enable;
 
-    # packages to install into the user profile when enabled
     niriPkgs = with pkgs; [
       niri
       udiskie
@@ -107,7 +102,7 @@ in {
       waybar
     ];
 
-    # base services (attrset)
+    # base service definitions (do not merge or read existing services)
     baseServices = {
       "xwayland-satellite" = {
         Unit = {
@@ -206,7 +201,7 @@ in {
       };
     };
 
-    # add bar/dms when requested (type-safe merge)
+    # add bar/dms if requested
     servicesWithBar = baseServices // (if cfg.barChoice == "waybar" then {
       "waybar-niri" = {
         Unit = {
@@ -241,7 +236,7 @@ in {
     } else
       { });
 
-    # optionally add a oneshot wallpaper applier
+    # optionally append oneshot wallpaper applier
     finalServices = if cfg.wallpaperPath != null then
       servicesWithBar // {
         "swww-set-wallpaper" = {
@@ -262,16 +257,11 @@ in {
       servicesWithBar;
 
   in {
-    ####################################################################
-    # Exported config
-    ####################################################################
+    # install packages into the user profile
+    home.packages = niriPkgs;
 
-    # user packages: add niriPkgs when enabled
-    home.packages = (if enabled then niriPkgs else [ ])
-      ++ (config.home.packages or [ ]);
-
-    # xdg.configFile: create our small set first, then merge existing files
-    xdg.configFile = (if enabled then {
+    # supply xdg config entries (module system will merge with other modules)
+    xdg.configFile = {
       "niri/config.kdl".text = ''
         // Generated Niri configuration (home-manager module)
         ${cfg.animationsFragment}
@@ -320,26 +310,20 @@ in {
         org.freedesktop.impl.portal.Screenshot=gnome
         org.freedesktop.impl.portal.ScreenCast=gnome
       '';
-    } else
-      { }) // (config.xdg.configFile or { });
+    };
 
-    # systemd user target (merge safely)
-    systemd.user.targets = (config.systemd.user.targets or { })
-      // (if enabled then {
-        "niri-session" = {
-          Unit = {
-            Description = "Niri compositor session";
-            Documentation = "man:systemd.special(7)";
-            Wants = [ "graphical-session-pre.target" ];
-            After = [ "graphical-session-pre.target" ];
-          };
+    # systemd target and services (module merges these attrsets with others)
+    systemd.user.targets = {
+      "niri-session" = {
+        Unit = {
+          Description = "Niri compositor session";
+          Documentation = "man:systemd.special(7)";
+          Wants = [ "graphical-session-pre.target" ];
+          After = [ "graphical-session-pre.target" ];
         };
-      } else
-        { });
+      };
+    };
 
-    # merge prepared services into user's systemd units (safe merge)
-    systemd.user.services = (config.systemd.user.services or { })
-      // (if enabled then finalServices else { });
-
-  };
+    systemd.user.services = finalServices;
+  });
 }
