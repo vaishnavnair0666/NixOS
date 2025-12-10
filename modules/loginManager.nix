@@ -31,10 +31,10 @@ in {
 
     # initial_session runs once on greetd start — use this only if you want auto-login.
     # Uncomment the block below to enable automatic boot-into-niri (no greeter).
-    # initial_session = {
-    #   command = "${pkgs.niri}/bin/niri";
-    #   user = loginUser;
-    # };
+    initial_session = {
+      command = "${pkgs.niri}/bin/niri";
+      user = loginUser;
+    };
 
     environments = {
       niri = {

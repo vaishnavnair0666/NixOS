@@ -131,8 +131,7 @@ in {
           BusName = "org.freedesktop.portal.Desktop";
           ExecStart = "${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal";
           Restart = "on-failure";
-          Environment =
-            [ "XDG_CURRENT_DESKTOP=niri" "WAYLAND_DISPLAY=wayland-1" ];
+          Environment = [ "XDG_CURRENT_DESKTOP=niri" ];
         };
         Install = { WantedBy = [ "graphical-session.target" ]; };
       };
@@ -247,7 +246,7 @@ in {
           Service = {
             Type = "oneshot";
             ExecStart = ''
-              /bin/sh -c "sleep 1 && ${pkgs.swww}/bin/swww img '${cfg.wallpaperPath}' --transition 2 || true"
+              /bin/sh -c "sleep 5 && ${pkgs.swww}/bin/swww img '${cfg.wallpaperPath}' --transition 2 || true"
             '';
           };
           Install = { WantedBy = [ "graphical-session.target" ]; };
