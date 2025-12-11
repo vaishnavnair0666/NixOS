@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   waybarWorkspace = builtins.readFile ./scripts/waybarWorkspace.sh;
   waybarWorkspaceAction = builtins.readFile ./scripts/waybarWorkspaceAction.sh;
@@ -45,6 +45,10 @@ in {
     '';
   };
 
+  home.file.".local/bin/wait-for-wayland".text =
+    builtins.readFile ./scripts/wait-for-wayland.sh;
+  home.file.".local/bin/wait-for-wayland".executable = true;
+
   # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
   home.file.".config/waybar".source = ./config/waybar;
@@ -73,6 +77,7 @@ in {
     XDG_SESSION_TYPE = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
     QT_QPA_PLATFORM = "wayland";
+    WAYLAND_DISPLAY = "wayland-1";
   };
 
   #hello

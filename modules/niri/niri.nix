@@ -113,9 +113,14 @@ in {
         Service = {
           Type = "notify";
           NotifyAccess = "all";
+          ExecStartPre =
+            "${config.home.homeDirectory}/.local/bin/wait-for-wayland";
           ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
           StandardOutput = "journal";
           Restart = "on-failure";
+          RestartSec = "2s";
+          StartLimitBurst = 5;
+          StartLimitIntervalSec = 60;
         };
         Install = { WantedBy = [ "graphical-session.target" ]; };
       };
@@ -129,9 +134,11 @@ in {
         Service = {
           Type = "dbus";
           BusName = "org.freedesktop.portal.Desktop";
+          ExecStartPre =
+            "${config.home.homeDirectory}/.local/bin/wait-for-wayland";
           ExecStart = "${pkgs.xdg-desktop-portal}/libexec/xdg-desktop-portal";
           Restart = "on-failure";
-          Environment = [ "XDG_CURRENT_DESKTOP=niri" ];
+          Environment = "XDG_CURRENT_DESKTOP=niri";
         };
         Install = { WantedBy = [ "graphical-session.target" ]; };
       };
@@ -146,10 +153,12 @@ in {
         Service = {
           Type = "dbus";
           BusName = "org.freedesktop.impl.portal.desktop.gnome";
+          ExecStartPre =
+            "${config.home.homeDirectory}/.local/bin/wait-for-wayland";
           ExecStart =
             "${pkgs.xdg-desktop-portal-gnome}/libexec/xdg-desktop-portal-gnome";
           Restart = "on-failure";
-          Environment = [ "XDG_CURRENT_DESKTOP=niri" ];
+          Environment = "XDG_CURRENT_DESKTOP=niri";
         };
         Install = { WantedBy = [ "graphical-session.target" ]; };
       };
@@ -163,6 +172,8 @@ in {
         Service = {
           Type = "dbus";
           BusName = "org.freedesktop.impl.portal.desktop.gtk";
+          ExecStartPre =
+            "${config.home.homeDirectory}/.local/bin/wait-for-wayland";
           ExecStart =
             "${pkgs.xdg-desktop-portal-gtk}/libexec/xdg-desktop-portal-gtk";
           Restart = "on-failure";

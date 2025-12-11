@@ -6,6 +6,6 @@
     package = pkgs.mesa;
   };
 
-  environment.systemPackages = with pkgs; [ mesa ];
+  environment.systemPackages = with pkgs; [ mesa libglvnd ];
 }
 
