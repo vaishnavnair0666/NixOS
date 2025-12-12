@@ -12,13 +12,17 @@ in {
     (pkgs.writeShellScriptBin "waybarWorkspaceAction"
       "${waybarWorkspaceAction}")
     (pkgs.writeShellScriptBin "waybarNetwork" "${waybarNetwork}")
+    niri
     alacritty
+    ripgrep
     fuzzel
     mako
     wofi
     btop
     fastfetch
     firefox
+    pipewire
+    wireplumber
     pavucontrol
     cliphist
     atuin
