@@ -40,7 +40,6 @@
     ./modules/loginManager.nix
     ./modules/menu.nix
     # ./modules/special/terminaltools.nix
-    ./modules/special/whichkey.nix
     ./modules/system.nix
     ./modules/systemTheme.nix
     ./modules/users.nix
