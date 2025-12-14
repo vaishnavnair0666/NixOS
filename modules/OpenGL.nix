@@ -1,7 +1,12 @@
-{ ... }: {
+{ pkgs, ... }:
+
+{
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-  };
-}
 
+    extraPackages = with pkgs; [ mesa.drivers ];
+  };
+  #AMD 
+  services.xserver.videoDrivers = [ "amdgpu" ];
+}
