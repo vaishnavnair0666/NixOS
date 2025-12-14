@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ acpi upower ];
+  environment.systemPackages = with pkgs; [ acpi upower bash ];
   services.upower.enable = true;
 
   boot.initrd.availableKernelModules = [

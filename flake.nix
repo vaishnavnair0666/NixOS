@@ -6,7 +6,7 @@
     unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     sops-nix.url = "github:Mic92/sops-nix";
     home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.inputs.nixpkgs.follows = "unstable";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     dwlFlake.url = "path:./flakes/dwl-base";
 
     # elephant.url = "github:abenz1267/elephant";
