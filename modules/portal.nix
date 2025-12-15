@@ -9,6 +9,7 @@
     ];
     config.common.default = [ "gtk" ];
   };
+  services.dbus.enable = true;
   environment.systemPackages = with pkgs; [ xwayland-satellite ];
 }
 
