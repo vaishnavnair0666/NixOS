@@ -1,16 +1,20 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    wayland
-    wayland-protocols
+    niri
     alacritty
-    foot
     bemenu
-    mako
+    cliphist
+    foot
     grim
+    mako
+    udiskie
     slurp
     swappy
+    swww
+    waybar
+    wayland
+    wayland-protocols
     wl-clipboard
-    cliphist
   ];
 }
 

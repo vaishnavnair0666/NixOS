@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # nixpkgs.config = { allowUnfree = true; };
@@ -39,6 +39,7 @@
     ./modules/kernelBlacklist.nix
     ./modules/loginManager.nix
     ./modules/menu.nix
+    ./modules/portal.nix
     # ./modules/special/terminaltools.nix
     ./modules/system.nix
     ./modules/systemTheme.nix
@@ -46,5 +47,11 @@
     # ./modules/windowManager.nix
 
   ];
+  environment.systemPackages = with pkgs; [ cacert curl ];
+  environment.sessionVariables = {
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    SSL_CERT_DIR = "${pkgs.cacert}/etc/ssl/certs";
+  };
+  nix.settings.ssl-cert-file = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 }
 

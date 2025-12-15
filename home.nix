@@ -49,10 +49,6 @@ in {
     '';
   };
 
-  home.file.".local/bin/wait-for-wayland".text =
-    builtins.readFile ./scripts/wait-for-wayland.sh;
-  home.file.".local/bin/wait-for-wayland".executable = true;
-
   # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
   home.file.".config/waybar".source = ./config/waybar;
