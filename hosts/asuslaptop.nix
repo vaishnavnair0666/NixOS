@@ -1,1 +1,8 @@
-{ disableAtkbd = true; }
+{ ... }:
+
+{
+  host = {
+    profile = "laptop";
+    disableAtkbd = true;
+  };
+}

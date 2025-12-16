@@ -7,10 +7,9 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "ThePrimeagen";
       repo = "harpoon";
-      rev = "harpoon2"; # branch name for v2
+      rev = "harpoon2";
       sha256 = "1d6fbqs1813nyarw3a4lckw746szw9sbxn9kch6lnxk5qxa8y159";
     };
-    doCheck = false;
   };
 
   gitWorktree = pkgs.vimUtils.buildVimPlugin {
@@ -22,47 +21,57 @@ let
       rev = "master";
       sha256 = "0mspffvg2z5lx4ck96d2pnf1azy3s1zq720n6abnxzajadmnh47r";
     };
-    doCheck = false;
   };
 in {
   programs.nixvim = {
-    enable = true;
-
-    extraPlugins = with pkgs.vimPlugins; [ harpoonV2 plenary-nvim gitWorktree ];
+    extraPlugins = with pkgs.vimPlugins; [ plenary-nvim harpoonV2 gitWorktree ];
 
     extraConfigLua = ''
-      -- Telescope setup
-      local telescope = require("telescope")
-      telescope.setup()
-      telescope.load_extension("git_worktree")
-      telescope.load_extension("harpoon")
+      -- Load telescope extensions ONLY (do not call telescope.setup)
+      pcall(function()
+        require("telescope").load_extension("harpoon")
+        require("telescope").load_extension("git_worktree")
+      end)
 
       -- Harpoon v2 setup
       local harpoon = require("harpoon")
       harpoon:setup()
 
-      vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "Harpoon Add" })
-      vim.keymap.set("n", "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon Menu" })
+      -- Harpoon keymaps
+      local map = vim.keymap.set
+      local opts = { noremap = true, silent = true }
 
-      vim.keymap.set("n", "<leader>h1", function() harpoon:list():select(1) end, { desc = "Harpoon to File 1" })
-      vim.keymap.set("n", "<leader>h2", function() harpoon:list():select(2) end, { desc = "Harpoon to File 2" })
-      vim.keymap.set("n", "<leader>h3", function() harpoon:list():select(3) end, { desc = "Harpoon to File 3" })
-      vim.keymap.set("n", "<leader>h4", function() harpoon:list():select(4) end, { desc = "Harpoon to File 4" })
+      map("n", "<leader>ha", function()
+        harpoon:list():add()
+      end, vim.tbl_extend("force", opts, { desc = "Harpoon add file" }))
 
+      map("n", "<leader>hh", function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, vim.tbl_extend("force", opts, { desc = "Harpoon menu" }))
 
-      -- Remove the current file from Harpoon
-      vim.keymap.set("n", "<leader>hr", function()
-      		harpoon:list():remove()
-      		end, { desc = "Harpoon Remove File" })
+      map("n", "<leader>hr", function()
+        harpoon:list():remove()
+      end, vim.tbl_extend("force", opts, { desc = "Harpoon remove file" }))
 
-      -- Clear the entire Harpoon list
-      vim.keymap.set("n", "<leader>hc", function()
-      		harpoon:list():clear()
-      		end, { desc = "Harpoon Clear List" })
+      map("n", "<leader>hc", function()
+        harpoon:list():clear()
+      end, vim.tbl_extend("force", opts, { desc = "Harpoon clear list" }))
 
-      -- Git Worktree keymaps (Primeagen-style)
-      vim.keymap.set("n", "<leader>gw", telescope.extensions.git_worktree.git_worktrees, { desc = "Switch worktree" })
-      vim.keymap.set("n", "<leader>gW", telescope.extensions.git_worktree.create_git_worktree, { desc = "Create worktree" })
+      -- Direct access
+      for i = 1, 4 do
+        map("n", "<leader>h" .. i, function()
+          harpoon:list():select(i)
+        end, vim.tbl_extend("force", opts, { desc = "Harpoon file " .. i }))
+      end
+
+      -- Git worktree integration
+      map("n", "<leader>gw",
+        require("telescope").extensions.git_worktree.git_worktrees,
+        { desc = "Switch git worktree" })
+
+      map("n", "<leader>gW",
+        require("telescope").extensions.git_worktree.create_git_worktree,
+        { desc = "Create git worktree" })
     '';
   };
 }

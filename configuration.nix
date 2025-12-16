@@ -36,6 +36,7 @@
     ./modules/documentEditor.nix
     ./modules/fonts.nix
     ./modules/formatter.nix
+    ./modules/host-options.nix
     ./modules/kernelBlacklist.nix
     ./modules/loginManager.nix
     ./modules/menu.nix

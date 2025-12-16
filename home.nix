@@ -6,7 +6,7 @@ let
 in {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
-  imports = [ ./modules/niri/niri.nix ];
+  imports = [ ./modules/niri/niri.nix ./home/Code-editor.nix ];
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "waybarWorkspace" "${waybarWorkspace}")
     (pkgs.writeShellScriptBin "waybarWorkspaceAction"

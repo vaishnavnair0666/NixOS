@@ -1,74 +1,49 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   programs.nixvim = {
     plugins = {
-      # --- Completion Engine ---
+      #  Snippet engine 
+      luasnip.enable = true;
+      friendly-snippets.enable = true;
+
+      #  Completion engine 
       cmp = {
         enable = true;
-        settings = {
-          snippet = { expand = "luasnip"; };
 
-          # Keymaps for completion & snippets
+        settings = {
+          snippet.expand = ''
+            function(args)
+              require("luasnip").lsp_expand(args.body)
+            end
+          '';
+
           mapping = {
             "<C-Space>" = "cmp.mapping.complete()";
             "<C-e>" = "cmp.mapping.abort()";
             "<CR>" = "cmp.mapping.confirm({ select = true })";
 
-            "<Tab>" = ''
-              cmp.mapping(function(fallback)
-                local luasnip = require("luasnip")
-                if cmp.visible() then
-                  cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
-                else
-                  fallback()
-                end
-              end, { "i", "s" })
-            '';
-
-            "<S-Tab>" = ''
-              cmp.mapping(function(fallback)
-                local luasnip = require("luasnip")
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
-                else
-                  fallback()
-                end
-              end, { "i", "s" })
-            '';
+            "<Tab>" = "cmp.mapping.select_next_item()";
+            "<S-Tab>" = "cmp.mapping.select_prev_item()";
           };
 
-          # Sources for completion
           sources = [
             { name = "nvim_lsp"; }
             { name = "luasnip"; }
-            { name = "buffer"; }
             { name = "path"; }
-            { name = "nvim_lua"; }
+            { name = "buffer"; }
           ];
 
+          formatting = {
+            format = "require('lspkind').cmp_format({ mode = 'symbol_text' })";
+          };
         };
       };
-      friendly-snippets.enable = true;
-      # --- Snippet Engine ---
-      luasnip.enable = true;
 
-      # --- Icons ---
+      #  Icons / completion kinds 
       lspkind.enable = true;
     };
 
-    extraConfigLua = ''
-      -- Load VSCode-style snippets (LuaSnip)
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      -- Optional: load your own custom snippets
-      -- require("luasnip.loaders.from_vscode").lazy_load({
-      --   paths = { vim.fn.stdpath("config") .. "/LuaSnip/" }
-      -- })
-    '';
+    plugins.lsp.capabilities = "require('cmp_nvim_lsp').default_capabilities()";
   };
 }

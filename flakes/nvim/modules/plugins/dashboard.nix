@@ -1,24 +1,51 @@
-{ ... }: {
-  programs.nixvim.plugins = {
-    mini = {
-      enable = true;
+{ ... }:
 
-      # modules is an attrset (key-value set)
-      modules = {
-        icons = { }; # enable icons module
-        starter = { }; # simple start screen
-        surround = {
-          mappings = {
-            add = "<leader>sa";
-            delete = "<leader>sd";
-            find = "<leader>sf";
-            replace = "<leader>sr";
-          };
-        };
+{
+  programs.nixvim.plugins.dashboard = {
+    enable = true;
+
+    settings = {
+      theme = "doom";
+
+      config = {
+        header = [
+          "███╗   ██╗██╗██╗  ██╗██╗   ██╗██╗███╗   ███╗"
+          "████╗  ██║██║██║ ██╔╝██║   ██║██║████╗ ████║"
+          "██╔██╗ ██║██║█████╔╝ ██║   ██║██║██╔████╔██║"
+          "██║╚██╗██║██║██╔═██╗ ╚██╗ ██╔╝██║██║╚██╔╝██║"
+          "██║ ╚████║██║██║  ██╗ ╚████╔╝ ██║██║ ╚═╝ ██║"
+          "╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝"
+        ];
+
+        center = [
+          {
+            icon = " ";
+            desc = "Find File";
+            key = "f";
+            action = "Telescope find_files";
+          }
+          {
+            icon = " ";
+            desc = "Recent Files";
+            key = "r";
+            action = "Telescope oldfiles";
+          }
+          {
+            icon = " ";
+            desc = "File Browser";
+            key = "e";
+            action = "Neotree toggle";
+          }
+          {
+            icon = " ";
+            desc = "Quit";
+            key = "q";
+            action = "qa";
+          }
+        ];
+
+        footer = [ "NixOS • Neovim • Declarative" ];
       };
-
-      # mockDevIcons is a top-level option
-      mockDevIcons = true;
     };
   };
 }
