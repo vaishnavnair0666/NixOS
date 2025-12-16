@@ -1,37 +1,5 @@
 {
   "nodes": {
-    "dwl-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1759118182,
-        "narHash": "sha256-ihxF9Z4uT0K3omO4mbzkeICY/RyqvuD+C5JSGWIf6MI=",
-        "ref": "main",
-        "rev": "6cd26568d5b8be2252ac0def36cd194b4fb2d7c3",
-        "revCount": 1308,
-        "type": "git",
-        "url": "https://codeberg.org/dwl/dwl.git"
-      },
-      "original": {
-        "ref": "main",
-        "type": "git",
-        "url": "https://codeberg.org/dwl/dwl.git"
-      }
-    },
-    "dwlFlake": {
-      "inputs": {
-        "dwl-src": "dwl-src",
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "path": "./flakes/dwl-base",
-        "type": "path"
-      },
-      "original": {
-        "path": "./flakes/dwl-base",
-        "type": "path"
-      },
-      "parent": []
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -99,22 +67,6 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1765472234,
-        "narHash": "sha256-9VvC20PJPsleGMewwcWYKGzDIyjckEz8uWmT0vCDYK0=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2fbfb1d73d239d2402a8fe03963e37aab15abe8b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
         "lastModified": 1765311797,
         "narHash": "sha256-mSD5Ob7a+T2RNjvPvOA1dkJHGVrNVl8ZOrAwBjKBDQo=",
         "owner": "NixOS",
@@ -129,7 +81,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_2": {
       "locked": {
         "lastModified": 1765425892,
         "narHash": "sha256-jlQpSkg2sK6IJVzTQBDyRxQZgKADC2HKMRfGCSgNMHo=",
@@ -145,7 +97,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1765457389,
         "narHash": "sha256-ddhDtNYvleZeYF7g7TRFSmuQuZh7HCgqstg5YBGwo5s=",
@@ -164,7 +116,7 @@
     "nixvim": {
       "inputs": {
         "flake-parts": "flake-parts",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_2",
         "systems": "systems"
       },
       "locked": {
@@ -201,16 +153,15 @@
     },
     "root": {
       "inputs": {
-        "dwlFlake": "dwlFlake",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "nvim": "nvim",
         "sops-nix": "sops-nix"
       }
     },
     "sops-nix": {
       "inputs": {
-        "nixpkgs": "nixpkgs_4"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1765684837,

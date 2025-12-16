@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 
 {
   programs.nixvim = {
@@ -35,7 +35,9 @@
           ];
 
           formatting = {
-            format = "require('lspkind').cmp_format({ mode = 'symbol_text' })";
+            format = lib.mkForce {
+              __raw = "require('lspkind').cmp_format({ mode = 'symbol_text' })";
+            };
           };
         };
       };

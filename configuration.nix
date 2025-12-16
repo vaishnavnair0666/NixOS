@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
   # nixpkgs.config = { allowUnfree = true; };
   # ssh key (stored in repo, but should be encrypted)
   environment.etc."ssh/github".text =

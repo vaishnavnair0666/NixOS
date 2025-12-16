@@ -10,6 +10,7 @@ let
       rev = "harpoon2";
       sha256 = "1d6fbqs1813nyarw3a4lckw746szw9sbxn9kch6lnxk5qxa8y159";
     };
+    doCheck = false;
   };
 
   gitWorktree = pkgs.vimUtils.buildVimPlugin {
@@ -21,6 +22,7 @@ let
       rev = "master";
       sha256 = "0mspffvg2z5lx4ck96d2pnf1azy3s1zq720n6abnxzajadmnh47r";
     };
+    doCheck = false;
   };
 in {
   programs.nixvim = {

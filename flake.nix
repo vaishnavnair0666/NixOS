@@ -36,5 +36,12 @@
           ];
         };
 
-    in { nixosConfigurations = lib.mapAttrs (_: host: mkSystem host) hosts; };
+      systems = lib.mapAttrs (_: host: mkSystem host) hosts;
+
+    in {
+      nixosConfigurations = systems;
+
+      # Required for nh
+      packages.x86_64-linux = systems;
+    };
 }

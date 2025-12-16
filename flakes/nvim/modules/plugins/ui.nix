@@ -9,14 +9,26 @@
     tabstop = 4;
     shiftwidth = 4;
   };
-
   programs.nixvim = {
-    colorscheme = "miniwinter";
+	colorscheme = "catppuccin";
 
+  colorschemes.catppuccin.enable = true;
+
+  colorschemes.catppuccin.settings = {
+    flavour = "mocha"; # one of "latte", "frappe", "macchiato", "mocha", or "auto"
+    integrations = {
+      cmp = true;
+      gitsigns = true;
+      nvimtree = true;
+      treesitter = true;
+      notify = true;
+      fidget = true;
+    };
+  };
     plugins = {
+      web-devicons.enable = true;
       # Statusline
       lualine.enable = true;
-
       # Buffer/tab UI
       bufferline = {
         enable = true;
@@ -33,13 +45,13 @@
       # File explorer (correct way)
       neo-tree = {
         enable = true;
-        closeIfLastWindow = true;
-        popupBorderStyle = "rounded";
-        enableGitStatus = true;
-        enableDiagnostics = true;
 
-        window = {
+        settings.window = {
           width = 30;
+          popup_border_style = "rounded";
+          enable_git_status = true;
+          enable_diagnostics = true;
+          close_if_last_window = true;
           mappings = {
             "<cr>" = "open";
             "o" = "open";
@@ -51,12 +63,12 @@
         };
 
         filesystem = {
-          filteredItems = {
+          filtered_items = {
             visible = false;
-            hideDotfiles = true;
-            hideGitignored = true;
+            hide_dotfiles = true;
+            hide_gitignored = true;
           };
-          followCurrentFile.enabled = true;
+          follow_current_file.enabled = true;
         };
       };
 
