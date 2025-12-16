@@ -1,13 +1,12 @@
 { pkgs, ... }:
+let loginUser = "vaish";
+in {
+  services.greetd.enable = true;
 
-{
-  services.xserver.enable = true;
-
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
+  services.greetd.settings = {
+    default_session = {
+      command = "${pkgs.niri}/bin/niri-session";
+      user = loginUser;
+    };
   };
-  environment.systemPackages = with pkgs; [ niri ];
-
-  services.displayManager.sessionPackages = [ pkgs.niri ];
 }
