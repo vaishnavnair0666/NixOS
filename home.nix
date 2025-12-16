@@ -12,7 +12,6 @@ in {
     (pkgs.writeShellScriptBin "waybarWorkspaceAction"
       "${waybarWorkspaceAction}")
     (pkgs.writeShellScriptBin "waybarNetwork" "${waybarNetwork}")
-    niri
     alacritty
     ripgrep
     fuzzel
@@ -71,13 +70,6 @@ in {
     "~/.dotfiles.git/dwl/modules/niri/wallpaper/default.jpg";
   programs.niri.outputFragment =
     builtins.readFile ./modules/niri/fragments/output.kdl;
-  # if you want the module to write WAYLAND_DISPLAY into the KDL env block:
-  programs.niri.environment = {
-    XDG_CURRENT_DESKTOP = "niri";
-    XDG_SESSION_TYPE = "wayland";
-    MOZ_ENABLE_WAYLAND = "1";
-    QT_QPA_PLATFORM = "wayland";
-  };
 
   #hello
   home.stateVersion = "25.11";

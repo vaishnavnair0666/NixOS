@@ -67,19 +67,6 @@ in {
       description = "Which bar to use: 'waybar', 'dms', or 'noctalia'.";
     };
 
-    environment = mkOption {
-      type = types.attrsOf types.str;
-      default = {
-        XDG_CURRENT_DESKTOP = "niri";
-        XDG_SESSION_TYPE = "wayland";
-        GTK_USE_PORTAL = "1";
-        MOZ_ENABLE_WAYLAND = "1";
-        QT_QPA_PLATFORM = "wayland";
-        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
-      };
-      description =
-        "Additional environment variables to write into niri/config.kdl (key/value).";
-    };
   };
 
   config = lib.mkIf config.programs.niri.enable (let cfg = config.programs.niri;

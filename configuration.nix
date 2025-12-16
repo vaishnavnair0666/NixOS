@@ -51,6 +51,8 @@
   environment.sessionVariables = {
     SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
     SSL_CERT_DIR = "${pkgs.cacert}/etc/ssl/certs";
+    XDG_SESSION_TYPE = "wayland";
+    XDG_CURRENT_DESKTOP = "niri";
     GTK_USE_PORTAL = "1";
   };
   nix.settings.ssl-cert-file = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
