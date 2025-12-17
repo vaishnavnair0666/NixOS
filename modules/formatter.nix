@@ -4,9 +4,8 @@
     shfmt
     taplo
     nixpkgs-fmt
-
+    prettier
     nixd
-    nodePackages.prettier
 
     nodePackages.typescript
     nodePackages.typescript-language-server

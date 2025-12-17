@@ -7,7 +7,7 @@
         enable = true;
 
         settings = {
-          formattersByFt = {
+          formatters_by_ft = {
             lua = [ "stylua" ];
             nix = [ "nixpkgs-fmt" ];
             javascript = [ "prettier" ];
@@ -19,10 +19,10 @@
             bash = [ "shfmt" ];
           };
 
-          formatOnSave = {
-            enabled = false;
-            lspFallback = true;
-            timeoutMs = 500;
+          format_on_save = {
+            enabled = true;
+            lsp_fallback = true;
+            timeout_ms = 500;
           };
         };
       };
