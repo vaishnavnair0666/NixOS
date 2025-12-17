@@ -1,75 +1,18 @@
-{ pkgs, ... }:
-let
-  waybarWorkspace = builtins.readFile ./scripts/waybarWorkspace.sh;
-  waybarWorkspaceAction = builtins.readFile ./scripts/waybarWorkspaceAction.sh;
-  waybarNetwork = builtins.readFile ./scripts/waybarNetwork.sh;
-in {
+{ ... }: {
   home.username = "vaish";
   home.homeDirectory = "/home/vaish";
-  imports = [ ./modules/niri/niri.nix ./home/Code-editor.nix ];
-  home.packages = with pkgs; [
-    (pkgs.writeShellScriptBin "waybarWorkspace" "${waybarWorkspace}")
-    (pkgs.writeShellScriptBin "waybarWorkspaceAction"
-      "${waybarWorkspaceAction}")
-    (pkgs.writeShellScriptBin "waybarNetwork" "${waybarNetwork}")
-    alacritty
-    ripgrep
-    fuzzel
-    mako
-    wofi
-    btop
-    fastfetch
-    firefox
-    pipewire
-    wireplumber
-    pavucontrol
-    cliphist
-    atuin
-    nemo
+  imports = [
+    ./modules/niri/niri.nix
+    ./home/Bash.nix
+    ./home/Code-editor.nix
+    ./home/Foot.nix
+    ./home/Packages.nix
+    ./home/Window-manager.nix
   ];
-  programs.bash.enable = true;
-  programs.bash = {
-    bashrcExtra = ''
-      export EDITOR="nvim"
-      export VISUAL="nvim"
-
-      eval "$(direnv hook bash)"
-      eval "$(atuin init bash)"
-      # Remove up-arrow keybinding
-      bind '"\e[A": history-search-backward' # Restores default up-arrow behavior
-    '';
-  };
-  # Example: enable zsh
-  programs.zsh = {
-    enable = true;
-    initContent = ''
-          eval "$(atuin init zsh)"
-      	  eval "$(direnv hook zsh)" 	    
-    '';
-  };
 
   # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
   home.file.".config/waybar".source = ./config/waybar;
-
-  programs.niri.enable = true;
-
-  programs.niri.animationsFragment =
-    builtins.readFile ./modules/niri/fragments/animations.kdl;
-  programs.niri.inputFragment =
-    builtins.readFile ./modules/niri/fragments/input.kdl;
-  programs.niri.keybindsFragment =
-    builtins.readFile ./modules/niri/fragments/keybinds.kdl;
-  programs.niri.layoutFragment =
-    builtins.readFile ./modules/niri/fragments/layout.kdl;
-  programs.niri.startupFragment =
-    builtins.readFile ./modules/niri/fragments/startup.kdl;
-  programs.niri.windowrulesFragment =
-    builtins.readFile ./modules/niri/fragments/windowrules.kdl;
-  programs.niri.wallpaperPath =
-    "~/.dotfiles.git/dwl/modules/niri/wallpaper/default.jpg";
-  programs.niri.outputFragment =
-    builtins.readFile ./modules/niri/fragments/output.kdl;
 
   #hello
   home.stateVersion = "25.11";
