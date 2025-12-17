@@ -61,12 +61,6 @@ in {
         "Optional path to wallpaper to set on startup (e.g. ~/.config/niri/wallpapers/default.png).";
     };
 
-    barChoice = mkOption {
-      type = types.str;
-      default = "waybar";
-      description = "Which bar to use: 'waybar', 'dms', or 'noctalia'.";
-    };
-
   };
 
   config = lib.mkIf config.programs.niri.enable (let cfg = config.programs.niri;

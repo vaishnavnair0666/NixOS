@@ -23,8 +23,6 @@
 
   imports = [
     ./hardware-configuration.nix
-    # ./modules/seatd.nix
-    # ./modules/walker.nix
     ./modules/OpenGL.nix
     ./modules/apps.nix
     ./modules/audio.nix
@@ -42,11 +40,9 @@
     ./modules/loginManager.nix
     ./modules/menu.nix
     ./modules/portal.nix
-    # ./modules/special/terminaltools.nix
     ./modules/system.nix
     ./modules/systemTheme.nix
     ./modules/users.nix
-    # ./modules/windowManager.nix
 
   ];
   environment.systemPackages = with pkgs; [ cacert curl ];

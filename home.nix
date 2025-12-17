@@ -7,6 +7,7 @@
     ./home/Code-editor.nix
     ./home/Foot.nix
     ./home/Packages.nix
+    ./home/Session-variables.nix
     ./home/Window-manager.nix
   ];
 
