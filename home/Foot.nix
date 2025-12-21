@@ -19,7 +19,7 @@
       };
 
       mouse = { hide-when-typing = "yes"; };
-      colors = { background = "#122016"; };
+      colors = { background = "122016"; };
     };
   };
 }
