@@ -2,12 +2,23 @@
   "layer": "top",
   "position": "top",
   "height": 30,
-  "modules-left": ["custom/workspaces", "swaywindow", "launcher"],
-  "modules-center": ["clock"],
-  "modules-right": ["custom/network", "pulseaudio", "battery", "memory", "cpu", "tray"],
 
-  "tray-position": "right",
-  "tray-padding": 6,
+  "modules-left": [
+    "custom/workspaces",
+    "swaywindow",
+    "custom/launcher"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "custom/network",
+    "pulseaudio",
+    "battery",
+    "memory",
+    "cpu",
+    "tray"
+  ],
 
   "module-margin-left": 8,
   "module-margin-right": 8,
@@ -18,29 +29,32 @@
   },
 
   "memory": {
-    "format": "RAM {used}/{total} MB",
+    "format": "RAM {used}/{total} MiB",
     "interval": 5
   },
 
   "cpu": {
-    "format": "CPU {usage}%"
+    "format": "CPU {usage}%",
+    "interval": 2
   },
 
   "battery": {
-    "format": "{capacity}% {time:hh\\:mm}",
-    "format-discharging": " {capacity}% {time:hh\\:mm}",
+    "format": " {capacity}% {time:hh\\:mm}",
+    "format-charging": " {capacity}% {time:hh\\:mm}",
+    "format-full": " {capacity}%",
     "tooltip": true
   },
 
   "pulseaudio": {
-    "format": "{volume}%{?muted: (MUTED)}",
+    "format": "{volume}%",
     "format-muted": "Muted",
     "tooltip": true,
     "on-click": "pavucontrol"
   },
 
   "tray": {
-    "max-size": 20
+    "max-size": 20,
+    "spacing": 6
   },
 
   "swaywindow": {
@@ -48,22 +62,21 @@
     "max-length": 40
   },
 
-  "launcher": {
-    "exec": "bash -lc 'wofi --show drun'",
-    "return-type": "json",
-    "on-click": "bash -lc 'wofi --show drun'"
+  "custom/launcher": {
+    "format": "",
+    "tooltip": false,
+    "on-click": "fuzzle"
   },
 
   "custom/workspaces": {
     "exec": "waybarWorkspace",
-    "interval": 1,
+    "interval": 0,
     "on-click": "waybarWorkspaceAction"
   },
 
-"custom/network": {
-  "exec": "waybarNetwork",
-  "interval": 5,
-  "return-type": "text"
+  "custom/network": {
+    "exec": "waybarNetwork",
+    "interval": 5,
+    "return-type": "text"
+  }
 }
-}
-

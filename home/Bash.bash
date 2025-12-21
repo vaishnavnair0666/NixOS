@@ -9,7 +9,7 @@ __exit_status() {
 	[ $s -ne 0 ] && echo -e "\e[1;31m✗ $s\e[0m "
 }
 
-PS1='\[\e[38;5;171m\]\A\[\e[0m\]|\h@\u:$(__exit_status)[\[\e[38;5;76m\]$(__git_branch)\[\e[0m\]]\[\e[38;5;127m\]\w\n\[\e[0m\]󱞩 '
+PS1='\[\e[38;5;171m\]\A\[\e[0m\]|\h@\u:$(__exit_status)[\[\e[38;5;76m\]$(__git_branch)\[\e[0m\]]\[\e[96m\]\w\n\[\e[0m\]󱞩 '
 
 HISTSIZE=50000
 HISTFILESIZE=100000

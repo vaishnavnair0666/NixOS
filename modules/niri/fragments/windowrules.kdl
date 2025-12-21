@@ -2,3 +2,19 @@ window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     open-floating true
 }
+window-rule {
+    match app-id="foot"
+    opacity 0.80
+    shadow {
+        on
+        softness 30
+        spread 8
+        offset x=0 y=4
+        draw-behind-window true
+        color "#00000088"
+    }
+    geometry-corner-radius 8
+    focus-ring {
+        off
+    }
+}

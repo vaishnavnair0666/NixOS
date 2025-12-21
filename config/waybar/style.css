@@ -1,17 +1,19 @@
+/* global */
 * {
 	font-family: "Inter", "DejaVu Sans", sans-serif;
 	font-size: 12px;
 }
 
-#bar {
+/* bar container */
+window#waybar {
 	background: rgba(15, 23, 42, 0.85);
 	color: #e6edf3;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 	padding: 4px 8px;
 }
 
-/* module containers */
-.module {
+/* generic module styling */
+#waybar>box>* {
 	padding: 2px 8px;
 	border-radius: 6px;
 }
@@ -45,13 +47,13 @@
 #clock,
 #cpu,
 #memory,
-#network,
 #battery,
-#pulseaudio {
+#pulseaudio,
+#custom-network {
 	margin-left: 6px;
 }
 
-/* tray icon sizing */
+/* tray */
 #tray {
 	padding-right: 6px;
 }
@@ -61,6 +63,6 @@
 }
 
 /* hover states */
-.module:hover {
+#waybar>box>*:hover {
 	background: rgba(255, 255, 255, 0.03);
 }
