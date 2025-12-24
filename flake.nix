@@ -33,8 +33,16 @@
               home-manager.users.vaish = {
                 imports = [
                   ./home.nix
-                  inputs.nvim.inputs.nixvim.homeManagerModules.nixvim
-                  (import inputs.nvim.data.nvimConfig)
+                  inputs.nvim.inputs.nixvim.homeModules.nixvim
+                  {
+                    programs.nixvim = {
+                      enable = true;
+                      imports = [
+                        (import
+                          inputs.nvim.data.nvimModule)._module.args.nixvimModule
+                      ];
+                    };
+                  }
                 ];
               };
             }

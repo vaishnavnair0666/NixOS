@@ -9,37 +9,31 @@
 
   outputs = inputs@{ nixpkgs, nixvim, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+
       systems =
         [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
       perSystem = { system, pkgs, ... }:
-        let
-          nixvimLib = nixvim.lib.${system};
-          nixvimPkgs = nixvim.legacyPackages.${system};
-
-          nixvimModule = {
-            inherit system;
-            module = import ./config;
-            extraSpecialArgs = { };
-          };
-
-          nvim = nixvimPkgs.makeNixvimWithModule nixvimModule;
-
+        let pure = (import ./config)._module.args.nixvimModule;
         in {
-          checks.default =
-            nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
-
-          packages.default = nvim;
+          packages.default =
+            nixvim.legacyPackages.${system}.makeNixvimWithModule {
+              inherit system;
+              module = pure;
+            };
 
           devShells.default = pkgs.mkShell {
-            buildInputs =
-              [ nvim pkgs.stylua pkgs.lua-language-server pkgs.git ];
-
-            shellHook = ''
-              echo "DevShell: run 'nvim' to test your config."
-            '';
+            buildInputs = [
+              (nixvim.legacyPackages.${system}.makeNixvimWithModule {
+                inherit system;
+                module = pure;
+              })
+              pkgs.stylua
+              pkgs.lua-language-server
+            ];
           };
         };
-      flake = { data = { nvimConfig = ./config; }; };
+
+      flake.data.nvimModule = ./config;
     };
 }
