@@ -34,7 +34,7 @@
                 imports = [
                   ./home.nix
                   inputs.nvim.inputs.nixvim.homeManagerModules.nixvim
-                  (import inputs.nvim.config)
+                  (import inputs.nvim.data.nvimConfig)
                 ];
               };
             }

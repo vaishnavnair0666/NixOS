@@ -7,45 +7,39 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = inputs@{ nixvim, flake-parts, ... }:
+  outputs = inputs@{ nixpkgs, nixvim, flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-
       systems =
         [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
-      flake = { config = ./config; };
       perSystem = { system, pkgs, ... }:
         let
-          # Shortcuts
           nixvimLib = nixvim.lib.${system};
           nixvimPkgs = nixvim.legacyPackages.${system};
 
-          # Your Nixvim module
           nixvimModule = {
             inherit system;
-            module = import ./config; # config/default.nix
+            module = import ./config;
             extraSpecialArgs = { };
           };
 
           nvim = nixvimPkgs.makeNixvimWithModule nixvimModule;
 
         in {
-          # For `nix flake check`
           checks.default =
             nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;
 
-          # For `nix run .`
           packages.default = nvim;
 
-          # For development: `nix develop`
           devShells.default = pkgs.mkShell {
             buildInputs =
               [ nvim pkgs.stylua pkgs.lua-language-server pkgs.git ];
 
             shellHook = ''
-              echo "DevShell: run 'nvim' to load your nixvim config."
+              echo "DevShell: run 'nvim' to test your config."
             '';
           };
         };
+      flake = { data = { nvimConfig = ./config; }; };
     };
 }
