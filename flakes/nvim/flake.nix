@@ -13,6 +13,7 @@
       systems =
         [ "x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin" ];
 
+      flake = { config = ./config; };
       perSystem = { system, pkgs, ... }:
         let
           # Shortcuts
@@ -29,7 +30,6 @@
           nvim = nixvimPkgs.makeNixvimWithModule nixvimModule;
 
         in {
-
           # For `nix flake check`
           checks.default =
             nixvimLib.check.mkTestDerivationFromNixvimModule nixvimModule;

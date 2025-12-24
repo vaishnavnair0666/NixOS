@@ -10,7 +10,7 @@
     nvim.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, sops-nix, ... }@inputs:
+  outputs = inputs@{ nixpkgs, home-manager, sops-nix, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -30,8 +30,13 @@
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.vaish.imports =
-                [ ./home.nix inputs.nvim.homeManagerModules.default ];
+              home-manager.users.vaish = {
+                imports = [
+                  ./home.nix
+                  inputs.nvim.inputs.nixvim.homeManagerModules.nixvim
+                  (import inputs.nvim.config)
+                ];
+              };
             }
           ];
         };
@@ -40,8 +45,6 @@
 
     in {
       nixosConfigurations = systems;
-
-      # Required for nh
       packages.x86_64-linux = systems;
     };
 }
