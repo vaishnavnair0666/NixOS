@@ -1,5 +1,5 @@
 { ... }: {
-  programs.nixvim.plugins.ccc = {
+  plugins.ccc = {
     enable = true;
     settings = {
       highlighter = { auto_enable = true; };

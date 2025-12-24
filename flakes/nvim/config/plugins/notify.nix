@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  programs.nixvim.plugins = {
+  plugins = {
     nui.enable = true;
 
     # Notification backend
@@ -41,7 +41,7 @@
   };
 
   # REQUIRED glue 
-  programs.nixvim.extraConfigLua = ''
+  extraConfigLua = ''
     vim.notify = require("notify")
   '';
 }

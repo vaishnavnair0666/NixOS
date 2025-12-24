@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  programs.nixvim.keymaps = [
+  keymaps = [
 
     #######################
     # UI TOGGLES

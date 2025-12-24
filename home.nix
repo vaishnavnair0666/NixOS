@@ -4,7 +4,6 @@
   imports = [
     ./modules/niri/niri.nix
     ./home/Bash.nix
-    ./home/Code-editor.nix
     ./home/Foot.nix
     ./home/Packages.nix
     ./home/Session-variables.nix

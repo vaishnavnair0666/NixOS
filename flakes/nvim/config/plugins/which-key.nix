@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  programs.nixvim.plugins.which-key = {
+  plugins.which-key = {
     enable = true;
 
     settings = {

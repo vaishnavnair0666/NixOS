@@ -30,8 +30,11 @@
             sops-nix.nixosModules.sops
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.vaish.imports =
-                [ ./home.nix inputs.nvim.homeManagerModules.default ];
+              home-manager.users.vaish.imports = [
+                ./home.nix
+                inputs.nvim.inputs.nixvim.homeManagerModules.nixvim
+                (import inputs.nvim.config)
+              ];
             }
           ];
         };
