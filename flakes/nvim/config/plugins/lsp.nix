@@ -1,76 +1,58 @@
 { ... }:
 
 {
-  plugins = {
-    schemastore.enable = true;
+  plugins.lsp = {
+    enable = true;
+    inlayHints = true;
 
-    lsp = {
-      enable = true;
-
-      # Global diagnostics configuration
-      diagnostics = {
-        virtualText = true;
-        updateInInsert = false;
-        underline = true;
-        severitySort = true;
+    keymaps = {
+      lspBuf = {
+        gd = "definition";
+        K = "hover";
+        gr = "references";
+        rn = "rename";
+        ca = "code_action";
+        f = "format";
       };
 
-      servers = {
-        ts_ls.enable = true;
-        svelte.enable = true;
-        jsonls.enable = true;
-        yamlls.enable = true;
-        bashls.enable = true;
-        html.enable = true;
-        cssls.enable = true;
+      diagnostic = {
+        "]d" = "goto_next";
+        "[d" = "goto_prev";
+      };
 
-        lua_ls.enable = true;
+      silent = true;
+    };
 
-        nixd = {
-          enable = true;
-          settings = { nixd.nix.exprSymbols = true; };
+    servers = {
+      lua_ls = {
+        enable = true;
+        settings = {
+          Lua = {
+            diagnostics = { globals = [ "vim" ]; };
+            workspace = { checkThirdParty = false; };
+          };
         };
       };
+
+      ts_ls.enable = true; # renamed from tsserver -> ts_ls
+      html.enable = true;
+      cssls.enable = true;
+      jsonls.enable = true;
+      bashls.enable = true;
+      nil_ls.enable = true;
     };
+
+    luaConfig.post = ''
+      -- Optional final tweaks
+      vim.diagnostic.config({
+        underline = true,
+        virtual_text = { spacing = 2, prefix = "●" },
+        signs = true,
+        severity_sort = true,
+      })
+    '';
   };
 
-  # LSP keymaps (correct layer)
-  keymaps = [
-    {
-      mode = "n";
-      key = "gd";
-      action = "vim.lsp.buf.definition";
-      options.desc = "Go to definition";
-    }
-    {
-      mode = "n";
-      key = "gr";
-      action = "vim.lsp.buf.references";
-      options.desc = "Find references";
-    }
-    {
-      mode = "n";
-      key = "K";
-      action = "vim.lsp.buf.hover";
-      options.desc = "Hover documentation";
-    }
-    {
-      mode = "n";
-      key = "<leader>ca";
-      action = "vim.lsp.buf.code_action";
-      options.desc = "Code actions";
-    }
-    {
-      mode = "n";
-      key = "[d";
-      action = "vim.diagnostic.goto_prev";
-      options.desc = "Previous diagnostic";
-    }
-    {
-      mode = "n";
-      key = "]d";
-      action = "vim.diagnostic.goto_next";
-      options.desc = "Next diagnostic";
-    }
-  ];
+  # Completion source for LSP
+  plugins.cmp-nvim-lsp.enable = true;
 }

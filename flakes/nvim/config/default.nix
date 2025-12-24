@@ -6,7 +6,7 @@
       ./plugins/cmp.nix
       ./plugins/git.nix
       ./plugins/toggleterm.nix
-      # ./plugins/lsp.nix
+      ./plugins/lsp.nix
       ./plugins/tools.nix
       ./plugins/notify.nix
       ./plugins/harpoon.nix

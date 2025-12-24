@@ -42,7 +42,6 @@
       };
     };
 
-    # File explorer (correct way)
     neo-tree = {
       enable = true;
 

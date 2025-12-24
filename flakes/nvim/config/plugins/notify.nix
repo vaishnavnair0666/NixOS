@@ -41,7 +41,7 @@
   };
 
   # REQUIRED glue 
-  extraConfigLua = ''
+  extraConfigLuaPost = ''
     vim.notify = require("notify")
   '';
 }

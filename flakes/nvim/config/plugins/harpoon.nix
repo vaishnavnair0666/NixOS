@@ -27,7 +27,7 @@ let
 in {
   extraPlugins = with pkgs.vimPlugins; [ plenary-nvim harpoonV2 gitWorktree ];
 
-  extraConfigLua = ''
+  extraConfigLuaPost = ''
     -- Load telescope extensions ONLY (do not call telescope.setup)
     pcall(function()
       require("telescope").load_extension("harpoon")
