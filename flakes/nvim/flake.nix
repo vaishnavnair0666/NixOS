@@ -29,6 +29,7 @@
                 module = pure;
               })
               pkgs.stylua
+              pkgs.nixd
               pkgs.lua-language-server
             ];
           };

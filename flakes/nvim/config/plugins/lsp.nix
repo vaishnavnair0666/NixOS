@@ -7,9 +7,7 @@
 
     keymaps = {
       lspBuf = {
-        gd = "definition";
         K = "hover";
-        gr = "references";
         rn = "rename";
         ca = "code_action";
         f = "format";
@@ -21,24 +19,76 @@
       };
       extra = [
         {
-          key = "Gd";
+          key = "gd";
+          mode = [ "n" ];
           action.__raw = "require('telescope.builtin').lsp_definitions";
-          mode = [ "n" ];
         }
         {
-          key = "Gr";
+          key = "gr";
+          mode = [ "n" ];
           action.__raw = "require('telescope.builtin').lsp_references";
-          mode = [ "n" ];
         }
         {
-          key = "Gi";
+          key = "gi";
+          mode = [ "n" ];
           action.__raw = "require('telescope.builtin').lsp_implementations";
-          mode = [ "n" ];
         }
         {
-          key = "Gt";
-          action.__raw = "require('telescope.builtin').lsp_type_definitions";
+          key = "gt";
           mode = [ "n" ];
+          action.__raw = "require('telescope.builtin').lsp_type_definitions";
+        }
+        {
+          key = "<leader>ds";
+          mode = [ "n" ];
+          action.__raw = "require('telescope.builtin').lsp_document_symbols";
+        }
+        {
+          key = "<leader>ws";
+          mode = [ "n" ];
+          action.__raw =
+            "require('telescope.builtin').lsp_dynamic_workspace_symbols";
+        }
+        {
+          key = "gh";
+          mode = [ "n" ];
+          action = "<cmd>Lspsaga hover_doc<CR>";
+        }
+        {
+          key = "<leader>ca";
+          mode = [ "n" ];
+          action = "<cmd>Lspsaga code_action<CR>";
+        }
+        {
+          key = "<leader>rn";
+          mode = [ "n" ];
+          action = "<cmd>Lspsaga rename<CR>";
+        }
+        {
+          key = "<leader>gg";
+          mode = [ "n" ];
+          action = "<cmd>Lspsaga finder<CR>";
+        }
+        {
+          key = "<leader>xx";
+          mode = [ "n" ];
+          action = "<cmd>Trouble diagnostics toggle<CR>";
+        }
+        {
+          key = "<leader>xo";
+          mode = [ "n" ];
+          action = "<cmd>Trouble quickfix toggle<CR>";
+        }
+        {
+          key = "<leader>o";
+          mode = [ "n" ];
+          action = "<cmd>AerialToggle!<CR>";
+        }
+
+        {
+          key = "<leader>f";
+          mode = [ "n" ];
+          action = "<cmd>ConformFormat<CR>";
         }
       ];
       silent = true;
@@ -49,12 +99,8 @@
         enable = true;
         settings = {
           Lua = {
-            diagnostics = {
-              globals = [ "vim" ];
-            };
-            workspace = {
-              checkThirdParty = false;
-            };
+            diagnostics = { globals = [ "vim" ]; };
+            workspace = { checkThirdParty = false; };
           };
         };
       };
@@ -63,7 +109,26 @@
       cssls.enable = true;
       jsonls.enable = true;
       bashls.enable = true;
-      nil_ls.enable = true;
+      nixd.enable = true;
+      nixd.settings = {
+        nixd = {
+          formatting.command = [ "nixfmt" ];
+
+          options = {
+            nixos = {
+              expr =
+                "(import <nixpkgs/nixos> { configuration = /etc/nixos/configuration.nix; })";
+            };
+
+            home_manager = {
+              expr =
+                "(import <home-manager/modules> { config = {}; pkgs = import <nixpkgs> {}; })";
+            };
+
+            nixpkgs = { expr = "(import <nixpkgs> {})"; };
+          };
+        };
+      };
     };
 
     luaConfig.post = ''
