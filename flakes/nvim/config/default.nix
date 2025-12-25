@@ -11,7 +11,6 @@
       ./plugins/harpoon.nix
       ./plugins/lsp.nix
       ./plugins/lspsaga.nix
-      # ./plugins/mason.nix
       ./plugins/notify.nix
       # ./plugins/python.nix
       ./plugins/rust.nix

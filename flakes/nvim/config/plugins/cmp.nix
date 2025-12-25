@@ -1,49 +1,89 @@
-{ lib, ... }:
+{ ... }:
 
 {
-  plugins = {
-    #  Snippet engine 
-    luasnip.enable = true;
-    friendly-snippets.enable = true;
+  plugins.cmp = {
+    enable = true;
 
-    #  Completion engine 
-    cmp = {
-      enable = true;
+    autoEnable = true;
 
-      settings = {
-        snippet.expand = ''
-          function(args)
-            require("luasnip").lsp_expand(args.body)
+    settings = {
+      snippet.expand = "luasnip";
+
+      cmdline = {
+        "/" = {
+          mapping = "cmp.mapping.preset.cmdline()";
+          sources = [{ name = "buffer"; }];
+        };
+
+        ":" = {
+          mapping = "cmp.mapping.preset.cmdline()";
+          sources = [ { name = "path"; } { name = "cmdline"; } ];
+        };
+      };
+      sources = [
+        { name = "nvim_lsp"; }
+        { name = "luasnip"; }
+        { name = "buffer"; }
+        { name = "path"; }
+        { name = "nvim_lsp_signature_help"; }
+      ];
+
+      mapping = {
+        "<CR>" = "cmp.mapping.confirm({ select = true })";
+
+        "<C-Space>" = "cmp.mapping.complete()";
+        "<C-e>" = "cmp.mapping.abort()";
+
+        # scroll docs
+        "<C-f>" = "cmp.mapping.scroll_docs(4)";
+        "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+
+        # Supertab-style snippet / completion jumping
+        "<Tab>" = ''
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.expand_or_jumpable() then
+              luasnip.expand_or_jump()
+            else
+              fallback()
+            end
           end
         '';
 
-        mapping = {
-          "<C-Space>" = "cmp.mapping.complete()";
-          "<C-e>" = "cmp.mapping.abort()";
-          "<CR>" = "cmp.mapping.confirm({ select = true })";
-
-          "<Tab>" = "cmp.mapping.select_next_item()";
-          "<S-Tab>" = "cmp.mapping.select_prev_item()";
-        };
-
-        sources = [
-          { name = "nvim_lsp"; }
-          { name = "luasnip"; }
-          { name = "path"; }
-          { name = "buffer"; }
-        ];
-
-        formatting = {
-          format = lib.mkForce {
-            __raw = "require('lspkind').cmp_format({ mode = 'symbol_text' })";
-          };
-        };
+        "<S-Tab>" = ''
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end
+        '';
       };
     };
-
-    #  Icons / completion kinds 
-    lspkind.enable = true;
   };
+  plugins.nvim-autopairs = { enable = true; };
 
-  plugins.lsp.capabilities = "require('cmp_nvim_lsp').default_capabilities()";
+  plugins.cmp.settings.luaConfig.post = ''
+    local cmp = require("cmp")
+    local autopairs = require("nvim-autopairs.completion.cmp")
+    cmp.event:on("confirm_done", autopairs.on_confirm_done())
+  '';
+  # Source plugins
+  plugins.cmp-buffer.enable = true;
+  plugins.cmp-path.enable = true;
+  plugins.cmp-nvim-lsp.enable = true;
+  plugins.cmp-nvim-lsp-signature-help.enable = true;
+  plugins.cmp-cmdline.enable = true;
+  plugins.luasnip = {
+    enable = true;
+
+    fromVscode = [
+      # Full VSCode snippet packs
+      "friendly-snippets"
+    ];
+  };
 }
