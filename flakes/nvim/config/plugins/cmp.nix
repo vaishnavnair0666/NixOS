@@ -4,7 +4,7 @@
   plugins.cmp = {
     enable = true;
 
-    autoEnable = true;
+    autoLoad = true;
 
     settings = {
       snippet.expand = "luasnip";
@@ -81,9 +81,9 @@
   plugins.luasnip = {
     enable = true;
 
-    fromVscode = [
-      # Full VSCode snippet packs
-      "friendly-snippets"
-    ];
+    # fromVscode = [{
+    #   path =
+    #     "${pkgs.vimPlugins.friendly-snippets}/share/vim-plugins/friendly-snippets/snippets";
+    # }];
   };
 }
