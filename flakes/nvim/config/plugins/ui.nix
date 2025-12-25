@@ -2,27 +2,11 @@
 
 {
   globals.mapleader = " "; # <space> is leader
-  # Example starter config
   opts = {
     number = true;
     relativenumber = false;
     tabstop = 4;
     shiftwidth = 4;
-  };
-  colorscheme = "catppuccin";
-
-  colorschemes.catppuccin.enable = true;
-
-  colorschemes.catppuccin.settings = {
-    flavour = "mocha"; # one of "latte", "frappe", "macchiato", "mocha", or "auto"
-    integrations = {
-      cmp = true;
-      gitsigns = true;
-      nvimtree = true;
-      treesitter = true;
-      notify = true;
-      fidget = true;
-    };
   };
   plugins = {
     web-devicons.enable = true;

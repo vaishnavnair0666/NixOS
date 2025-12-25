@@ -16,7 +16,13 @@
     };
 
     # UI enhancements
-    dressing.enable = true;
+    dressing = {
+      enable = true;
+      settings = {
+        input = { border = "rounded"; };
+        select = { backend = [ "telescope" "builtin" ]; };
+      };
+    };
     flash.enable = true;
 
     noice = {
@@ -35,6 +41,10 @@
           long_message_to_split = true;
           inc_rename = true;
           lsp_doc_border = true;
+        };
+        views = {
+          cmdline_popup = { border = { style = "rounded"; }; };
+          popupmenu = { border = { style = "rounded"; }; };
         };
       };
     };

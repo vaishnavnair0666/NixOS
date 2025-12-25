@@ -84,12 +84,6 @@
           mode = [ "n" ];
           action = "<cmd>AerialToggle!<CR>";
         }
-
-        {
-          key = "<leader>f";
-          mode = [ "n" ];
-          action = "<cmd>ConformFormat<CR>";
-        }
       ];
       silent = true;
     };

@@ -449,16 +449,5 @@
       action = "<cmd>Telescope resume<cr>";
       options.desc = "Resume Telescope";
     }
-    {
-      mode = [
-        "n"
-        "v"
-      ];
-      key = "<leader>w";
-      action = "require('conform').format";
-      options = {
-        desc = "Format file or selection";
-      };
-    }
   ];
 }

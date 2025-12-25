@@ -6,7 +6,6 @@
       ./plugins/cmp.nix
       ./plugins/conform.nix
       ./plugins/dashboard.nix
-      ./plugins/fidget.nix
       ./plugins/git.nix
       ./plugins/harpoon.nix
       ./plugins/lsp.nix
@@ -14,8 +13,10 @@
       ./plugins/notify.nix
       # ./plugins/python.nix
       ./plugins/rust.nix
+      ./plugins/scrollbar.nix
       ./plugins/telescope.nix
       ./plugins/testers.nix
+      ./plugins/themes.nix
       ./plugins/toggleterm.nix
       ./plugins/tools.nix
       ./plugins/treesitter.nix
@@ -23,6 +24,7 @@
       ./plugins/typescript.nix
       ./plugins/ui.nix
       ./plugins/which-key.nix
+      ./plugins/winbar.nix
     ];
   };
 }
