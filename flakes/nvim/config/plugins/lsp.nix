@@ -19,7 +19,28 @@
         "]d" = "goto_next";
         "[d" = "goto_prev";
       };
-
+      extra = [
+        {
+          key = "Gd";
+          action.__raw = "require('telescope.builtin').lsp_definitions";
+          mode = [ "n" ];
+        }
+        {
+          key = "Gr";
+          action.__raw = "require('telescope.builtin').lsp_references";
+          mode = [ "n" ];
+        }
+        {
+          key = "Gi";
+          action.__raw = "require('telescope.builtin').lsp_implementations";
+          mode = [ "n" ];
+        }
+        {
+          key = "Gt";
+          action.__raw = "require('telescope.builtin').lsp_type_definitions";
+          mode = [ "n" ];
+        }
+      ];
       silent = true;
     };
 
@@ -28,13 +49,16 @@
         enable = true;
         settings = {
           Lua = {
-            diagnostics = { globals = [ "vim" ]; };
-            workspace = { checkThirdParty = false; };
+            diagnostics = {
+              globals = [ "vim" ];
+            };
+            workspace = {
+              checkThirdParty = false;
+            };
           };
         };
       };
 
-      ts_ls.enable = true; # renamed from tsserver -> ts_ls
       html.enable = true;
       cssls.enable = true;
       jsonls.enable = true;
@@ -52,7 +76,7 @@
       })
     '';
   };
-
+  plugins.schemastore.enable = true;
   # Completion source for LSP
   plugins.cmp-nvim-lsp.enable = true;
 }

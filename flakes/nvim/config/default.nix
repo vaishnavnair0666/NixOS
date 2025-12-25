@@ -2,19 +2,28 @@
   _module.args.nixvimModule = {
     imports = [
       ./keymaps.nix
-      ./plugins/ui.nix
+      ./plugins/aerial.nix
       ./plugins/cmp.nix
-      ./plugins/git.nix
-      ./plugins/toggleterm.nix
-      ./plugins/lsp.nix
-      ./plugins/tools.nix
-      ./plugins/notify.nix
-      ./plugins/harpoon.nix
-      ./plugins/testers.nix
+      ./plugins/conform.nix
       ./plugins/dashboard.nix
+      ./plugins/fidget.nix
+      ./plugins/git.nix
+      ./plugins/harpoon.nix
+      ./plugins/lsp.nix
+      ./plugins/lspsaga.nix
+      # ./plugins/mason.nix
+      ./plugins/notify.nix
+      # ./plugins/python.nix
+      ./plugins/rust.nix
       ./plugins/telescope.nix
+      ./plugins/testers.nix
+      ./plugins/toggleterm.nix
+      ./plugins/tools.nix
+      ./plugins/treesitter.nix
+      ./plugins/trouble.nix
+      ./plugins/typescript.nix
+      ./plugins/ui.nix
       ./plugins/which-key.nix
-      ./plugins/formatters.nix
     ];
   };
 }

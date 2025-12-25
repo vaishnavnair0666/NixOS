@@ -14,8 +14,7 @@
   colorschemes.catppuccin.enable = true;
 
   colorschemes.catppuccin.settings = {
-    flavour =
-      "mocha"; # one of "latte", "frappe", "macchiato", "mocha", or "auto"
+    flavour = "mocha"; # one of "latte", "frappe", "macchiato", "mocha", or "auto"
     integrations = {
       cmp = true;
       gitsigns = true;
@@ -73,12 +72,6 @@
 
     # Editing helpers
     comment.enable = true;
-
-    treesitter = {
-      enable = true;
-      settings.ensureInstalled =
-        [ "nix" "lua" "javascript" "typescript" "svelte" "json" "markdown" ];
-    };
 
     # UI niceties
     indent-blankline.enable = true;
