@@ -10,6 +10,7 @@
       ./plugins/harpoon.nix
       ./plugins/lsp.nix
       ./plugins/lspsaga.nix
+      ./plugins/neo-tree.nix
       ./plugins/notify.nix
       ./plugins/oil.nix
       # ./plugins/python.nix

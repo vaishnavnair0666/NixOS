@@ -202,12 +202,6 @@
       action = "<cmd>Telescope current_buffer_fuzzy_find<cr>";
       options.desc = "Search buffer";
     }
-    {
-      mode = "n";
-      key = "<leader>fe";
-      action = "<cmd>Telescope file_browser<cr>";
-      options = { desc = "Telescope file_browser"; silent = true; };
-    }
     #######################
     # OIL 
     #######################
@@ -233,6 +227,12 @@
         desc = "Oil floating window";
         silent = true;
       };
+    }
+    {
+      mode = "n";
+      key = "<leader>E";
+      action = "<cmd>Neotree toggle left<CR>";
+      options.desc = "Toggle Neo-tree";
     }
     #######################
     # FLASH
