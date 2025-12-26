@@ -98,7 +98,7 @@
           };
         };
       };
-
+      yamlls.enable = true;
       html.enable = true;
       cssls.enable = true;
       jsonls.enable = true;

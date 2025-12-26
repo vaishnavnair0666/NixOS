@@ -11,6 +11,7 @@
       ./plugins/lsp.nix
       ./plugins/lspsaga.nix
       ./plugins/notify.nix
+      ./plugins/oil.nix
       # ./plugins/python.nix
       ./plugins/rust.nix
       ./plugins/scrollbar.nix

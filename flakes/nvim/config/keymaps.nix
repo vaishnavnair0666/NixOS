@@ -170,27 +170,6 @@
     }
 
     #######################
-    # EXPLORER
-    #######################
-    {
-      mode = "n";
-      key = "<leader>ee";
-      action = "<cmd>Neotree toggle<CR>";
-      options.desc = "Toggle explorer";
-    }
-    {
-      mode = "n";
-      key = "<leader>ef";
-      action = "<cmd>Neotree focus<CR>";
-      options.desc = "Focus explorer";
-    }
-    {
-      mode = "n";
-      key = "<leader>er";
-      action = "<cmd>Neotree reveal<CR>";
-      options.desc = "Reveal file";
-    }
-    #######################
     # FIND / TELESCOPE
     #######################
     {
@@ -223,7 +202,21 @@
       action = "<cmd>Telescope current_buffer_fuzzy_find<cr>";
       options.desc = "Search buffer";
     }
-
+    #######################
+    # OIL 
+    #######################
+    {
+      mode = "n";
+      key = "-";
+      action = "require('oil').open()";
+      options.desc = "Open parent directory(OIL)";
+    }
+    {
+      mode = "n";
+      key = "<leader>e";
+      action = "require('oil').open_float()";
+      options.desc = "Open OIL (Floating)";
+    }
     #######################
     # FLASH
     #######################

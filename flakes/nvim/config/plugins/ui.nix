@@ -25,35 +25,6 @@
       };
     };
 
-    neo-tree = {
-      enable = true;
-
-      settings.window = {
-        width = 30;
-        popup_border_style = "rounded";
-        enable_git_status = true;
-        enable_diagnostics = true;
-        close_if_last_window = true;
-        mappings = {
-          "<cr>" = "open";
-          "o" = "open";
-          "s" = "open_split";
-          "v" = "open_vsplit";
-          "t" = "open_tabnew";
-          "q" = "close_window";
-        };
-      };
-
-      # filesystem = {
-      #   # filtered_items = {
-      #   #   visible = false;
-      #   #   hide_dotfiles = true;
-      #   #   hide_gitignored = true;
-      #   # };
-      #   follow_current_file.enabled = true;
-      # };
-    };
-
     # Editing helpers
     comment.enable = true;
 
