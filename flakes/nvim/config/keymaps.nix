@@ -208,13 +208,13 @@
     {
       mode = "n";
       key = "-";
-      action = "require('oil').open()";
+      action.__raw = "require('oil').open()";
       options.desc = "Open parent directory(OIL)";
     }
     {
       mode = "n";
       key = "<leader>e";
-      action = "require('oil').open_float()";
+      action.__raw = "require('oil').open_float()";
       options.desc = "Open OIL (Floating)";
     }
     #######################
@@ -223,7 +223,7 @@
     {
       mode = "n";
       key = "s";
-      action = "require('flash').jump";
+      action.__raw = "require('flash').jump";
       options.desc = "Flash jump";
     }
 

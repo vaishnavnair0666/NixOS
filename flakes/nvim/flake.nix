@@ -2,7 +2,7 @@
   description = "Standalone Nixvim configuration with devShell";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixvim.url = "github:nix-community/nixvim"; # your version
+    nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
   outputs = inputs@{ nixpkgs, nixvim, flake-parts, ... }:
@@ -16,7 +16,8 @@
             inherit system;
             module = pureModule;
           };
-        in {
+        in
+        {
           packages.default = nvim;
           devShells.default = pkgs.mkShell {
             buildInputs =
