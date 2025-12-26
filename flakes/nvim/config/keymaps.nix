@@ -202,20 +202,37 @@
       action = "<cmd>Telescope current_buffer_fuzzy_find<cr>";
       options.desc = "Search buffer";
     }
+    {
+      mode = "n";
+      key = "<leader>fe";
+      action = "<cmd>Telescope file_browser<cr>";
+      options = { desc = "Telescope file_browser"; silent = true; };
+    }
     #######################
     # OIL 
     #######################
     {
       mode = "n";
       key = "-";
-      action.__raw = "require('oil').open()";
-      options.desc = "Open parent directory(OIL)";
+      action = {
+        __raw = "function() require('oil').open() end";
+      };
+      options = {
+        desc = "Open Oil parent directory";
+        silent = true;
+      };
     }
+
     {
       mode = "n";
       key = "<leader>e";
-      action.__raw = "require('oil').open_float()";
-      options.desc = "Open OIL (Floating)";
+      action = {
+        __raw = "function() require('oil').open_float() end";
+      };
+      options = {
+        desc = "Oil floating window";
+        silent = true;
+      };
     }
     #######################
     # FLASH
@@ -223,8 +240,13 @@
     {
       mode = "n";
       key = "s";
-      action.__raw = "require('flash').jump";
-      options.desc = "Flash jump";
+      action = {
+        __raw = "function() require('flash').jump() end";
+      };
+      options = {
+        desc = "Flash jump";
+        silent = true;
+      };
     }
 
     #######################

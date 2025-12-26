@@ -21,7 +21,7 @@
           packages.default = nvim;
           devShells.default = pkgs.mkShell {
             buildInputs =
-              [ nvim pkgs.stylua pkgs.lua-language-server pkgs.nixd ];
+              [ nvim pkgs.stylua pkgs.lua-language-server pkgs.nixd pkgs.fd ];
             shellHook = ''
               echo "DevShell: run 'nvim' to test your config."
             '';
