@@ -13,9 +13,14 @@
         json = [ "biome" ];
         jsonc = [ "biome" ];
 
+        rust = [ "rustfmt" ];
+        c = [ "clang_format" ];
+        cpp = [ "clang_format" ];
+
         lua = [ "stylua" ];
         nix = [ "nixpkgs_fmt" ];
         svelte = [ "prettier" ];
+        vue = [ "prettier" ];
         html = [ "prettier" ];
         css = [ "prettier" ];
         markdown = [ "prettier" ];

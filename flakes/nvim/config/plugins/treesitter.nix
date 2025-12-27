@@ -9,6 +9,13 @@
       lua
       make
       markdown
+      javascript
+      typescript
+      tsx
+      css
+      html
+      svelte
+      vue
       nix
       regex
       toml
@@ -16,6 +23,11 @@
       vimdoc
       xml
       yaml
+      rust
+      java
+
+      c
+      cpp
     ];
     indent.enable = true;
   };

@@ -101,8 +101,21 @@
       yamlls.enable = true;
       html.enable = true;
       cssls.enable = true;
+      tailwindcss.enable = true;
+      emmet_ls.enable = true;
+      ts_ls.enable = true;
+      eslint.enable = true;
       jsonls.enable = true;
       bashls.enable = true;
+      # rust_analyzer = {
+      #   enable = true;
+      #   settings = {
+      #     checkOnSave.command = "clippy";
+      #   };
+      # };
+      jdtls.enable = true;
+      clangd.enable = true;
+
       nixd.enable = true;
       nixd.settings = {
         nixd = {
@@ -136,6 +149,4 @@
     '';
   };
   plugins.schemastore.enable = true;
-  # Completion source for LSP
-  plugins.cmp-nvim-lsp.enable = true;
 }
