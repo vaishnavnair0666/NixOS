@@ -203,21 +203,12 @@
       options.desc = "Search buffer";
     }
     #######################
-    # OIL 
+    # OIL
     #######################
-    {
-      mode = "n";
-      key = "-";
-      action = { __raw = "function() require('oil').open() end"; };
-      options = {
-        desc = "Open Oil parent directory";
-        silent = true;
-      };
-    }
 
     {
       mode = "n";
-      key = "<leader>e";
+      key = "-";
       action = { __raw = "function() require('oil').open_float() end"; };
       options = {
         desc = "Oil floating window";
@@ -226,7 +217,7 @@
     }
     {
       mode = "n";
-      key = "<leader>E";
+      key = "<leader>e";
       action = "<cmd>Neotree toggle left<CR>";
       options.desc = "Toggle Neo-tree";
     }
