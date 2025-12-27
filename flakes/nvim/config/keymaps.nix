@@ -336,6 +336,12 @@
       action = "<cmd>Telescope git_stash<cr>";
       options.desc = "Git stash";
     }
+    {
+      mode = "n";
+      key = "<leader>gt";
+      action = "<cmd>LazyGit<cr>";
+      options.desc = "LazyGit";
+    }
     #######################
     # TOGGLE TERMINAL
     #######################

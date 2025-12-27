@@ -8,6 +8,7 @@
       ./plugins/dashboard.nix
       ./plugins/git.nix
       ./plugins/harpoon.nix
+      ./plugins/lazygit.nix
       ./plugins/lsp.nix
       ./plugins/lspsaga.nix
       ./plugins/neo-tree.nix
