@@ -208,9 +208,7 @@
     {
       mode = "n";
       key = "-";
-      action = {
-        __raw = "function() require('oil').open() end";
-      };
+      action = { __raw = "function() require('oil').open() end"; };
       options = {
         desc = "Open Oil parent directory";
         silent = true;
@@ -220,9 +218,7 @@
     {
       mode = "n";
       key = "<leader>e";
-      action = {
-        __raw = "function() require('oil').open_float() end";
-      };
+      action = { __raw = "function() require('oil').open_float() end"; };
       options = {
         desc = "Oil floating window";
         silent = true;
@@ -240,9 +236,7 @@
     {
       mode = "n";
       key = "s";
-      action = {
-        __raw = "function() require('flash').jump() end";
-      };
+      action = { __raw = "function() require('flash').jump() end"; };
       options = {
         desc = "Flash jump";
         silent = true;
