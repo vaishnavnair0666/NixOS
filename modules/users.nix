@@ -6,8 +6,7 @@ in {
     description = "vaish";
     linger = false;
     extraGroups =
-      [ "wheel" "networkmanager" "audio" "video" "input" "bluetooth" ];
+      [ "wheel" "networkmanager" "audio" "video" "input" "bluetooth" "podman" ];
   };
   systemd.services."user-${user}.slice".wantedBy = [ "multi-user.target" ];
 }
-

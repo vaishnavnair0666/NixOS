@@ -9,6 +9,7 @@
     skopeo
     buildah
     docker-compose
+    lazydocker
   ];
 
   virtualisation.podman = {

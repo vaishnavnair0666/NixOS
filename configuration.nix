@@ -42,6 +42,7 @@
     ./modules/portal.nix
     ./modules/system.nix
     ./modules/systemTheme.nix
+    ./modules/terminalTools.nix
     ./modules/users.nix
 
   ];
@@ -55,4 +56,3 @@
   };
   nix.settings.ssl-cert-file = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
 }
-
