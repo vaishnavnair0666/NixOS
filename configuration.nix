@@ -28,8 +28,8 @@
     ./modules/audio.nix
     ./modules/base.nix
     ./modules/bluetooth.nix
-    ./modules/container.nix
-    ./modules/database.nix
+    # ./modules/container.nix
+    # ./modules/database.nix
     ./modules/desktop.nix
     ./modules/dev.nix
     ./modules/documentEditor.nix
