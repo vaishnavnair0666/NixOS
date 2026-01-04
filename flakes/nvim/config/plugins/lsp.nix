@@ -99,6 +99,7 @@
         };
       };
       yamlls.enable = true;
+      qmlls.enable = true;
       html.enable = true;
       cssls.enable = true;
       tailwindcss.enable = true;

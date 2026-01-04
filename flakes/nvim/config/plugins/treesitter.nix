@@ -26,6 +26,8 @@
       rust
       java
 
+      qmldir
+      qmljs
       c
       cpp
     ];
