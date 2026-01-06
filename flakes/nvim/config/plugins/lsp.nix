@@ -99,7 +99,7 @@
         };
       };
       yamlls.enable = true;
-      qmlls.enable = true;
+      qmlls = { enable = true; settings.qml = { disableWarnings = true; }; };
       html.enable = true;
       cssls.enable = true;
       tailwindcss.enable = true;
