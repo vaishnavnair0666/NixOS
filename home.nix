@@ -8,6 +8,7 @@
     ./home/Packages.nix
     ./home/Session-variables.nix
     ./home/Window-manager.nix
+    ./home/quickshell.nix
   ];
 
   # home.file.".config/hypr".source = ./config/hypr;
@@ -17,4 +18,3 @@
   #hello
   home.stateVersion = "25.11";
 }
-

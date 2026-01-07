@@ -1,6 +1,6 @@
 export EDITOR=nvim
 export VISUAL=nvim
-
+export Nix_SHELL=0
 __git_branch() {
 	git symbolic-ref --short HEAD 2>/dev/null || return
 }
@@ -8,9 +8,7 @@ __exit_status() {
 	local s=$?
 	[ $s -ne 0 ] && echo -e "\e[1;31m✗ $s\e[0m "
 }
-
-PS1='\[\e[38;5;171m\]\A\[\e[0m\]|\h@\u:$(__exit_status)[\[\e[38;5;76m\]$(__git_branch)\[\e[0m\]]\[\e[96m\]\w\n\[\e[0m\]󱞩 '
-
+PS1='\[\e[38;5;171m\]\A\[\e[0m\]|\h@\u:$(__exit_status)[\[\e[38;5;76m\]$(__git_branch)\[\e[0m\]]\[\e[96m\]\w\n|${Nix_SHELL:-0}|\[\e[0m\]󰁔'
 HISTSIZE=50000
 HISTFILESIZE=100000
 HISTCONTROL=ignoreboth:erasedups
