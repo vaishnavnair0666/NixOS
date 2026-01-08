@@ -2,7 +2,7 @@ import Quickshell
 import Quickshell.Wayland
 import QtQuick
 import QtQuick.Layouts
-
+import "../state"
 PanelWindow {
     id: bar
 
@@ -12,7 +12,7 @@ PanelWindow {
     anchors.left: true
     anchors.right: true
     implicitHeight: 32
-    color: "#1e1e2e"
+    color: Theme.background
 
     RowLayout {
         anchors.fill: parent
@@ -20,7 +20,7 @@ PanelWindow {
 
         Text {
             text: "Bar"
-            color: "white"
+            color: Theme.foreground
             Layout.leftMargin: 10
         }
 
@@ -28,7 +28,7 @@ PanelWindow {
 
         Text {
             text: "Theme"
-            color: "#7aa2f7"
+            color: Theme.color7
 
             MouseArea {
                 anchors.fill: parent

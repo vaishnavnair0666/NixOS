@@ -5,6 +5,7 @@ import Quickshell
 import Quickshell.Io
 import Quickshell.Wayland
 import "../state"
+
 PanelWindow {
     id: dropdown
     signal close()
@@ -17,7 +18,39 @@ PanelWindow {
     }
 
     implicitHeight: 420
-color: "#01000000"
+    color: "#01000000"
+
+    Process { id: wallustProc }
+
+	Process {
+		id: loadAnsiThemeProc
+		property string buf: ""
+
+		command: ["cat", "/home/vaish/.cache/wallust/ansi.json"]
+
+		stdout: SplitParser {
+			onRead: function(chunk) {
+				if (!chunk) return
+				loadAnsiThemeProc.buf += chunk
+			}
+		}
+
+		Component.onCompleted: {
+			buf = ""
+		}
+
+		onRunningChanged: {
+			if (!running && buf.length > 0) {
+				try {
+					Theme.applyFromAnsi(JSON.parse(buf))
+					console.log("ANSI theme applied")
+				} catch (e) {
+					console.error("ANSI parse error", e)
+				}
+				buf = ""
+			}
+		}
+	}
 
     /* =====================
        STATE
@@ -55,7 +88,7 @@ color: "#01000000"
         width: Math.min(parent.width, 420)
         height: parent.height
         radius: 12
-        color: "#24283b"
+        color: Theme.background
 
         anchors.top: parent.top
         anchors.horizontalCenter: parent.horizontalCenter
@@ -66,16 +99,12 @@ color: "#01000000"
             anchors.margins: 12
             spacing: 12
 
-            /* ===== Header ===== */
-
             Text {
                 text: "Wallpapers"
-                color: Theme.fg
+                color: Theme.foreground
                 font.pixelSize: 16
                 font.bold: true
             }
-
-            /* ===== Grid ===== */
 
             Flickable {
                 Layout.fillWidth: true
@@ -98,7 +127,7 @@ color: "#01000000"
                             height: width * 0.6
                             radius: 8
                             clip: true
-                            color: Theme.accent
+                            color: Theme.color8
 
                             property bool selected:
                                 filePath === selectedWallpaper
@@ -111,56 +140,55 @@ color: "#01000000"
                                 cache: true
                             }
 
-                            /* Selection overlay */
                             Rectangle {
                                 anchors.fill: parent
-                                color: selected ? "#7aa2f7" : "black"
+                                color: selected ? Theme.color4 : "black"
                                 opacity: selected ? 0.25 : 0.12
                             }
 
-                            /* Selection border */
                             Rectangle {
                                 anchors.fill: parent
                                 radius: 8
                                 color: "transparent"
                                 border.width: selected ? 2 : 0
-                                border.color: "#7aa2f7"
+                                border.color: Theme.color4
                             }
 
                             MouseArea {
                                 anchors.fill: parent
-                                onClicked: {
-                                    selectedWallpaper = filePath
+								onClicked: {
+									selectedWallpaper = filePath
 
-                                    applyWallpaperProc.command = [
-                                        "swww",
-                                        "img",
-                                        filePath,
-                                        "--transition-type",
-                                        "any",
-                                        "--transition-duration",
-                                        "0.8"
-                                    ]
-                                    applyWallpaperProc.running = true
-                                }
+									applyWallpaperProc.command = [
+										"swww", "img", filePath,
+										"--transition-type", "any",
+										"--transition-duration", "0.8"
+									]
+									applyWallpaperProc.running = true
+
+									wallustProc.command = ["wallust", "run", filePath]
+									wallustProc.running = true
+
+									Qt.callLater(function () {
+										loadAnsiThemeProc.running = true
+									})
+								}
                             }
                         }
                     }
                 }
             }
 
-            /* ===== Close ===== */
-
             Rectangle {
                 Layout.fillWidth: true
                 height: 36
                 radius: 6
-                color: Theme.danger
+                color: Theme.color1
 
                 Text {
                     anchors.centerIn: parent
                     text: "Close"
-                    color: "black"
+                    color: Theme.foreground
                     font.bold: true
                 }
 
