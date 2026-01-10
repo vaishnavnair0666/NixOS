@@ -4,7 +4,8 @@ let
   waybarWorkspaceAction = builtins.readFile ../scripts/waybarWorkspaceAction.sh;
   waybarNetwork = builtins.readFile ../scripts/waybarNetwork.sh;
   waybarToggle = builtins.readFile ../scripts/waybarToggle.sh;
-in {
+in
+{
   home.packages = with pkgs; [
     (pkgs.writeShellScriptBin "waybarWorkspace" "${waybarWorkspace}")
     (pkgs.writeShellScriptBin "waybarWorkspaceAction"
@@ -24,5 +25,6 @@ in {
     pavucontrol
     cliphist
     nemo
+    pkgs.unstable.dms-shell
   ];
 }

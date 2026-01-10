@@ -6,5 +6,7 @@
       bat
       bluetuith
       broot
+      gcal
+      gcalcli
     ];
 }

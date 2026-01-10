@@ -166,7 +166,7 @@ PanelWindow {
 									]
 									applyWallpaperProc.running = true
 
-									wallustProc.command = ["wallust", "run", filePath]
+									wallustProc.command = ["wallust", "run", filePath, "-u"]
 									wallustProc.running = true
 
 									Qt.callLater(function () {

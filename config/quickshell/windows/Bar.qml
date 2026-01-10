@@ -7,6 +7,7 @@ PanelWindow {
     id: bar
 
     signal openThemeSwitcher()
+	signal clockClicked()
 
     anchors.top: true
     anchors.left: true
@@ -18,14 +19,14 @@ PanelWindow {
         anchors.fill: parent
         spacing: 8
 
-        Text {
-            text: "Bar"
-            color: Theme.foreground
-            Layout.leftMargin: 10
+        Item { width: 20 }
+
+        // Left: focused window title
+        WindowTitle {
+            title: "Focused Window"
         }
 
-        Item { Layout.fillWidth: true }
-
+        // Theme switcher entry
         Text {
             text: "Theme"
             color: Theme.color7
@@ -36,6 +37,14 @@ PanelWindow {
             }
         }
 
-        Item { width: 10 }
+        Item { Layout.fillWidth: true }
+
+        // Right cluster
+        SystemStats {}
+		Clock {
+			onClicked: bar.clockClicked()
+		}
+
+        Item { width: 25 }
     }
 }
