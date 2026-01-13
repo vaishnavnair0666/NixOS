@@ -453,7 +453,14 @@
     { mode = "n"; key = "<F11>"; action = "<cmd>DapStepInto<CR>"; }
     { mode = "n"; key = "<F12>"; action = "<cmd>DapStepOut<CR>"; }
     { mode = "n"; key = "<leader>b"; action = "<cmd>DapToggleBreakpoint<CR>"; }
-    { mode = "n"; key = "<leader>du"; action = "<cmd>DapUiToggle<CR>"; } #
+    {
+      mode = "n";
+      key = "<leader>du";
+      action = {
+        __raw = "function() require('dapui').toggle() end";
+      };
+      options.desc = "DAP UI Toggle";
+    }
     #######################
     # MISC
     #######################
