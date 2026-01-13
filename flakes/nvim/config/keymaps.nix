@@ -92,39 +92,39 @@
     #######################
     {
       mode = "n";
-      key = "<leader>bn";
+      key = "\\bn";
       action = "<cmd>BufferLineCycleNext<CR>";
       options.desc = "Next buffer";
     }
     {
       mode = "n";
-      key = "<leader>bp";
+      key = "\\bp";
       action = "<cmd>BufferLineCyclePrev<CR>";
       options.desc = "Previous buffer";
     }
 
     {
       mode = "n";
-      key = "<leader>bm";
+      key = "\\bm";
       action = "<cmd>BufferLineMoveNext<CR>";
       options.desc = "Move buffer right";
     }
     {
       mode = "n";
-      key = "<leader>bh";
+      key = "\\bh";
       action = "<cmd>BufferLineMovePrev<CR>";
       options.desc = "Move buffer left";
     }
 
     {
       mode = "n";
-      key = "<leader>bd";
+      key = "\\bd";
       action = "<cmd>bdelete<CR>";
       options.desc = "Close buffer";
     }
     {
       mode = "n";
-      key = "<leader>bo";
+      key = "\\bo";
       action = "<cmd>BufferLineCloseOthers<CR>";
       options.desc = "Close other buffers";
     }
@@ -134,37 +134,37 @@
     #######################
     {
       mode = "n";
-      key = "<leader>1";
+      key = "\\1";
       action = "<cmd>BufferLineGoToBuffer 1<CR>";
       options.desc = "Buffer 1";
     }
     {
       mode = "n";
-      key = "<leader>2";
+      key = "\\2";
       action = "<cmd>BufferLineGoToBuffer 2<CR>";
       options.desc = "Buffer 2";
     }
     {
       mode = "n";
-      key = "<leader>3";
+      key = "\\3";
       action = "<cmd>BufferLineGoToBuffer 3<CR>";
       options.desc = "Buffer 3";
     }
     {
       mode = "n";
-      key = "<leader>4";
+      key = "\\4";
       action = "<cmd>BufferLineGoToBuffer 4<CR>";
       options.desc = "Buffer 4";
     }
     {
       mode = "n";
-      key = "<leader>5";
+      key = "\\5";
       action = "<cmd>BufferLineGoToBuffer 5<CR>";
       options.desc = "Buffer 5";
     }
     {
       mode = "n";
-      key = "<leader>6";
+      key = "\\6";
       action = "<cmd>BufferLineGoToBuffer 6<CR>";
       options.desc = "Buffer 6";
     }
@@ -175,6 +175,12 @@
     {
       mode = "n";
       key = "<leader>ff";
+      action = "<cmd>Telescope find_files<cr>";
+      options.desc = "Find files";
+    }
+    {
+      mode = "n";
+      key = "\\f";
       action = "<cmd>Telescope find_files<cr>";
       options.desc = "Find files";
     }
@@ -239,11 +245,23 @@
     #######################
     {
       mode = "n";
-      key = "<leader>ca";
+      key = "<leader>aa";
       action = "<cmd>AerialToggle!<cr>";
       options.desc = "Symbols outline";
     }
 
+    {
+      mode = "n";
+      key = "<leader>an";
+      action = "<cmd>AerialNavToggle<cr>";
+      options.desc = "Symbols outline Nav";
+    }
+    {
+      mode = "n";
+      key = "\\a";
+      action = "<cmd>AerialNavToggle<cr>";
+      options.desc = "Symbols outline Nav";
+    }
     #######################
     # DIAGNOSTICS
     #######################
@@ -427,7 +445,15 @@
       action = "<cmd>CccHighlighterToggle<CR>";
       options.desc = "Toggle color preview";
     }
-
+    #####################
+    #DAP
+    ####################
+    { mode = "n"; key = "<F5>"; action = "<cmd>DapContinue<CR>"; }
+    { mode = "n"; key = "<F10>"; action = "<cmd>DapStepOver<CR>"; }
+    { mode = "n"; key = "<F11>"; action = "<cmd>DapStepInto<CR>"; }
+    { mode = "n"; key = "<F12>"; action = "<cmd>DapStepOut<CR>"; }
+    { mode = "n"; key = "<leader>b"; action = "<cmd>DapToggleBreakpoint<CR>"; }
+    { mode = "n"; key = "<leader>du"; action = "<cmd>DapUiToggle<CR>"; } #
     #######################
     # MISC
     #######################

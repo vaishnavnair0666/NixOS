@@ -5,6 +5,7 @@
       ./plugins/aerial.nix
       ./plugins/cmp.nix
       ./plugins/conform.nix
+      ./plugins/dap.nix
       ./plugins/dashboard.nix
       ./plugins/git.nix
       ./plugins/harpoon.nix

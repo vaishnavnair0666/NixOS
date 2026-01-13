@@ -6,6 +6,7 @@
     rtkit
     clang
     lldb
+    llvmPackages.clang
     cmake
     cppcheck
     valgrind
