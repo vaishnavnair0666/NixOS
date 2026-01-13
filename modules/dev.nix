@@ -4,6 +4,12 @@
   environment.systemPackages = with pkgs; [
     pciutils
     rtkit
+    clang
+    lldb
+    cmake
+    cppcheck
+    valgrind
+    clang-tools
     gcc
     cargo
     gnumake
@@ -25,4 +31,3 @@
     openssl # certs/dev crypto
   ];
 }
-

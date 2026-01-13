@@ -115,7 +115,15 @@
       #   };
       # };
       jdtls.enable = true;
-      clangd.enable = true;
+      clangd = {
+        enable = true;
+        cmd = [ "clangd" "--background-index" "--query-driver=/nix/store/*/bin/*++" ];
+        rootMarkers = [
+          "compile_commands.json"
+          ".clangd"
+          ".git"
+        ];
+      };
 
       nixd.enable = true;
       nixd.settings = {

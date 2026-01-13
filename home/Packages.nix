@@ -25,6 +25,6 @@ in
     pavucontrol
     cliphist
     nemo
-    pkgs.unstable.dms-shell
+    # pkgs.unstable.dms-shell
   ];
 }
