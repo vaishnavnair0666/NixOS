@@ -13,7 +13,7 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, sops-nix, ... }:
+  outputs = inputs@{ nixpkgs, nvim, home-manager, sops-nix, ... }:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;
@@ -29,6 +29,9 @@
       mkSystem = hostModule:
         nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs = {
+            inherit nvim;
+          };
           modules = [
             ./configuration.nix
             hostModule

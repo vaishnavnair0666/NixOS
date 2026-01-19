@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ nvim, pkgs, ... }:
 
 {
   environment.systemPackages = [
-    inputs.my-nvim.packages.${pkgs.stdenv.system}.neovim
+    nvim.packages.${pkgs.stdenv.system}.neovim
   ];
 }
