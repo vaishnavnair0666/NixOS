@@ -2,33 +2,50 @@
 
 {
   environment.systemPackages = with pkgs; [
-    pciutils
-    rtkit
+    bash-language-server
+    cargo
+    ccls
+    chafa
     clang
-    lldb
-    llvmPackages.clang
+    clang-tools
     cmake
     cppcheck
-    valgrind
-    clang-tools
-    gcc
-    cargo
-    gnumake
+    deadnix
     direnv
-    nix-direnv
-    nodejs_22
-    pnpm
+    fzf
+    gcc
+    gnumake
+    httpie # nice curl alternative
     jq
-    # 🛠️ Language Servers (for IDEs / Neovim / VSCode)
+    lldb
+    lldb
+    llvmPackages.clang
+    llvmPackages.libcxx
+    llvmPackages.lldb
+    lua-language-server
+    marksman
+    ngrok # expose localhost services
+    nil
+    nix-direnv
     nixfmt-classic
-    svelte-language-server
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted # html/css/json eslint
     nodePackages.eslint
     nodePackages.prettier
-    # ⚡ Extra Dev Stuff
-    httpie # nice curl alternative
-    ngrok # expose localhost services
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted # html/css/json eslint
+    nodejs_22
     openssl # certs/dev crypto
+    pciutils
+    pnpm
+    pyright
+    pyright
+    qt6.qtdeclarative
+    rtkit
+    rust-analyzer
+    rustfmt
+    statix
+    stylua
+    svelte-language-server
+    valgrind
+    vscode-extensions.vadimcn.vscode-lldb
   ];
 }

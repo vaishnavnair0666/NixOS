@@ -1,5 +1,9 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [ discord spotify ];
+  environment.systemPackages = with pkgs; [
+    discord
+    spotify
+    zoom-us
+  ];
 }

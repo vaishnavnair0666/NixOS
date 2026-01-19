@@ -39,6 +39,7 @@
     ./modules/kernelBlacklist.nix
     ./modules/loginManager.nix
     ./modules/menu.nix
+    ./modules/nvim.nix
     ./modules/portal.nix
     ./modules/system.nix
     ./modules/systemTheme.nix
