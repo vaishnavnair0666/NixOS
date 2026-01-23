@@ -186,11 +186,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1768818168,
-        "narHash": "sha256-4Ef7/SHxGmJnlfs9o7RqEmrr8XXUE1vHkfis5lXEpzk=",
+        "lastModified": 1769172747,
+        "narHash": "sha256-cYSOCctgY3saDZzprBxkVbvVcp+NIhkoVy37vXEUfdc=",
         "owner": "vaishnavnair0666",
         "repo": "nvim-mnw",
-        "rev": "e83bd0649ab91dbc1a80f0795fcf8f92ba4b2df4",
+        "rev": "af6db7b8316f964ddad42d3c3a6fcf9568abfe02",
         "type": "github"
       },
       "original": {

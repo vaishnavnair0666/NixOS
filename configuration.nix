@@ -24,6 +24,7 @@
   imports = [
     ./hardware-configuration.nix
     ./modules/OpenGL.nix
+    ./modules/ai.nix
     ./modules/apps.nix
     ./modules/audio.nix
     ./modules/base.nix
