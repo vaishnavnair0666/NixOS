@@ -1,6 +1,8 @@
 export EDITOR=nvim
 export VISUAL=nvim
 export Nix_SHELL=0
+export DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock
+
 __git_branch() {
 	git symbolic-ref --short HEAD 2>/dev/null || return
 }

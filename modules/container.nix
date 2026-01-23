@@ -8,7 +8,6 @@
     dive
     skopeo
     buildah
-    docker-compose
     lazydocker
   ];
 
@@ -16,6 +15,9 @@
     enable = true;
     dockerCompat = true; # so `docker ps` works with podman
     defaultNetwork.settings.dns_enabled = true;
+    dockerSocket.enable = true;
+    autoPrune.enable = true;
   };
+  systemd.user.sockets.podman = { wantedBy = [ "sockets.target" ]; };
 
 }
