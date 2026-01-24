@@ -5,5 +5,6 @@
     sqlite
     mariadb.client
     pgcli
+    postgresql
   ];
 }

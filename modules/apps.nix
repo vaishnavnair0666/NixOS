@@ -9,5 +9,7 @@
     zoom-us
     oklch-color-picker
     ollama
+    obsidian
+    vscode
   ];
 }
