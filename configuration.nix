@@ -34,6 +34,7 @@
     ./modules/desktop.nix
     ./modules/dev.nix
     ./modules/documentEditor.nix
+    ./modules/firewall.nix
     ./modules/fonts.nix
     ./modules/formatter.nix
     ./modules/host-options.nix

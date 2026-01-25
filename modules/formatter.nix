@@ -17,6 +17,8 @@
 
     nodePackages.bash-language-server
 
+    nodePackages.dockerfile-language-server-nodejs
+
     lua-language-server
   ];
 }

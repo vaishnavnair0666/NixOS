@@ -12,6 +12,7 @@
     obsidian
     vscode
 
+    localsend
 
     imv
     inkscape
