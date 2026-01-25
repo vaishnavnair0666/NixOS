@@ -18,3 +18,12 @@ window-rule {
         off
     }
 }
+window_rules = [
+  {
+    match.app_id = "imv";
+    open_floating = true;
+    default_size = { width = 900; height = 700; };
+    center = true;
+  }
+];
+

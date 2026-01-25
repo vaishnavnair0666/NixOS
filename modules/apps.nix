@@ -11,5 +11,10 @@
     ollama
     obsidian
     vscode
+
+
+    imv
+    inkscape
+    gimp
   ];
 }
