@@ -11,6 +11,7 @@
     ollama
     obsidian
     vscode
+    lazysql
 
     localsend
 
