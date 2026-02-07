@@ -11,6 +11,7 @@
     config.common.default = [ "wlr" ];
   };
   services.dbus.enable = true;
+  programs.xwayland.enable = true;
   security.rtkit.enable = true;
   environment.systemPackages = with pkgs; [ xwayland-satellite ];
 

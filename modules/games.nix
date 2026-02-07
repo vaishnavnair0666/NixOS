@@ -6,10 +6,7 @@
 
     extraCompatPackages = with pkgs; [ proton-ge-bin ];
   };
+  enviornments.systemPackages = with pkgs; [ mangohud ];
   programs.gamemode.enable = true;
-  programs.games.mangohud = {
-    enable = true;
-    enable32Bit = true;
-  };
 
 }
