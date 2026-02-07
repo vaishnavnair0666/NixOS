@@ -37,6 +37,7 @@
     ./modules/firewall.nix
     ./modules/fonts.nix
     ./modules/formatter.nix
+    ./modules/games.nix
     ./modules/host-options.nix
     ./modules/kernelBlacklist.nix
     ./modules/loginManager.nix

@@ -11,6 +11,8 @@
       jetbrains-mono
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
+      corefonts
+      liberation_ttf
     ];
     fontconfig = {
       enable = true;
