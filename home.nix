@@ -11,7 +11,6 @@
     ./home/quickshell.nix
   ];
 
-  # home.file.".config/hypr".source = ./config/hypr;
   home.file.".config/wofi".source = ./config/wofi;
   home.file.".config/waybar".source = ./config/waybar;
 
