@@ -1,0 +1,44 @@
+{
+  self,
+  inputs,
+  ...
+}: {
+  flake.nixosModules.asuslaptopHardware = {
+    config,
+    lib,
+    pkgs,
+    modulesPath,
+    ...
+  }: {
+    imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+
+    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "rtsx_usb_sdmmc"];
+    boot.initrd.kernelModules = [];
+    boot.kernelModules = ["kvm-amd"];
+    boot.extraModulePackages = [];
+
+    fileSystems."/" = {
+      device = "/dev/disk/by-uuid/4d8bbbcb-e2f4-4fcb-b098-c09ad4666a3c";
+      fsType = "btrfs";
+      options = ["subvol=@"];
+    };
+
+    fileSystems."/home" = {
+      device = "/dev/disk/by-uuid/4d8bbbcb-e2f4-4fcb-b098-c09ad4666a3c";
+      fsType = "btrfs";
+      options = ["subvol=@home"];
+    };
+
+    fileSystems."/boot" = {
+      device = "/dev/disk/by-uuid/8690-CD18";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
+
+    swapDevices = [{device = "/dev/disk/by-uuid/4bfda28c-cade-4008-a008-ad86805337f1";}];
+
+    nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+    hardware.cpu.amd.updateMicrocode =
+      lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+}
