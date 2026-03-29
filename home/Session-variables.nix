@@ -1,6 +1,0 @@
-{ ... }:
-
-{
-  home.sessionVariables = { TERMINAL = "foot"; };
-}
-

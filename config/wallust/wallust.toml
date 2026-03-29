@@ -1,8 +1,0 @@
-backend = "fastresize"
-color_space = "lch"
-palette = "dark"
-
-[templates]
-json_colors = { template = "colors_json.j2", target = "~/.cache/wallust/colors.json" }
-ansi = { template = "colors_ansi.json.j2", target = "~/.cache/wallust/ansi.json" }
-foot = { template = "foot.ini", target = "~/.config/foot/colors.ini" }

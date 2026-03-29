@@ -1,50 +1,25 @@
 {
-  description = "My NixOS + Home Manager config";
-
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    unstable-nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    wrapper-modules = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-grub-themes.url = "github:jeslie0/nixos-grub-themes";
-
-    sops-nix.url = "github:Mic92/sops-nix";
-    home-manager.url = "github:nix-community/home-manager/release-25.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nvim = {
       url = "github:vaishnavnair0666/nvim-mnw";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs =
-    inputs@{ nixpkgs, nixos-grub-themes, nvim, home-manager, sops-nix, ... }:
-    let
-      system = "x86_64-linux";
-      lib = nixpkgs.lib;
-
-      hosts = lib.mapAttrs' (name: _: {
-        name = lib.removeSuffix ".nix" name;
-        value = ./hosts/${name};
-      }) (lib.filterAttrs (_: type: type == "regular")
-        (builtins.readDir ./hosts));
-
-      mkSystem = hostModule:
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit nvim nixos-grub-themes; };
-          modules = [
-            ./configuration.nix
-            hostModule
-            sops-nix.nixosModules.sops
-            home-manager.nixosModules.home-manager
-            { home-manager.users.vaish = { imports = [ ./home.nix ]; }; }
-          ];
-        };
-
-      systems = lib.mapAttrs (_: host: mkSystem host) hosts;
-
-    in {
-      nixosConfigurations = systems;
-      packages.x86_64-linux = systems;
-    };
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;}
+    (inputs.import-tree ./modules);
 }
