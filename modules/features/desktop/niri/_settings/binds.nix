@@ -16,11 +16,6 @@ in {
 
     "Super+Alt+L".spawn = lib.getExe pkgs.swaylock;
 
-    "Super+Alt+S" = {
-      _attrs = {allow-when-locked = true;};
-      spawn-sh = "pkill orca || exec orca";
-    };
-
     XF86AudioRaiseVolume = {
       _attrs = {allow-when-locked = true;};
       spawn-sh = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0";
@@ -41,10 +36,10 @@ in {
       spawn-sh = "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
     };
 
-    XF86AudioPlay.spawn-sh = "playerctl play-pause";
-    XF86AudioStop.spawn-sh = "playerctl stop";
-    XF86AudioPrev.spawn-sh = "playerctl previous";
-    XF86AudioNext.spawn-sh = "playerctl next";
+    XF86AudioPlay.spawn = [(lib.getExe pkgs.playerctl) "play-pause"];
+    XF86AudioStop.spawn = [(lib.getExe pkgs.playerctl) "stop"];
+    XF86AudioPrev.spawn = [(lib.getExe pkgs.playerctl) "previous"];
+    XF86AudioNext.spawn = [(lib.getExe pkgs.playerctl) "next"];
 
     XF86MonBrightnessUp.spawn = [(lib.getExe pkgs.brightnessctl) "--class=backlight" "set" "+10%"];
 
@@ -52,6 +47,20 @@ in {
 
     "Mod+O".toggle-overview = null;
     "Mod+Q".close-window = null;
+
+    "Mod+W".toggle-column-tabbed-display = null;
+    "Mod+BracketLeft".consume-or-expel-window-left = null;
+    "Mod+BracketRight".consume-or-expel-window-right = null;
+
+    "Mod+F".maximize-column = null;
+    "Mod+Shift+F".fullscreen-window = null;
+    "Mod+R".switch-preset-column-width = null;
+    "Mod+Shift+R".switch-preset-window-height = null;
+
+    "Mod+C".center-column = null;
+
+    "Mod+V".toggle-window-floating = null;
+    "Mod+Shift+V".switch-focus-between-floating-and-tiling = null;
 
     "Mod+Left".focus-column-left = null;
     "Mod+Right".focus-column-right = null;
@@ -73,21 +82,24 @@ in {
     "Mod+Ctrl+K".move-window-up = null;
     "Mod+Ctrl+L".move-column-right = null;
 
+    "Mod+Shift+H".set-column-width = "-5%";
+    "Mod+Shift+L".set-column-width = "+5%";
+    "Mod+Shift+J".set-window-height = "-5%";
+    "Mod+Shift+K".set-window-height = "+5%";
+
+    "Mod+Shift+Left".set-column-width = "-5%";
+    "Mod+Shift+Right".set-column-width = "+5%";
+    "Mod+Shift+Down".set-window-height = "-5%";
+    "Mod+Shift+Up".set-window-height = "+5%";
+
     "Mod+Page_Up".focus-workspace-up = null;
     "Mod+Page_Down".focus-workspace-down = null;
 
-    "Mod+U".focus-workspace-down = null;
-    "Mod+I".focus-workspace-up = null;
+    "Mod+U".focus-workspace-up = null;
+    "Mod+I".focus-workspace-down = null;
 
-    "Mod+1".focus-workspace = 1;
-    "Mod+2".focus-workspace = 2;
-    "Mod+3".focus-workspace = 3;
-    "Mod+4".focus-workspace = 4;
-    "Mod+5".focus-workspace = 5;
-    "Mod+6".focus-workspace = 6;
-    "Mod+7".focus-workspace = 7;
-    "Mod+8".focus-workspace = 8;
-    "Mod+9".focus-workspace = 9;
+    "Mod+Shift+U".move-workspace-up = null;
+    "Mod+Shift+I".move-workspace-down = null;
 
     Print.screenshot = null;
     "Ctrl+Print".screenshot-screen = null;

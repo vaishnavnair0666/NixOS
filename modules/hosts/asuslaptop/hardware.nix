@@ -1,12 +1,7 @@
-{
-  self,
-  inputs,
-  ...
-}: {
+{...}: {
   flake.nixosModules.asuslaptopHardware = {
     config,
     lib,
-    pkgs,
     modulesPath,
     ...
   }: {
