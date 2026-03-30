@@ -12,9 +12,15 @@
 
       self.nixosModules.apps
     ];
+
+    host.disableAtkbd = true;
+
     time.timeZone = "Asia/Kolkata";
 
-    nix.settings.experimental-features = ["nix-command" "flakes"];
+    nix.settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     system.stateVersion = "25.11";
   };

@@ -5,8 +5,7 @@
       efi.canTouchEfiVariables = true;
       grub = {
         enable = true;
-        theme =
-          inputs.nixos-grub-themes.packages.${pkgs.stdenv.hostPlatform.system}.nixos;
+        theme = inputs.nixos-grub-themes.packages.${pkgs.stdenv.hostPlatform.system}.nixos;
         efiSupport = true;
         device = "nodev";
 

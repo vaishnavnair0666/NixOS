@@ -5,5 +5,5 @@ final: prev: {
     repo = "elephant";
     rev = "master";
     sha256 = "uwcGPmie44rfq9qCOXO3WjJXiLxQxNPmKQYbG9a22/c=";
-  }) { };
+  }) {};
 }

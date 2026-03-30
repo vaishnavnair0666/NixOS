@@ -25,7 +25,6 @@
 
         nodejs
         eslint
-        prisma
       ];
     };
   };
