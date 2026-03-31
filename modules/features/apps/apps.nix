@@ -21,6 +21,9 @@
       strace
       strace-analyzer
       lsof
+
+      thunderbird
+
     ];
     services.gvfs.enable = true;
   };
