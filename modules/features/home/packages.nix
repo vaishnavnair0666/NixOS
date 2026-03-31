@@ -14,8 +14,20 @@
         lazysql
         localsend
         imv
+        mpv
+        mpv
         inkscape
         gimp
+        ffmpeg
+        mediainfo
+        mediainfo-gui
+        audacity
+
+        zathura
+        vlc
+        obs-studio
+        wf-recorder
+        kdePackages.kdenlive
 
         vscode
         obsidian

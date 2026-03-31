@@ -20,7 +20,7 @@
           };
 
           mouse = {hide-when-typing = "yes";};
-          colors = {background = "122016";};
+          colors-dark = {background = "122016";};
         };
       };
     };

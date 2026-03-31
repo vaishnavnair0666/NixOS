@@ -3,6 +3,7 @@
     environment.systemPackages = with pkgs; [
       alacritty
       grim
+      slurp
       udiskie
       wl-clipboard
       brightnessctl
@@ -14,6 +15,13 @@
       curl
       tldr
       fd
+
+      usbutils
+      pciutils
+      strace
+      strace-analyzer
+      lsof
     ];
+    services.gvfs.enable = true;
   };
 }
