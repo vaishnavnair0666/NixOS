@@ -51,7 +51,6 @@
         bluetuith
         broot
 
-
         zoom-us
         signal-desktop
       ])

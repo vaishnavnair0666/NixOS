@@ -18,12 +18,13 @@
 
       usbutils
       pciutils
+      libinput
+      libinput-gestures
       strace
       strace-analyzer
       lsof
 
       thunderbird
-
     ];
     services.gvfs.enable = true;
   };
