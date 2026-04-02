@@ -50,6 +50,10 @@
         bat
         bluetuith
         broot
+
+
+        zoom-us
+        signal-desktop
       ])
       ++ [inputs.nvim.packages.${pkgs.stdenv.hostPlatform.system}.default];
   };
