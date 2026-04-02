@@ -20,6 +20,11 @@
       pciutils
       libinput
       libinput-gestures
+      libxkbcommon
+
+      SDL2
+      SDL2_ttf
+
       strace
       strace-analyzer
       lsof
