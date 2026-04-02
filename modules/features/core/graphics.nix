@@ -8,6 +8,7 @@
     environment.systemPackages = with pkgs; [
       mesa-demos
       wayland-utils
+      vulkan-loader
       vulkan-tools
     ];
 
