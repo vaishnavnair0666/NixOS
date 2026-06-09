@@ -16,6 +16,7 @@ in {
       self.nixosModules.hm-git
       self.nixosModules.hm-shell
       self.nixosModules.hm-foot
+      self.nixosModules.hm-tmux
     ];
 
     home-manager = {

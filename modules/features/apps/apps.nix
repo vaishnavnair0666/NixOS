@@ -14,6 +14,7 @@
       wget
       curl
       tldr
+      zoxide
       fd
 
       usbutils
@@ -30,6 +31,7 @@
       lsof
 
       thunderbird
+      drawio
     ];
     services.gvfs.enable = true;
   };
