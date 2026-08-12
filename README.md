@@ -1,3 +1,6 @@
+[WARNING] 
+# I switched to a dendritic setup and these instructions may not be accurate i will update when i get the chance to.
+---
 ## Installation Guide: Setting Up with NixOS Minimal ISO
 
 This section guides you through installing NixOS with Btrfs and EFI using my dotfiles. The instructions assume you’re starting from the NixOS minimal installer ISO and want a minimal, reproducible system.
